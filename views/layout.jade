@@ -2,36 +2,35 @@
 html(lang='en')
   head
     //
-       Basic Page Needs
-        ================================================== 
+    //   Basic Page Needs
+    //    ================================================== 
     meta(charset='utf-8')
     title Partido De La Red
     meta(name='description', content='')
     meta(name='author', content='')
     //
-       Mobile Specific Metas
-        ================================================== 
+    //   Mobile Specific Metas
+    //    ================================================== 
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     //
-       CSS
-        ================================================== 
-    link(rel='stylesheet', href='bootstrap/css/bootstrap.min.css')
-    link(rel='stylesheet', href='bootstrap/css/bootstrap-responsive.css')
-    link(rel='stylesheet', href='css/stylesheet/main.css')
+    //   CSS
+    //    ================================================== 
+    link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/bootstrap/css/bootstrap-responsive.css')
+    link(rel='stylesheet', href='/css/stylesheet/main.css')
     //if lt IE 9
       script(src='http://html5shim.googlecode.com/svn/trunk/html5.js')
     //
-       Favicons
-      	================================================== 
-    link(rel='shortcut icon', href='images/favicon.ico')
-    link(rel='apple-touch-icon', href='images/apple-touch-icon.png')
-    link(rel='apple-touch-icon', sizes='72x72', href='images/apple-touch-icon-72x72.png')
-    link(rel='apple-touch-icon', sizes='114x114', href='images/apple-touch-icon-114x114.png')
+    //   Favicons
+    //    ================================================== 
+    link(rel='shortcut icon', href='/images/favicon.ico')
+    link(rel='apple-touch-icon', href='/images/apple-touch-icon.png')
+    link(rel='apple-touch-icon', sizes='72x72', href='/images/apple-touch-icon-72x72.png')
+    link(rel='apple-touch-icon', sizes='114x114', href='/images/apple-touch-icon-114x114.png')
     script(type='text/javascript', src='http://use.typekit.com/wva0yvr.js')
     script(type='text/javascript')
       try{Typekit.load();}catch(e){}
-  body.class
-    | -page"
+  body(class=page + "-page")
     header
       .container
         .row
@@ -56,8 +55,9 @@ html(lang='en')
                 i
               a.logout(href='')
                 i
-    //
-       HERE GOES CONTENT 
+    
+    block content
+    
     footer.columns.container.sixteen.clearfix
       .sharing
         script(src='//connect.facebook.net/en_US/all.js#xfbml=1')
@@ -65,11 +65,11 @@ html(lang='en')
         a.twitter-share-button(href='http://twitter.com/share', data-count='horizontal', data-via='', data-related='brad') Tweet
         script(type='text/javascript', src='//platform.twitter.com/widgets.js')
         //
-           Place this tag where you want the +1 button to render 
+        //   Place this tag where you want the +1 button to render 
         .plusone
           .g-plusone(data-size='medium', data-annotation='inline', data-width='70', data-href='http://votamostodos.com.ar')
         //
-           Place this render call where appropriate 
+        //   Place this render call where appropriate 
         script(type='text/javascript')
           (function() {
           var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
