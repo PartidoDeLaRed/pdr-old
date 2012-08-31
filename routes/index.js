@@ -49,11 +49,30 @@ app.get('/logout', function(req, res){
 });
 
 app.get('/voting', function(req, res) {
-  res.render('voting', { page: 'profile', ideas: [{_id:1, title:"asd"},{_id:2, title:"dsa"}]});
+  res.render('voting', { page: 'profile', ideas: [{
+    _id:1,
+    title:"Los documentos contables del Estado deberian ser publicos y libres."
+  }, {
+    _id:2,
+    title:"Cada argentino deberia poder decidir a dónde van sus ingresos."
+  },{
+    _id:3,
+    title:"El dolar no debería tener más de un valor vigente."
+  }]});
 });
 
 app.get('/voting/:id', utils.restrict, function(req, res) {
 	res.render('idea', { page: 'idea' });
+});
+
+app.get('/idea/forge', utils.restrict, function(req, res) {
+  res.render('idea-form');
+});
+
+app.post('/idea/process', utils.restrict, function(req, res) {
+  var newIdea = new models.Idea(req.body.idea);
+  newIdea.save();
+  res.redirect('/voting')
 });
 
 app.get('/profile/:id', utils.restrict, function(req, res) {

@@ -6,14 +6,19 @@ block content
       .span2
         .box.sidebar.clearfix
           nav
-            a.opciones(href='')
+            a.opciones(href='/idea/forge')
               i
               | Forjar nueva
       .span10
         .box
-          h3 Ideas vigentes
-          ul.ideas-list
-          - if(ideas && ideas.length)
-            - ideas.forEach(function(idea) {
-                li: a(href="/voting/" + idea._id)= idea.title
-            - })
+          h3 Ideas en votacion
+          .activity-list.clearfix
+            - if(ideas && ideas.length)
+              - ideas.forEach(function(idea) {
+                .activity-item.activity-vote.clearfix
+                  .activity-icon
+                    i
+                  .activity-description
+                    .triangle
+                    a(href="/voting/" + idea._id)= idea.title
+              - })

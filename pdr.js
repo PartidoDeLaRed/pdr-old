@@ -5,7 +5,11 @@ var express = require('express')
   , mongoose = exports.mongoose = require('mongoose')
   , models = exports.models = require('./models');
 
-mongoose.connect("mongodb://localhost/pdr");
+
+var mongo_url = process.env.MONGOHQ_URL || 'mongodb://localhost/pdr';
+
+// Connect mongoose to database
+mongoose.connect(mongo_url);
 
 /*
  * Passportjs auth strategy
@@ -27,6 +31,7 @@ app.configure(function() {
   app.use(express.bodyParser());
   app.use(express.cookieParser('pdr es la posta'));
   app.use(express.session({
+    cookie: {maxAge: 100000 * 2000}, // 20 minutes
     key: "pdr"
   }));
   app.use(passport.initialize());

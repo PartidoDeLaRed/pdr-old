@@ -5,12 +5,12 @@ block content
     .row
       .span12
         .page-title.clearfix
-          img.big-avatar(src='https://twimg0-a.akamaihd.net/profile_images/2348101213/ijlfcrcag5psron3scez_reasonably_small.png')
-          h2 Santiago Siri
-          p.location Buenos Aires, Argentina
+          img.big-avatar(src='http://avatars.io/facebook/' + profile.profiles.facebook.username)
+          h2= profile.firstName + " " + profile.lastName
+          p.location= profile.city.name
           p
-            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce urna eros, convallis quis pharetra in, blandit non nibh.
-          a(href='') http://grupo42.com
+            | Describe yourself.
+          a(href=profile.profiles.facebook.profileUrl) Facebook
       .span2
         .box.sidebar.clearfix
           nav
