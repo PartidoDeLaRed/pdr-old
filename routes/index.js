@@ -49,20 +49,31 @@ app.get('/logout', function(req, res){
 });
 
 app.get('/voting', function(req, res) {
-  res.render('voting', { page: 'profile', ideas: [{
-    _id:1,
-    title:"Los documentos contables del Estado deberian ser publicos y libres."
-  }, {
-    _id:2,
-    title:"Cada argentino deberia poder decidir a dónde van sus ingresos."
-  },{
-    _id:3,
-    title:"El dolar no debería tener más de un valor vigente."
-  }]});
+  // res.render('voting', { page: 'profile', ideas: [{
+  //   _id:1,
+  //   title:"Los documentos contables del Estado deberian ser publicos y libres."
+  // }, {
+  //   _id:2,
+  //   title:"Cada argentino deberia poder decidir a dónde van sus ingresos."
+  // },{
+  //   _id:3,
+  //   title:"El dolar no debería tener más de un valor vigente."
+  // }]});
+  models.Idea.find(null, function(err, results) {
+    res.render('voting', {page:'profile', ideas: results || [] });
+  })
 });
 
 app.get('/voting/:id', utils.restrict, function(req, res) {
-	res.render('idea', { page: 'idea' });
+  models.Idea.findById(req.params.id, function(err, idea) {
+    if(idea.author === req.user._id) {
+      res.render('idea', { page: 'idea', idea: idea, author: req.user });
+    } else {
+      models.Citizen.findById(idea.author, function(err, author) {
+        res.render('idea', { page: 'idea', idea: idea, author: author });
+      });
+    }
+  })
 });
 
 app.get('/idea/forge', utils.restrict, function(req, res) {
@@ -71,6 +82,7 @@ app.get('/idea/forge', utils.restrict, function(req, res) {
 
 app.post('/idea/process', utils.restrict, function(req, res) {
   var newIdea = new models.Idea(req.body.idea);
+  newIdea.author = req.user._id;
   newIdea.save();
   res.redirect('/voting')
 });

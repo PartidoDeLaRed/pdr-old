@@ -7,59 +7,39 @@ block content
             .banner
               a.nav.left(href='')
               a.nav.right(href='')
-              h2 Modificación de la carta organica del Banco Central
+              h2= idea.title
               .options
                 a.yes(href='') A Favor
                 a.no(href='') En Contra
                 a.na(href='') Abstencion
+              p(style="padding-top:20px")= idea.description
               a.delegate(href='')
                 | Prefiero delegar mi voto a otra persona
                 i
           .span4
             .information.box.append-bottom
-              | Esta ley se encuentra en proceso de
-              strong votacion
+              | Esta idea se encuentra en proceso de
+              strong validacion
               | y la han visto
               strong 1202 personas
               | .
             .box.append-bottom.autor-ley
               h5
                 i
-                | Autores de la ley
+                | Autores de la idea
               ul
                 li
                   a.avatar(href='')
-                    img(src='https://twimg0-a.akamaihd.net/profile_images/1553188011/FP_GRACIAS_twt2_reasonably_small.jpg')
-                  a.username(href='')
-                    | Federico Pinedo
-                    em Pro
+                    img(src="http://avatars.io/facebook/" + author.profiles.facebook.username)
+                  a.username(href=author.profiles.facebook.profileUrl, target="_blank")
+                    | #{author.firstName} #{author.lastName}
+                    em(style="clear:both;")= author.city ? author.city.name : "Ciudadano Mundial"
                   a.follow(href='') Seguirlo
-                li
-                  a.avatar(href='')
-                    img(src='https://twimg0-a.akamaihd.net/profile_images/227411203/Picture_4_normal.jpg')
-                  a.username(href='')
-                    | Gabriela Michetti
-                    em Pro
-                  a.follow(href='') Seguirla
-                li
-                  a.avatar(href='')
-                    img(src='https://twimg0-a.akamaihd.net/profile_images/1580831997/recortada_de_diag_xa_tw2_normal.JPG')
-                  a.username(href='')
-                    | Jorge Macri
-                    em Pro
-                  a.follow(href='') Seguirlo
-                li
-                  a.avatar(href='')
-                    img(src='https://twimg0-a.akamaihd.net/profile_images/1239670765/Imagen_2_normal.png')
-                  a.username(href='')
-                    | Soledad Martinez
-                    em Jovenes Pro
-                  a.follow(href='') Seguirla
 
             .leyes-similares.append-bottom.box
               h5
                 i
-                | Leyes Similares
+                | Ideas Similares
               ul
                 li
                   a(href='') Despenalización del aborto
