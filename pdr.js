@@ -3,7 +3,9 @@ var express = require('express')
   , passport = require('passport')
   , config = require('./config.json')
   , mongoose = exports.mongoose = require('mongoose')
-  . models = exports.models = require('./models');
+  , models = exports.models = require('./models');
+
+mongoose.connect("mongodb://localhost/pdr");
 
 /*
  * Passportjs auth strategy
@@ -31,6 +33,7 @@ app.configure(function() {
   app.use(passport.session());
   app.use(function(req, res, next) {
     if(!res.locals.page) res.locals.page = "default";
+    if(req.isAuthenticated() && req.user) res.locals.citizen = req.user;
     next();
   });
   app.use(app.router);

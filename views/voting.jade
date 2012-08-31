@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  .container
+    .row
+      .span2
+        .box.sidebar.clearfix
+          nav
+            a.opciones(href='')
+              i
+              | Forjar nueva
+      .span10
+        .box
+          h3 Ideas vigentes
+          ul.ideas-list
+          - if(ideas && ideas.length)
+            - ideas.forEach(function(idea) {
+                li: a(href="/voting/" + idea._id)= idea.title
+            - })

@@ -32,6 +32,7 @@ html(lang='en')
     script(type='text/javascript', src='http://use.typekit.com/wva0yvr.js')
     script(type='text/javascript')
       try{Typekit.load();}catch(e){}
+
   body(class=page + "-page")
     header
       .container
@@ -49,33 +50,37 @@ html(lang='en')
               a.how-it-works(href='')
                 i
                 | ¿Como funciona?
-            .user-options
-              a.notifications(href='')
-                b 43
-                i
-              a.options(href='')
-                i
-              a.logout(href='')
-                i
+            - if('undefined' !== typeof citizen) {
+              .user-options
+                a.notifications(href='')
+                  b 43
+                  i
+                a.options(href='')
+                  i
+                a.logout(href='/logout')
+                  i
+            - } else {
+              .login-top(style="float:right;padding:1em;")
+                a(id="fbbutt", href="/auth/facebook", class="sb sb-small sb-facebook")
+                  i
+                  | Sign in with facebook
+            - } 
     
     block content
     
     footer.columns.container.sixteen.clearfix
-      .sharing
-        script(src='//connect.facebook.net/en_US/all.js#xfbml=1')
-        fb:like.facebook-share-button(href='http://facebook.com/votamostodosargentina', send='false', layout='button_count', width='auto', show_faces='true', font='')
-        a.twitter-share-button(href='http://twitter.com/share', data-count='horizontal', data-via='', data-related='brad') Tweet
-        script(type='text/javascript', src='//platform.twitter.com/widgets.js')
-        //
-        //   Place this tag where you want the +1 button to render 
-        .plusone
-          .g-plusone(data-size='medium', data-annotation='inline', data-width='70', data-href='http://votamostodos.com.ar')
-        //
-        //   Place this render call where appropriate 
-        script(type='text/javascript')
-          (function() {
-          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-          po.src = 'https://apis.google.com/js/plusone.js';
-          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-          })();
+      //
+        .sharing
+          script(src='//connect.facebook.net/en_US/all.js#xfbml=1')
+          fb:like.facebook-share-button(href='http://facebook.com/votamostodosargentina', send='false', layout='button_count', width='auto', show_faces='true', font='')
+          a.twitter-share-button(href='http://twitter.com/share', data-count='horizontal', data-via='', data-related='brad') Tweet
+          script(type='text/javascript', src='//platform.twitter.com/widgets.js')
+          .plusone
+            .g-plusone(data-size='medium', data-annotation='inline', data-width='70', data-href='http://votamostodos.com.ar')
+          script(type='text/javascript')
+            (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+            })();
       | Copyright © 2009-2012 Partido De La Red.
