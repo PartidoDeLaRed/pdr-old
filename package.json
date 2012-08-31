@@ -15,7 +15,11 @@
     }
   , "dependencies": {
         "express": "*"
-      , "jade": ""
+      , "jade": "*"
+      , "passport": "*"
+      , "passport-facebook": "*"
+      , "passport-twitter": "*"
+      , "mongoose": "*"
     }
   , "devDependencies": {}
   , "main": "pdr"

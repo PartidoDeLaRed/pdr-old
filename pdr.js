@@ -1,10 +1,24 @@
 var express = require('express')
-	, http = require('http');
+  , http = require('http')
+  , passport = require('passport')
+  , config = require('./config.json')
+  , mongoose = exports.mongoose = require('mongoose')
+  . models = exports.models = require('./models');
+
+/*
+ * Passportjs auth strategy
+ */
+
+require('./strategy');
+
+/*
+ * Create and config server
+ */
 
 var app = exports.app = express();
 
 app.configure(function() {
-  app.set('port', process.env.PORT || 6789);
+  app.set('port', process.env.PORT || 3005);
   app.set('view engine', 'jade'); 
   app.set('views', __dirname + '/views');
   app.use(express.static(__dirname + '/public'));
@@ -13,24 +27,25 @@ app.configure(function() {
   app.use(express.session({
     key: "pdr"
   }));
+  app.use(passport.initialize());
+  app.use(passport.session());
   app.use(function(req, res, next) {
-  	if(!res.locals.page) res.locals.page = "default";
-  	next();
+    if(!res.locals.page) res.locals.page = "default";
+    next();
   });
   app.use(app.router);
 });
 
-app.get('/', function(req, res) {
-	res.render('homepage');
-});
-app.get('/profile', function(req, res) {
-	res.render('profile', { page:'profile' });
-});
+/*
+ * Routes
+ */
+
+require('./routes');
 
 /*
- * Web server
+ * Start Web server
  */
 
 exports.server = http.createServer(app).listen(app.get('port'), function() {
-  console.log('Balloons.io started on port %d', app.get('port'));
+  console.log('PDR started on port %d', app.get('port'));
 });

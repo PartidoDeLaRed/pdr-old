@@ -591,6 +591,15 @@ body.profile-page .activity-list {
   .box.sidebar nav a.opciones i {
     background: url("../../images/images.png") no-repeat 0 -352px; }
 
+/* Styles by CD */
+p.login {
+  text-align:center;
+}
+
+p.login a {
+  clear:both;
+}
+
 /* #Page Styles
 ================================================== */
 /* #Media Queries
