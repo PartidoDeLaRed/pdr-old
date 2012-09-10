@@ -5,16 +5,27 @@ var parent = module.parent.exports
   , utils = require('../utils')
   , passport = require('passport');
 
+/**
+ * HTTP authentication module.
+ */
+var auth = require('http-auth');
+var basic = auth({
+    authRealm : "Private area.",
+    authList : ['pepe:tortugasninja']
+});
 /*
  * Homepage
  */
 
 app.get('/', function(req, res, next) {
-  if(req.isAuthenticated() && req.user) {
-    res.redirect('/profile/' + req.user._id);
-  } else{
-    res.render('index');
-  }
+  // For development only we use http-auth!!
+  basic.apply(req, res, function(username) {
+    if(req.isAuthenticated() && req.user) {
+      res.redirect('/profile/' + req.user._id);
+    } else{
+      res.render('index');
+    }
+  });
 });
 
 /*
