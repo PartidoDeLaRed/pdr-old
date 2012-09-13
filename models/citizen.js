@@ -1,13 +1,15 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose')
+  , Schema = mongoose.Schema
+  , ObjectId = Schema.ObjectId;
 
-var CitizenSchema = new mongoose.Schema({
+var CitizenSchema = new Schema({
 	firstName: String,
 	lastName: String,
 	username: String,
 	address: String,
 	city: Object,
 	profiles: Object,
-	ideas: [{type: mongoose.Schema.ObjectId, ref: 'Idea'}],
+	ideas: [{type: ObjectId, ref: 'Idea'}],
 	createdAt: {type: Date, default: Date.now},
 	updatedAt: Date
 });

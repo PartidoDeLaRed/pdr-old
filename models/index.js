@@ -1,3 +1,19 @@
-var Activity = exports.Activity = require('./activity');
-var Citizen = exports.Citizen = require('./citizen');
-var Idea = exports.Idea = require('./idea');
+/*
+ *  Citizen Model
+ */
+require('./citizen');
+
+/*
+ *  Idea Model
+ */
+require('./idea');
+
+/*
+ *  Vote Model
+ */
+require('./vote');
+
+/*
+ *  Activity Model
+ */
+require('./activity');

@@ -6,7 +6,9 @@ var passport = require('passport')
   , TwitterStrategy = require('passport-twitter').Strategy
   , FacebookStrategy = require('passport-facebook').Strategy
   , config = module.parent.exports.config
-  , models = module.parent.exports.models;
+  , mongoose = require('mongoose');
+
+var Citizen = mongoose.model('Citizen');
 
 /*
  * Auth strategy
@@ -27,11 +29,11 @@ if(config.auth.facebook.clientid.length) {
       callbackURL: config.auth.facebook.callback
     },
     function(accessToken, refreshToken, profile, done) {
-      models.Citizen.findOne({ 'profiles.facebook.id': profile.id }, function(err, citizen) {
+      Citizen.findOne({ 'profiles.facebook.id': profile.id }, function(err, citizen) {
         if(!err && citizen) {
           done(null, citizen);
         } else if(!err) {
-          var newCitizen = new models.Citizen();
+          var newCitizen = new Citizen();
           newCitizen.firstName = profile.name.givenName;
           newCitizen.lastName = profile.name.familyName;
           newCitizen.username = profile.username;

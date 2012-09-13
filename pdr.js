@@ -1,8 +1,7 @@
 var express = require('express')
   , http = require('http')
   , passport = require('passport')
-  , mongoose = exports.mongoose = require('mongoose')
-  , models = exports.models = require('./models')
+  , mongoose = require('mongoose')
   , config;
 
 /*
@@ -45,6 +44,8 @@ var mongo_url = process.env.MONGOHQ_URL || 'mongodb://localhost/pdr';
 
 // Connect mongoose to database
 mongoose.connect(mongo_url);
+
+require('./models');
 
 /*
  * Passportjs auth strategy

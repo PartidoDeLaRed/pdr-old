@@ -1,9 +1,11 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose')
+  , Schema = mongoose.Schema
+  , ObjectId = Schema.ObjectId;
 
-var IdeaSchema = new mongoose.Schema({
+var IdeaSchema = new Schema({
 	title: String,
 	description: String,
-	author: { type: mongoose.Schema.ObjectId, ref: 'Citizen' },
+	author: { type: ObjectId, ref: 'Citizen' },
 	createdAt: { type: Date, default: Date.now },
 	updatedAt: Date
 });
