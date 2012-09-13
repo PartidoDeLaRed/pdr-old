@@ -1,7 +1,5 @@
 var mongoose = require('mongoose');
 
-var IdeaModel = require('./idea');
-
 var CitizenSchema = new mongoose.Schema({
 	firstName: String,
 	lastName: String,
@@ -9,8 +7,7 @@ var CitizenSchema = new mongoose.Schema({
 	address: String,
 	city: Object,
 	profiles: Object,
-	ideas: [IdeaModel.schema],
-	votes: Array,
+	ideas: [{type: mongoose.Schema.ObjectId, ref: 'Idea'}],
 	createdAt: {type: Date, default: Date.now},
 	updatedAt: Date
 });

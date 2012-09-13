@@ -1,11 +1,9 @@
 var mongoose = require('mongoose');
 
-var CitizenModel = require('./citizen');
-
 var IdeaSchema = new mongoose.Schema({
 	title: String,
 	description: String,
-	author: mongoose.Schema.ObjectId,
+	author: {type: mongoose.Schema.ObjectId, ref: 'Citizen'},
 	createdAt: Date,
 	updatedAt: Date
 });
