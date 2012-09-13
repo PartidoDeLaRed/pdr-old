@@ -1,21 +1,9 @@
 var express = require('express')
   , http = require('http')
   , passport = require('passport')
-  , config = require('./config.json')
   , mongoose = exports.mongoose = require('mongoose')
-  , models = exports.models = require('./models');
-
-
-var mongo_url = process.env.MONGOHQ_URL || 'mongodb://localhost/pdr';
-
-// Connect mongoose to database
-mongoose.connect(mongo_url);
-
-/*
- * Passportjs auth strategy
- */
-
-require('./strategy');
+  , models = exports.models = require('./models')
+  , config;
 
 /*
  * Create and config server
@@ -43,6 +31,26 @@ app.configure(function() {
   });
   app.use(app.router);
 });
+
+app.configure('development', function() {
+  config = exports.config = require('./config.dev.json')
+});
+
+app.configure('production', function() {
+  config = exports.config = require('./config.json')
+});
+
+// MongoDB connection with mongoose
+var mongo_url = process.env.MONGOHQ_URL || 'mongodb://localhost/pdr';
+
+// Connect mongoose to database
+mongoose.connect(mongo_url);
+
+/*
+ * Passportjs auth strategy
+ */
+
+require('./strategy');
 
 /*
  * Routes

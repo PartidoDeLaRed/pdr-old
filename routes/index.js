@@ -31,18 +31,6 @@ app.get('/', function(req, res, next) {
 /*
  * Authentication routes
  */
-
-if(config.auth.twitter.consumerkey.length) {
-  app.get('/auth/twitter', passport.authenticate('twitter'));
-
-  app.get('/auth/twitter/callback', 
-    passport.authenticate('twitter', {
-      successRedirect: '/',
-      failureRedirect: '/'
-    })
-  );
-}
-
 if(config.auth.facebook.clientid.length) {
   app.get('/auth/facebook', passport.authenticate('facebook'));
 
