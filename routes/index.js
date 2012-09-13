@@ -20,11 +20,13 @@ var basic = auth({
 app.get('/', function(req, res, next) {
   // For development only we use http-auth!!
   basic.apply(req, res, function(username) {
-    if(req.isAuthenticated() && req.user) {
-      res.redirect('/profile/' + req.user._id);
-    } else{
-      res.render('index');
-    }
+    models.Idea.findOne(null,null, {sort: {createdAt: -1}}).populate('author').exec(function(err, idea) {
+      if(req.isAuthenticated() && req.user) {
+        res.render('idea', {page: 'idea', idea: idea, author: idea.author });
+      } else{
+        res.render('idea', {page: 'idea', idea: idea, author: idea.author });
+      }
+    });
   });
 });
 
@@ -48,16 +50,6 @@ app.get('/logout', function(req, res){
 });
 
 app.get('/voting', function(req, res) {
-  // res.render('voting', { page: 'profile', ideas: [{
-  //   _id:1,
-  //   title:"Los documentos contables del Estado deberian ser publicos y libres."
-  // }, {
-  //   _id:2,
-  //   title:"Cada argentino deberia poder decidir a dónde van sus ingresos."
-  // },{
-  //   _id:3,
-  //   title:"El dolar no debería tener más de un valor vigente."
-  // }]});
   models.Idea.find(null, function(err, results) {
     res.render('voting', {page:'profile', ideas: results || [] });
   })
