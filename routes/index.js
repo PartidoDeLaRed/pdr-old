@@ -24,8 +24,10 @@ app.get('/', function(req, res, next) {
   basic.apply(req, res, function(username) {
     Idea.findOne(null,null, {sort: {createdAt: -1}}).populate('author').exec(function(err, idea) {
       if(req.isAuthenticated() && req.user) {
+        if(!idea) return res.redirect('voting');
         res.render('idea', {page: 'idea', idea: idea, author: idea.author });
       } else{
+        if(!idea) return res.render('index');
         res.render('idea', {page: 'idean', idea: idea, author: idea.author });
       }
     });
@@ -77,7 +79,7 @@ app.post('/idea/process', utils.restrict, function(req, res) {
   var newIdea = new Idea(req.body.idea);
   newIdea.author = req.user._id;
   newIdea.save();
-  res.redirect('/voting')
+  res.redirect('/voting/' + newIdea._id);
 });
 
 app.get('/profile/:id', utils.restrict, function(req, res) {
