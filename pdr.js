@@ -39,12 +39,17 @@ app.configure('production', function() {
   config = exports.config = require('./config.json')
 });
 
+/*
+ * Mongoose Models and DB connection
+ */
+
 // MongoDB connection with mongoose
 var mongo_url = process.env.MONGOHQ_URL || 'mongodb://localhost/pdr';
 
 // Connect mongoose to database
 mongoose.connect(mongo_url);
 
+// import mongoose models
 require('./models');
 
 /*

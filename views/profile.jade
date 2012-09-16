@@ -1,16 +1,18 @@
 extends layout
 
 block content
+  - var social = profile.profiles.facebook ? 'facebook' : 'twitter';
+  
   .container
     .row
       .span12
         .page-title.clearfix
-          img.big-avatar(src='http://avatars.io/facebook/' + profile.profiles.facebook.username)
+          img.big-avatar(src='http://avatars.io/#{social}/' + profile.profiles[social].username)
           h2= profile.firstName + " " + profile.lastName
-          p.location= profile.city ? profile.city.name : 'Ciudadano Mundial'
+          p.location= profile.city ? ( profile.city.name || profile.city ) : 'Ciudadano Mundial'
           p
             | Describe yourself.
-          a(href=profile.profiles.facebook.profileUrl) Facebook
+          a(href=profile.profiles[social].profileUrl) Facebook
       .span2
         .box.sidebar.clearfix
           nav

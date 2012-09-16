@@ -14,12 +14,14 @@ var Citizen = mongoose.model('Citizen');
  * Auth strategy
  */
 
-passport.serializeUser(function(user, done) {
-  done(null, user);
+passport.serializeUser(function(citizen, done) {
+  done(null, citizen._id);
 });
 
-passport.deserializeUser(function(user, done) {
-  done(null, user);
+passport.deserializeUser(function(citizenId, done) {
+  Citizen.findById(citizenId, function(err, citizen) {
+    done(null, citizen);
+  });
 });
 
 passport.use(new FacebookStrategy({
@@ -43,7 +45,39 @@ passport.use(new FacebookStrategy({
         });
       } else {
         console.log("Something happened!! ==>>", err);
-        done(err, null)
+        done(err, null);
+      }
+    });
+  }
+));
+
+passport.use(new TwitterStrategy({
+    consumerKey: config.auth.twitter.consumerkey,
+    consumerSecret: config.auth.twitter.consumersecret,
+    callbackURL: config.auth.twitter.callback
+  },
+  function(accessToken, refreshToken, profile, done) {
+    Citizen.findOne({ 'profiles.twitter.id': profile.id }, function(err, citizen) {
+      if(!err && citizen) {
+        done(null, citizen);
+      } else if(!err) {
+        var newCitizen = new Citizen();
+
+        var names = profile.displayName.split(' ');
+        if(names.length) {
+          newCitizen.firstName = names.shift();
+          newCitizen.lastName = names.join(' ');
+        }
+
+        newCitizen.username = profile.username;
+        newCitizen.city = profile._json.location || profile._json.hometown || {}; 
+        newCitizen.profiles = {twitter: profile};       
+        newCitizen.save(function(err, ctz) {
+          if(!err) done(null, newCitizen);
+        });
+      } else {
+        console.log("Something happened!! ==>>", err);
+        done(err, null);
       }
     });
   }
