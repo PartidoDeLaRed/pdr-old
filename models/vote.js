@@ -6,19 +6,26 @@ var mongoose = require('mongoose')
  * Vote schema
  */
 
-var Vote = new Schema({
+var VoteOption = new Schema({
+		label: {type: String, required: true}
+	, votes: {type: Number, default: 0}
+});
+
+/*
+ * Vote schema
+ */
+
+var VoteSchema = new Schema({
 		idea				: { type: ObjectId, required: true, ref: 'Idea' }
+	,	type				: { type: String, required: true, default: "accept"}
 	, voters 		  : { type: [ObjectId], default: [], ref: 'Citizen' }
 	, options			: {
-			inFavour: {type: Number, default: 0, min: 0}
+			infavor: {type: Number, default: 0, min: 0}
 		,	against: {type: Number, default: 0, min: 0}
-		,	abstentions: {type: Number, default: 0, min: 0}
+		,	neutral: {type: Number, default: 0, min: 0}
 	}
 	,	createdAt		: { type: Date, default: Date.now }
 	,	updatedAt		: Date
 });
 
-var VoteOption = new Schema({
-		label: {type: String, required: true}
-	, votes: {type: Number, default: 0}
-});
+module.exports = mongoose.model('Vote', VoteSchema);

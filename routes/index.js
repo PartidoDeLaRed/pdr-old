@@ -28,7 +28,7 @@ app.get('/', function(req, res, next) {
         res.render('idea', {page: 'idea', idea: idea, author: idea.author });
       } else{
         if(!idea) return res.render('index');
-        res.render('idea', {page: 'idean', idea: idea, author: idea.author });
+        res.render('idea', {page: 'idea', idea: idea, author: idea.author });
       }
     });
   });
@@ -60,6 +60,23 @@ app.get('/logout', function(req, res){
   res.redirect('/');
 });
 
+app.get('/ideas', utils.restrict, function(req, res) {
+  Idea.find({author: req.user._id}, function(err, results) {
+    res.render('citizen-ideas', {page:'profile', ideas: results || [] });
+  })
+});
+
+app.get('/ideas/forge', utils.restrict, function(req, res) {
+  res.render('idea-form');
+});
+
+app.post('/ideas/process', utils.restrict, function(req, res) {
+  var newIdea = new Idea(req.body.idea);
+  newIdea.author = req.user._id;
+  newIdea.save();
+  res.redirect('/voting/' + newIdea._id);
+});
+
 app.get('/voting', function(req, res) {
   Idea.find(null, function(err, results) {
     res.render('voting', {page:'profile', ideas: results || [] });
@@ -78,18 +95,11 @@ app.get('/voting/:id', utils.restrict, function(req, res) {
   })
 });
 
-app.get('/idea/forge', utils.restrict, function(req, res) {
-  res.render('idea-form');
+app.get('/profiles/me', utils.restrict, function(req, res) {
+  res.render('profile', { page: 'profile', profile: req.user });
 });
 
-app.post('/idea/process', utils.restrict, function(req, res) {
-  var newIdea = new Idea(req.body.idea);
-  newIdea.author = req.user._id;
-  newIdea.save();
-  res.redirect('/voting/' + newIdea._id);
-});
-
-app.get('/profile/:id', utils.restrict, function(req, res) {
+app.get('/profiles/:id', utils.restrict, function(req, res) {
 	if(req.params.id === req.user._id) {
 		res.render('profile', { page: 'profile', profile: req.user });
 	} else {
@@ -98,4 +108,12 @@ app.get('/profile/:id', utils.restrict, function(req, res) {
 			res.send(404, 'Sorry, we cannot find that!'); //should be res.render('404'{status: 404, err: err });
 		});
 	}
+});
+
+app.get('/settings', utils.restrict, function(req, res) {
+  res.send('Settings page should be here...');
+});
+
+app.get('/help', function(req, res) {
+  res.send('This page is same as "Como funciona?"');
 });

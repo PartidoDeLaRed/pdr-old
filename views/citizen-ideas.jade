@@ -20,5 +20,5 @@ block content
                     i
                   .activity-description
                     .triangle
-                    a(href="/voting/" + idea._id)= idea.title
+                    a(href="/ideas/#{idea._id}/edit")= idea.title
               - })

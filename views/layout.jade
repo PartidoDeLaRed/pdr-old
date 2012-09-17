@@ -44,24 +44,30 @@ html(lang='en')
               a.votaciones(href='/voting')
                 i
                 | Votaciones
-              a.users(href='')
+              a.users(href='/')
                 i
                 | Usuarios
-              a.how-it-works(href='')
+              a.how-it-works(href='/help')
                 i
                 | ¿Como funciona?
             - if('undefined' !== typeof citizen) {
+              - var social = citizen.profiles.facebook ? 'facebook' : 'twitter';
               .user-options
                 a.options(role="button", data-toggle="dropdown", href='')
                   i
                 ul.dropdown-menu(role='menu', aria-labelledby='dLabel', style="position:absolute !important; top:0; ")
                   li
-                    a(tabindex='-1', href='/profile/#{citizen._id}')
-                      img(src='http://avatars.io/twitter/#{citizen.username}')
-                      | #{citizen.firstName + citizen.lastName}
+                    a(tabindex='-1', href='/profiles/me')
+                      img(src='http://avatars.io/#{social}/#{citizen.username}')
+                      | #{citizen.firstName} #{citizen.lastName}
                   li.divider
                   li
-                    a(tabindex='-1', href='#') Configuracion...
+                    a(tabindex='-1', href='/ideas') Mis ideas
+                  li.divider
+                  li
+                    a(tabindex='-1', href='/settings') Configuracion...
+                  li
+                    a(tabindex='-1', href='/help') Ayuda
                 a.notifications(href='')
                   b 43
                   i
