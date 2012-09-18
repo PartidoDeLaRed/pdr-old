@@ -16,11 +16,22 @@
   , "dependencies": {
         "express": "*"
       , "jade": "*"
-      , "http-auth": "*"
+      , "http-auth": "*"    
       , "passport": "*"
       , "passport-facebook": "*"
       , "passport-twitter": "*"
       , "mongoose": "*"
+      , "pause": "*"
+      , "bytes": "*"
+      , "mime": "*"
+      , "mongodb": "*"
+      , "bson": "*"
+      , "ms": "*"
+      , "hooks": "*"
+      , "qs": "*"
+      , "formidable": "*"
+      , "node-uuid": "*"
+      , "htpasswd": "*"
     }
   , "devDependencies": {}
   , "main": "pdr"
