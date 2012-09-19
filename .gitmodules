@@ -1,3 +1,12 @@
 [submodule "public/js/vendor/fancybox"]
 	path = public/js/vendor/fancybox
 	url = git://github.com/fancyapps/fancyBox.git
+[submodule "public/js/vendor/autosize"]
+	path = public/js/vendor/autosize
+	url = https://github.com/jackmoore/autosize.git
+[submodule "public/js/sisyphus"]
+	path = public/js/sisyphus
+	url = git://github.com/simsalabim/sisyphus.git
+[submodule "public/js/vendor/sisyphus"]
+	path = public/js/vendor/sisyphus
+	url = git://github.com/simsalabim/sisyphus.git

@@ -15,6 +15,10 @@ html {
 .append-bottom {
   margin-bottom: 20px;
 }
+input,
+textarea {
+  font-family: 'proxima-nova';
+}
 .button,
 button,
 input[type="submit"],
@@ -633,27 +637,87 @@ body.profile-page .activity-list .triangle {
 .compose-modal {
   background: #fff;
   position: fixed;
+  overflow-y: scroll !important;
+  z-index: 1000;
   top: 0;
   right: 0;
   left: 0;
   bottom: 0;
-  padding: 20px;
+}
+.compose-modal .close-compose {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  background: #000;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 10px;
+  display: block;
+  border-radius: 4px;
 }
 .compose-modal .compose-modal-inner {
   width: 500px;
+  padding-bottom: 50px;
   margin: auto;
   margin-top: 40px;
-}
-.compose-modal input.compose-title {
-  font-size: 26px;
 }
 .compose-modal input.compose-title,
 .compose-modal textarea {
   width: 500px;
+  font-size: 15px;
   border: 0;
   box-shadow: none;
   padding: 10px 0;
   border-radius: 0;
+}
+.compose-modal input.compose-title {
+  font-size: 26px;
+  line-height: 20px;
+  font-weight: bold;
+  color: #333;
+}
+.compose-modal .insertion-point {
+  height: 40px;
+  width: 5px;
+  margin-left: -10px;
+  display: inline-block;
+  border-left: 5px solid #00a2ff;
+  visibility: hidden;
+}
+.compose-modal form p:first-child > .insertion-point {
+  visibility: visible;
+  margin-bottom: -14px;
+}
+.compose-modal .insertion {
+  position: relative;
+  margin-bottom: 30px;
+}
+.insertion-point {
+  -webkit-animation-name: insertPulse;
+  -moz-animation-name: insertPulse;
+  -webkit-animation-duration: 2s;
+  -moz-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-in-out;
+  -moz-animation-timing-function: ease-in-out;
+}
+@-webkit-keyframes insertPulse {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+textarea {
+  resize: none;
 }
 a.sb {
   $border_radius: 4px;

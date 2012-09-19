@@ -94,16 +94,22 @@ html(lang='en')
       | Copyright © 2009-2012 Partido De La Red.
 
     #compose(style="display: none").compose-modal
-      .compose-modal-inner
-        input.compose-title(type="text", placeholder="Titulo de la propuesta")
+      a.close-compose(href="") Cerrar
 
-        p
-          textarea.brief(placeholder="Resumen de la propuesta")
+      form.compose-modal-inner
+        p.insertion
+          span.insertion-point
+          input.compose-title.compose-text(type="text", placeholder="Titulo de la propuesta")
 
-        p
-          textarea.textarea-content(placeholder="Contenido de la propuesta")
+        p.insertion
+          span.insertion-point
+          textarea.brief.compose-text.expand(placeholder="Resumen de la propuesta")
+
+        p.insertion
+          span.insertion-point
+          textarea.textarea-content.compose-text.expand(placeholder="Contenido de la propuesta")
 
 
-        input(type="button", value="Something") 
+        input(type="button", class="btn", value="Enviar propuesta") 
 
     include jslibs
