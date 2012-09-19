@@ -24,17 +24,15 @@ if ('production' == app.get('env')) {
 
 app.get('/', function(req, res, next) {
   if ('development' == app.get('env')) {
-    res.render('index');
+    Idea.findOne(null,null, {sort: {createdAt: -1}}).populate('author').exec(function(err, idea) {
+        if(!idea) return res.render('index');
+        res.render('idea', {page: 'idea', idea: idea, author: idea.author });
+    });
   }else{
     basic.apply(req, res, function(username) {
       Idea.findOne(null,null, {sort: {createdAt: -1}}).populate('author').exec(function(err, idea) {
-        if(req.isAuthenticated() && req.user) {
-          if(!idea) return res.redirect('voting');
-          res.render('idea', {page: 'idea', idea: idea, author: idea.author });
-        } else{
           if(!idea) return res.render('index');
           res.render('idea', {page: 'idea', idea: idea, author: idea.author });
-        }
       });
     });
   }
