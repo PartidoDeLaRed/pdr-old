@@ -1,5 +1,13 @@
 $(document).ready(function(){
 
-	$('.inline').fancybox();
+	$('.inline').fancybox({
+	    helpers : {
+	        overlay : {
+	            css : {
+	                'background' : 'white'
+	            }
+	        }
+	    }
+	});
 
 });

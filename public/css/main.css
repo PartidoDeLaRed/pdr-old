@@ -630,6 +630,29 @@ body.profile-page .activity-list .triangle {
 .box.sidebar nav a.opciones i {
   background: url("../../images/images.png") no-repeat 0 -352px;
 }
+#compose {
+  padding: 20px;
+}
+#compose input.compose-title {
+  font-size: 26px;
+}
+#compose input.compose-title,
+#compose textarea {
+  width: 500px;
+  border: 0;
+  box-shadow: none;
+  padding: 10px 0;
+  border-radius: 0;
+}
+.fancybox-opened .fancybox-skin {
+  border-radius: 0;
+  box-shadow: none !important;
+  background: #fff;
+  box-shadow: none;
+}
+.fancybox-inner {
+  overflow: visible !important;
+}
 a.sb {
   $border_radius: 4px;
   display: inline-block;
