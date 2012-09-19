@@ -56,14 +56,14 @@ html(lang='en')
             - if('undefined' !== typeof citizen) {
               - var social = citizen.profiles.facebook ? 'facebook' : 'twitter';
               .user-options
-                a.tt.compose.compose-link(rel="tooltip", title="Redactar una propuesta", href='#compose')
+                a.tt.compose.compose-link(rel="tooltip", title="Redactar una propuesta", data-placement="bottom", href='#compose')
                   i
-                a.options(href='', rel="tooltip", title="Redactar una propuesta")
+                a.tt.options(href='', rel="tooltip", title="Editar opciones", data-placement="bottom")
                   i
-                a.notifications(href='')
+                a.notifications(href='', rel="tooltip", title="Redactar una propuesta", data-placement="bottom")
                   b 43
                   i
-                a.logout(href='/logout')
+                a.tt.logout(href='/logout', rel="tooltip", title="Cerrar sesion", data-placement="bottom")
                   i
             - } else {
               .login-top(style="float:right;padding:1em;")
