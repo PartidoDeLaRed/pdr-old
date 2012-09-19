@@ -75,9 +75,9 @@ header h1#logo {
   margin-right: 30px;
 }
 header h1#logo a {
-  width: 40px;
+  width: 34px;
   height: 34px;
-  background: url("../../images/logo.png");
+  background: url("../../images/logo.png?rand");
   display: block;
   text-indent: -1000em;
 }
@@ -98,6 +98,7 @@ header nav a:visited {
 }
 header nav a:hover {
   opacity: 1;
+  color: #fff;
   text-decoration: none;
 }
 header nav a i {

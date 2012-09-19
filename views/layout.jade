@@ -15,12 +15,14 @@ html(lang='en')
     //
     //   CSS
     //    ================================================== 
-    link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
+    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap-combined.min.css')
+
+    //- Plugins
+    link(rel='stylesheet', href='/js/vendor/fancybox/source/jquery.fancybox.css')
 
     link(rel='stylesheet', href='/css/social-buttons.css')
     link(rel='stylesheet', href='/css/main.css')
-    //if lt IE 9
-      script(src='http://html5shim.googlecode.com/svn/trunk/html5.js')
+  
     //
     //   Favicons
     //    ================================================== 
@@ -28,6 +30,7 @@ html(lang='en')
     link(rel='apple-touch-icon', href='/images/apple-touch-icon.png')
     link(rel='apple-touch-icon', sizes='72x72', href='/images/apple-touch-icon-72x72.png')
     link(rel='apple-touch-icon', sizes='114x114', href='/images/apple-touch-icon-114x114.png')
+
     script(type='text/javascript', src='http://use.typekit.com/wva0yvr.js')
     script(type='text/javascript')
       try{Typekit.load();}catch(e){}
@@ -52,21 +55,10 @@ html(lang='en')
             - if('undefined' !== typeof citizen) {
               - var social = citizen.profiles.facebook ? 'facebook' : 'twitter';
               .user-options
+                a.options.compose(role="button", href='')
+                  i
                 a.options(role="button", data-toggle="dropdown", href='')
                   i
-                ul.dropdown-menu(role='menu', aria-labelledby='dLabel', style="position:absolute !important; top:0; ")
-                  li
-                    a(tabindex='-1', href='/profiles/me')
-                      img(src='http://avatars.io/#{social}/#{citizen.username}')
-                      | #{citizen.firstName} #{citizen.lastName}
-                  li.divider
-                  li
-                    a(tabindex='-1', href='/ideas') Mis ideas
-                  li.divider
-                  li
-                    a(tabindex='-1', href='/settings') Configuracion...
-                  li
-                    a(tabindex='-1', href='/help') Ayuda
                 a.notifications(href='')
                   b 43
                   i

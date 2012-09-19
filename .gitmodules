@@ -1,0 +1,3 @@
+[submodule "public/js/vendor/fancybox"]
+	path = public/js/vendor/fancybox
+	url = git://github.com/fancyapps/fancyBox.git
