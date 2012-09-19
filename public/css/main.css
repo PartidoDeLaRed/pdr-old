@@ -164,6 +164,9 @@ header .user-options a.notifications b {
   font-weight: bold;
   text-decoration: none;
 }
+header .user-options a.compose i {
+  background: url("../../images/images.png") no-repeat -74px -418px;
+}
 header .user-options a.options i {
   background: url("../../images/images.png") no-repeat -27px -27px;
 }
@@ -673,7 +676,8 @@ body.profile-page .activity-list .triangle {
 }
 .compose-modal input.compose-title {
   font-size: 26px;
-  line-height: 20px;
+  padding: 0;
+  height: 27px;
   font-weight: bold;
   color: #333;
 }
@@ -718,6 +722,15 @@ body.profile-page .activity-list .triangle {
 }
 textarea {
   resize: none;
+  color: #333;
+}
+input::-webkit-input-placeholder {
+  color: #333;
+  padding-top: 4px;
+}
+input::-moz-placeholder,
+textarea::-webkit-input-placeholder {
+  color: #333;
 }
 a.sb {
   $border_radius: 4px;

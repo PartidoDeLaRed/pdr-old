@@ -19,6 +19,7 @@ html(lang='en')
 
     //- Plugins
     link(rel='stylesheet', href='/js/vendor/fancybox/source/jquery.fancybox.css')
+    link(rel='stylesheet', href='/js/vendor/tipsy/src/stylesheets/tipsy.css')
 
     link(rel='stylesheet', href='/css/social-buttons.css')
     link(rel='stylesheet', href='/css/main.css')
@@ -55,9 +56,9 @@ html(lang='en')
             - if('undefined' !== typeof citizen) {
               - var social = citizen.profiles.facebook ? 'facebook' : 'twitter';
               .user-options
-                a.options.compose.compose-link(role="button", href='#compose')
+                a.tt.compose.compose-link(rel="tooltip", title="Redactar una propuesta", href='#compose')
                   i
-                a.options(role="button", data-toggle="dropdown", href='')
+                a.options(href='', rel="tooltip", title="Redactar una propuesta")
                   i
                 a.notifications(href='')
                   b 43

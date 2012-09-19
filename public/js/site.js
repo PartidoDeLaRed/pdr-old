@@ -20,4 +20,6 @@ $(document).ready(function(){
 	$('.expand').autosize();
 
 	$('form.compose-modal-inner').sisyphus({timeout: 1, autoRelease: true});
+
+	$('.tt').tooltip();
 });

@@ -4,9 +4,9 @@
 [submodule "public/js/vendor/autosize"]
 	path = public/js/vendor/autosize
 	url = https://github.com/jackmoore/autosize.git
-[submodule "public/js/sisyphus"]
-	path = public/js/sisyphus
-	url = git://github.com/simsalabim/sisyphus.git
 [submodule "public/js/vendor/sisyphus"]
 	path = public/js/vendor/sisyphus
 	url = git://github.com/simsalabim/sisyphus.git
+[submodule "public/js/vendor/tipsy"]
+	path = public/js/vendor/tipsy
+	url = git://github.com/jaz303/tipsy.git
