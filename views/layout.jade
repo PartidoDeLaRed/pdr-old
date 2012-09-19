@@ -55,7 +55,7 @@ html(lang='en')
             - if('undefined' !== typeof citizen) {
               - var social = citizen.profiles.facebook ? 'facebook' : 'twitter';
               .user-options
-                a.options.compose.inline(role="button", href='#compose')
+                a.options.compose.compose-link(role="button", href='#compose')
                   i
                 a.options(role="button", data-toggle="dropdown", href='')
                   i
@@ -93,18 +93,17 @@ html(lang='en')
             })();
       | Copyright © 2009-2012 Partido De La Red.
 
-    #compose(style="display: none")
-      input.compose-title(type="text", placeholder="Titulo de la propuesta")
+    #compose(style="display: none").compose-modal
+      .compose-modal-inner
+        input.compose-title(type="text", placeholder="Titulo de la propuesta")
 
-      p
-        textarea.brief(placeholder="Resumen de la propuesta")
+        p
+          textarea.brief(placeholder="Resumen de la propuesta")
 
-      p
-        textarea.textarea-content(placeholder="Contenido de la propuesta")
+        p
+          textarea.textarea-content(placeholder="Contenido de la propuesta")
 
-      p
-        textarea.textarea-notes(placeholder="Referencias de la propuesta")
 
-      input(type="button", value="Something") 
+        input(type="button", value="Something") 
 
     include jslibs

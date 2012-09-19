@@ -630,28 +630,30 @@ body.profile-page .activity-list .triangle {
 .box.sidebar nav a.opciones i {
   background: url("../../images/images.png") no-repeat 0 -352px;
 }
-#compose {
+.compose-modal {
+  background: #fff;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
   padding: 20px;
 }
-#compose input.compose-title {
+.compose-modal .compose-modal-inner {
+  width: 500px;
+  margin: auto;
+  margin-top: 40px;
+}
+.compose-modal input.compose-title {
   font-size: 26px;
 }
-#compose input.compose-title,
-#compose textarea {
+.compose-modal input.compose-title,
+.compose-modal textarea {
   width: 500px;
   border: 0;
   box-shadow: none;
   padding: 10px 0;
   border-radius: 0;
-}
-.fancybox-opened .fancybox-skin {
-  border-radius: 0;
-  box-shadow: none !important;
-  background: #fff;
-  box-shadow: none;
-}
-.fancybox-inner {
-  overflow: visible !important;
 }
 a.sb {
   $border_radius: 4px;

@@ -1,13 +1,9 @@
 $(document).ready(function(){
 
-	$('.inline').fancybox({
-	    helpers : {
-	        overlay : {
-	            css : {
-	                'background' : 'white'
-	            }
-	        }
-	    }
+	$('.compose-link').click(function(){
+		$('.compose-modal').fadeIn();
+
+		return false;
 	});
 
 });
