@@ -60,9 +60,13 @@ block content
             article.box.clearfix
               h5
                 i
-                | Comentarios
+                | Comentarios sobre la problematica "
+                em=idea.title
+                | "
               .quick-reply
                 textarea(placeholder='Tu opinion aqui')
+                p
+                  a(href="") Adjuntar propuesta
                 input.btn(type='submit', value='Responder')
               section.comment.question
                 .avatar
