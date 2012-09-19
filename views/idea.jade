@@ -29,14 +29,14 @@ block content
             .box.append-bottom.autor-ley
               h5
                 i
-                | Autores de la idea
+                | Autor de la idea
               ul
                 li
                   a.avatar(href='')
                     img(src="http://avatars.io/#{social}/" + author.profiles[social].username)
                   a.username(href=author.profiles[social].profileUrl, target="_blank")
                     | #{author.firstName} #{author.lastName}
-                    em(style="clear:both;")= author.city ? author.city.name : "Ciudadano Mundial"
+                    //- em(style="clear:both;")= author.city ? author.city.name : "Ciudadano Mundial"
                   a.follow(href='') Seguirlo
 
             .leyes-similares.append-bottom.box
