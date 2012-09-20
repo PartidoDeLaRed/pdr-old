@@ -4,19 +4,18 @@ var app = module.parent.exports.app
   , utils = require('../utils')
   , passport = require('passport');
 
-var Idea = mongoose.model('Idea')
+var Issue = mongoose.model('Issue')
+  , Idea = mongoose.model('Idea')
+  , IssueVote = mongoose.model('IssueVote')
   , Citizen = mongoose.model('Citizen');
 
 /**
  * HTTP authentication module.
  */
-var auth = require('http-auth');
-if ('production' == app.get('env')) {
-  var basic = auth({
-    authRealm : "Private area.",
-    authList : ['pepe:tortugasninja']
-  });
-}
+var basic = require('http-auth')({
+  authRealm : "Private area.",
+  authList : ['pepe:tortugasninja']
+});
 
 /*
  * Homepage
@@ -24,13 +23,13 @@ if ('production' == app.get('env')) {
 
 app.get('/', function(req, res, next) {
   if ('development' == app.get('env')) {
-    Idea.findOne(null,null, {sort: {createdAt: -1}}).populate('author').exec(function(err, idea) {
+    Issue.findOne(null,null, {sort: {createdAt: -1}}).populate('author').exec(function(err, idea) {
         if(!idea) return res.render('index');
         res.render('idea', {page: 'idea', idea: idea, author: idea.author });
     });
-  }else{
+  } else {
     basic.apply(req, res, function(username) {
-      Idea.findOne(null,null, {sort: {createdAt: -1}}).populate('author').exec(function(err, idea) {
+      Issue.findOne(null,null, {sort: {createdAt: -1}}).populate('author').exec(function(err, idea) {
           if(!idea) return res.render('index');
           res.render('idea', {page: 'idea', idea: idea, author: idea.author });
       });
@@ -64,39 +63,70 @@ app.get('/logout', function(req, res){
   res.redirect('/');
 });
 
-app.get('/ideas', utils.restrict, function(req, res) {
-  Idea.find({author: req.user._id}, function(err, results) {
-    res.render('citizen-ideas', {page:'profile', ideas: results || [] });
-  })
+app.post('/issues/process', utils.restrict, function(req, res) {
+  if(!req.body.issue) res.redirect('/');
+    // Deberiamos chequear el formulario y devolver errores
+    // O dejarle a mongoose el tema validación y configurar un
+    // middleware para devolver una respuesta con los errores
+  if(!req.body.issue._id) {
+    var newIssue = new Issue({
+      title: req.body.issue.title,
+      abstract: req.body.issue.abstract,
+      essay: req.body.issue.essay,
+      author: req.user._id,
+      authors: [req.user._id],
+      census: [req.user._id]
+    }).save(function(err, issue) {
+      if(err) console.log(err);
+      res.redirect('/issues/' + issue._id);
+    });
+  } else {
+    //Here to edit... ?
+  }
 });
 
-app.get('/ideas/forge', utils.restrict, function(req, res) {
-  res.render('idea-form');
+app.get('/issues/:id', function(req, res) {
+  Issue.findById(req.params.id).populate('author').exec(function(err, issue) {
+    if(err) console.log(err);
+    res.render('issue', {page: 'idea', issue: issue, author: issue.author});
+  });
+});
+
+app.get('/issues', function(req, res) {
+  Issue.find(null, function(err, results) {
+    res.render('issues', {page:'profile', issues: results || [] });
+  });
 });
 
 app.post('/ideas/process', utils.restrict, function(req, res) {
   var newIdea = new Idea(req.body.idea);
   newIdea.author = req.user._id;
+  newIdea.authors.push(req.user._id);
   newIdea.save();
-  res.redirect('/voting/' + newIdea._id);
+  res.redirect('/ideas/' + newIdea._id);
+});
+
+app.get('/ideas/:id', function(req, res) {
+  Idea.findById(req.params.id).populate('author').exec(function(err, idea) {
+    res.render('idea', { page: 'idea', idea: idea, author: idea.author });
+  });
+});
+
+app.get('/ideas', function(req, res) {
+  Idea.find(null, function(err, results) {
+    res.render('ideas', {page:'profile', ideas: results || [] });
+  });
 });
 
 app.get('/voting', function(req, res) {
-  Idea.find(null, function(err, results) {
-    res.render('voting', {page:'profile', ideas: results || [] });
-  })
+  IssueVote.find(null, function(err, results) {
+    res.render('voting', {page:'profile', votes: results || [] });
+  });
 });
 
-app.get('/voting/:id', utils.restrict, function(req, res) {
-  Idea.findById(req.params.id, function(err, idea) {
-    if(idea.author === req.user._id) {
-      res.render('idea', { page: 'idea', idea: idea, author: req.user });
-    } else {
-      Citizen.findById(idea.author, function(err, author) {
-        res.render('idea', { page: 'idea', idea: idea, author: author });
-      });
-    }
-  })
+// Old routes
+app.get('/ideas/forge', utils.restrict, function(req, res) {
+  res.render('ideas/form');
 });
 
 app.get('/profiles/me', utils.restrict, function(req, res) {

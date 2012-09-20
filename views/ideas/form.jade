@@ -1,0 +1,15 @@
+extends layout
+
+block content
+	.container
+		.row
+			.span12
+				form(action="/ideas/process", method="post")
+					label Titulo
+					input(type="text", name="idea[title]", value="")
+          label Resumen
+          input(type="text", name="idea[abstract]", value="")
+          label Contenido
+          input(type="text", name="idea[essay]", value="")
+
+					input(type="submit", value="Liberar idea")

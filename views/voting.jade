@@ -1,24 +1,7 @@
 extends layout
 
 block content
-  .container
-    .row
-      .span2
-        .box.sidebar.clearfix
-          nav
-            a.opciones(href='/ideas/forge')
-              i
-              | Forjar nueva
-      .span10
-        .box
-          h3 Ideas en votacion
-          .activity-list.clearfix
-            - if(ideas && ideas.length)
-              - ideas.forEach(function(idea) {
-                .activity-item.activity-vote.clearfix
-                  .activity-icon
-                    i
-                  .activity-description
-                    .triangle
-                    a(href="/voting/" + idea._id)= idea.title
-              - })
+  - var elements = votes;
+  - var listTitle = "Votaciones abiertas";
+  - var route = "/voting/";
+  include lists
