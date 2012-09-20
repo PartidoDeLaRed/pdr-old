@@ -4,16 +4,40 @@
 require('./citizen');
 
 /*
+ *  Issue Model
+ */
+require('./issue');
+
+/*
+ *  Issue Vote Model
+ */
+require('./issueVote');
+
+/*
+ *  Issue Vote Option Model
+ */
+require('./issueVoteOption');
+
+/*
  *  Idea Model
  */
 require('./idea');
 
 /*
- *  Vote Model
+ *  Idea Vote Model
  */
-require('./vote');
+require('./ideaVote');
 
 /*
  *  Activity Model
  */
 require('./activity');
+
+/*
+ *  Comment Model
+ */
+require('./comment');
+
+ /*
+  *  Hash Model
+  */

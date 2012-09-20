@@ -3,9 +3,9 @@ var mongoose = require('mongoose')
   , ObjectId = Schema.ObjectId;
 
 /*
- * Idea Schema
+ * Issue Schema
  */
-var IdeaSchema = new Schema({
+var IssueSchema = new Schema({
   title: {type: String, min: 8, max: 256 },
   abstract: { type: String, min: 256, max: 512},
   essay: { type: String, min: 512, max: 2048},
@@ -19,4 +19,4 @@ var IdeaSchema = new Schema({
   updatedAt: Date
 });
 
-module.exports = mongoose.model('Idea', IdeaSchema);
+module.exports = mongoose.model('Issue', IssueSchema);

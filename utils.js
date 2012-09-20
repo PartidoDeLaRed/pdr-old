@@ -5,19 +5,19 @@ exports.restrict = function(req, res, next){
 
 exports.actions = {
 	vote: {
-		template: 'Voto en %ideaTitle%. %timeAgo%',
-		params: ['ideaTitle', 'timeAgo']
+		template: 'Voto en %voteTitle%.',
+		params: ['voteTitle']
 	},
 	comment: {
-		template: 'Opino en la votacion sobre %ideaTitle%. %timeAgo%',
-		params: ['ideaTitle', 'timeAgo']
+		template: 'Opino en la votacion sobre %ideaTitle%.',
+		params: ['ideaTitle']
 	},
 	proxy: {
-		template: 'Delego su voto en %hashTitle% en %citizenName%. %timeAgo%',
-		params: ['hashTitle', 'citizenName', 'timeAgo']
+		template: 'Delego su voto en %hashTitle% a %citizenName%.',
+		params: ['hashTitle', 'citizenName']
 	},
 	profileEdit: {
-		template: 'Editó su perfil. %timeAgo%',
-		params: ['timeAgo']
+		template: 'Editó su perfil.',
+		params: []
 	}
 }
