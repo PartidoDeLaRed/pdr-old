@@ -34,8 +34,7 @@ block content
                   a.username(href=author.profiles[social].profileUrl, target="_blank")
                     | #{author.firstName} #{author.lastName}
                     //- em(style="clear:both;")= author.city ? author.city.name : "Ciudadano Mundial"
-                  a.follow(href='') Seguirlo
-
+                  a.follow.twitter-follow.button(href='https://twitter.com/gravityonmars', data-show-count="false") Seguirlo
             .leyes-similares.append-bottom.box
               h5
                 i
