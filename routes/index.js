@@ -11,27 +11,31 @@ var Idea = mongoose.model('Idea')
  * HTTP authentication module.
  */
 var auth = require('http-auth');
-var basic = auth({
+if ('production' == app.get('env')) {
+  var basic = auth({
     authRealm : "Private area.",
     authList : ['pepe:tortugasninja']
-});
+  });
+}
+
 /*
  * Homepage
  */
 
 app.get('/', function(req, res, next) {
-  // For development only we use http-auth!!
-  basic.apply(req, res, function(username) {
+  if ('development' == app.get('env')) {
     Idea.findOne(null,null, {sort: {createdAt: -1}}).populate('author').exec(function(err, idea) {
-      if(req.isAuthenticated() && req.user) {
-        if(!idea) return res.redirect('voting');
-        res.render('idea', {page: 'idea', idea: idea, author: idea.author });
-      } else{
         if(!idea) return res.render('index');
         res.render('idea', {page: 'idea', idea: idea, author: idea.author });
-      }
     });
-  });
+  }else{
+    basic.apply(req, res, function(username) {
+      Idea.findOne(null,null, {sort: {createdAt: -1}}).populate('author').exec(function(err, idea) {
+          if(!idea) return res.render('index');
+          res.render('idea', {page: 'idea', idea: idea, author: idea.author });
+      });
+    });
+  }
 });
 
 /*

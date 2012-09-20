@@ -11,10 +11,7 @@ block content
               a.nav.left(href='')
               a.nav.right(href='')
               h2= idea.title
-              .options
-                a.yes(href='') A Favor
-                a.no(href='') En Contra
-                a.na(href='') Abstencion
+     
               p(style="padding-top:20px")= idea.description
               a.delegate(href='')
                 | Prefiero delegar mi voto a otra persona
@@ -29,16 +26,15 @@ block content
             .box.append-bottom.autor-ley
               h5
                 i
-                | Autores de la idea
+                | Autor de la idea
               ul
                 li
                   a.avatar(href='')
                     img(src="http://avatars.io/#{social}/" + author.profiles[social].username)
                   a.username(href=author.profiles[social].profileUrl, target="_blank")
                     | #{author.firstName} #{author.lastName}
-                    em(style="clear:both;")= author.city ? author.city.name : "Ciudadano Mundial"
-                  a.follow(href='') Seguirlo
-
+                    //- em(style="clear:both;")= author.city ? author.city.name : "Ciudadano Mundial"
+                  a.follow.twitter-follow.button(href='https://twitter.com/gravityonmars', data-show-count="false") Seguirlo
             .leyes-similares.append-bottom.box
               h5
                 i
@@ -60,9 +56,13 @@ block content
             article.box.clearfix
               h5
                 i
-                | Comentarios
+                | Comentarios sobre la problematica "
+                em=idea.title
+                | "
               .quick-reply
                 textarea(placeholder='Tu opinion aqui')
+                p
+                  a(href="") Adjuntar propuesta
                 input.btn(type='submit', value='Responder')
               section.comment.question
                 .avatar

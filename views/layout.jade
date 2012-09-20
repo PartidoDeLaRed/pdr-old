@@ -15,13 +15,13 @@ html(lang='en')
     //
     //   CSS
     //    ================================================== 
-    link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
-    link(rel='stylesheet', href='/bootstrap/css/bootstrap-responsive.css')
+    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap.min.css')
 
-    link(rel='stylesheet', href='/css/stylesheet/social-buttons.css')
-    link(rel='stylesheet', href='/css/stylesheet/main.css')
-    //if lt IE 9
-      script(src='http://html5shim.googlecode.com/svn/trunk/html5.js')
+    //- Plugins
+
+    link(rel='stylesheet', href='/css/social-buttons.css')
+    link(rel='stylesheet', href='/css/main.css')
+  
     //
     //   Favicons
     //    ================================================== 
@@ -29,6 +29,7 @@ html(lang='en')
     link(rel='apple-touch-icon', href='/images/apple-touch-icon.png')
     link(rel='apple-touch-icon', sizes='72x72', href='/images/apple-touch-icon-72x72.png')
     link(rel='apple-touch-icon', sizes='114x114', href='/images/apple-touch-icon-114x114.png')
+
     script(type='text/javascript', src='http://use.typekit.com/wva0yvr.js')
     script(type='text/javascript')
       try{Typekit.load();}catch(e){}
@@ -53,25 +54,14 @@ html(lang='en')
             - if('undefined' !== typeof citizen) {
               - var social = citizen.profiles.facebook ? 'facebook' : 'twitter';
               .user-options
-                a.options(role="button", data-toggle="dropdown", href='')
+                a.tt.compose.compose-link(rel="tooltip", title="Redactar una propuesta", data-placement="bottom", href='#compose')
                   i
-                ul.dropdown-menu(role='menu', aria-labelledby='dLabel', style="position:absolute !important; top:0; ")
-                  li
-                    a(tabindex='-1', href='/profiles/me')
-                      img(src='http://avatars.io/#{social}/#{citizen.username}')
-                      | #{citizen.firstName} #{citizen.lastName}
-                  li.divider
-                  li
-                    a(tabindex='-1', href='/ideas') Mis ideas
-                  li.divider
-                  li
-                    a(tabindex='-1', href='/settings') Configuracion...
-                  li
-                    a(tabindex='-1', href='/help') Ayuda
-                a.notifications(href='')
+                a.tt.options(href='', rel="tooltip", title="Editar opciones", data-placement="bottom")
+                  i
+                a.notifications(href='', rel="tooltip", title="Redactar una propuesta", data-placement="bottom")
                   b 43
                   i
-                a.logout(href='/logout')
+                a.tt.logout(href='/logout', rel="tooltip", title="Cerrar sesion", data-placement="bottom")
                   i
             - } else {
               .login-top(style="float:right;padding:1em;")
@@ -101,5 +91,24 @@ html(lang='en')
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
             })();
       | Copyright © 2009-2012 Partido De La Red.
+
+    #compose(style="display: none").compose-modal
+      a.close-compose(href="") Cerrar
+
+      form.compose-modal-inner
+        p.insertion
+          span.insertion-point
+          input.compose-title.compose-text(type="text", placeholder="Titulo de la problematica")
+
+        p.insertion
+          span.insertion-point
+          textarea.brief.compose-text.expand(placeholder="Resumen de la propuesta")
+
+        p.insertion
+          span.insertion-point
+          textarea.textarea-content.compose-text.expand(placeholder="Contenido de la propuesta")
+
+
+        input(type="button", class="btn", value="Enviar propuesta") 
 
     include jslibs
