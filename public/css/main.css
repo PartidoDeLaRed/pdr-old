@@ -74,14 +74,14 @@ header h1#logo {
   display: inline-block;
   margin: 0;
   margin-left: 20px;
-  padding: 12px 0;
   float: left;
   margin-right: 30px;
 }
 header h1#logo a {
-  width: 34px;
-  height: 34px;
-  background: url("../../images/logso.png?rand");
+  width: 52px;
+  height: 49px;
+  margin: 5px 0;
+  background: url("../../images/logo.png?rand");
   display: block;
   text-indent: -1000em;
 }
@@ -125,8 +125,12 @@ header nav a.how-it-works i {
 header .user-options {
   float: right;
   height: 40px;
+  overflow: visible;
 }
-header .user-options a {
+header .user-options {
+  position: relative;
+}
+header .user-options > a {
   background: rgba(255,255,255,0.1);
   text-decoration: none;
   position: relative;
@@ -136,7 +140,8 @@ header .user-options a {
   margin-left: 2px;
   height: 60px;
 }
-header .user-options a:hover {
+header .user-options > a:hover,
+header .user-options > a.active {
   background: rgba(255,255,255,0.2);
 }
 header .user-options a i {
@@ -151,6 +156,7 @@ header .user-options a i {
 header .user-options a.notifications b {
   position: absolute;
   background: #ff2409;
+  background-position: -4px -418px;
   background-color: rgba(255,36,9,0.8);
   border-radius: 100px;
   font-size: 12px;
@@ -164,15 +170,60 @@ header .user-options a.notifications b {
   font-weight: bold;
   text-decoration: none;
 }
+header .user-options a.notifications i {
+  background-position: 0px -417px;
+}
 header .user-options a.compose i {
   background: url("../../images/images.png") no-repeat -74px -418px;
 }
 header .user-options a.options i {
-  background: url("../../images/images.png") no-repeat -27px -27px;
+  background: url("../../images/images.png") -99px -418px;
 }
 header .user-options a.logout i {
   background: url("../../images/images.png") no-repeat -50px -28px;
 }
+header .user-options .options-dropdown {
+  background: #fff;
+  display: none;
+  top: 50px;
+  right: 10px;
+  position: absolute;
+  z-index: 10000;
+  box-shadow: 0 0 4px rgba(0,0,0,0.4);
+  border-radius: 3px;
+}
+header .user-options .options-dropdown span.triangle {
+  position: absolute;
+  top: -5px;
+  right: 15px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #fff;
+}
+header .user-options .options-dropdown a {
+  display: block;
+  padding: 6px 20px;
+  border-bottom: 1px solid #f1f1f1;
+  color: #333;
+  font-weight: bold;
+  font-size: 11px;
+}
+header .user-options .options-dropdown a:hover {
+  color: #333;
+  background: #f1f1f1;
+}
+header .user-options .options-dropdown a:first-child {
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+header .user-options .options-dropdown a:last-child {
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border: 0;
+}
+/*header .user-options a i{background-color: red !important;}*/
 .content {
   min-height: 500px;
 }
@@ -677,6 +728,7 @@ body.profile-page .activity-list .triangle {
 .compose-modal input.compose-title {
   font-size: 26px;
   padding: 0;
+  padding-top: 7px;
   height: 27px;
   font-weight: bold;
   color: #333;
@@ -684,14 +736,14 @@ body.profile-page .activity-list .triangle {
 .compose-modal .insertion-point {
   height: 40px;
   width: 5px;
-  margin-left: -10px;
+  left: -14px;
   display: inline-block;
   border-left: 5px solid #00a2ff;
   visibility: hidden;
+  position: absolute;
 }
 .compose-modal form p:first-child > .insertion-point {
   visibility: visible;
-  margin-bottom: -14px;
 }
 .compose-modal .insertion {
   position: relative;

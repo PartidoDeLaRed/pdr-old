@@ -49,8 +49,8 @@ header .container .span12{
 	background-image: -moz-linear-gradient(#78c0d6 3.3%, #52adc7);
 	background-image: -o-linear-gradient(#78c0d6 3.3%, #52adc7);
 }
-header h1#logo {display: inline-block; margin: 0; margin-left: 20px; padding: 12px 0;  float: left; margin-right: 30px;}
-header h1#logo a{width: 34px; height: 34px; background: url('../../images/logso.png?rand'); display: block; text-indent: -1000em;}
+header h1#logo {display: inline-block; margin: 0; margin-left: 20px;   float: left; margin-right: 30px;}
+header h1#logo a{width: 52px; height: 49px; margin: 5px 0; background: url('../../images/logo.png?rand'); display: block; text-indent: -1000em;}
 header nav {display: inline-block; }
 header nav a, header nav a:visited{text-decoration: none; text-transform: uppercase; font-size: 13px; font-weight: bold; color: white; padding: 20px 0 10px 0; opacity: .9; margin-right: 30px; display: inline-block;}
 header nav a:hover{opacity: 1; color: white; text-decoration: none}
@@ -58,15 +58,42 @@ header nav a i{display: inline-block; width: 18px; margin-bottom: -6px; margin-r
 header nav a.votaciones i{background: url('../../images/images.png') no-repeat 0 0;}
 header nav a.users i{background: url('../../images/images.png') no-repeat -26px -1px; width: 22px;}
 header nav a.how-it-works i{background: url('../../images/images.png') no-repeat -57px -1px;}
-header .user-options {float: right; height: 40px;}
-header .user-options a {background: rgba(255,255,255,.1); text-decoration: none; position: relative; display: inline-block; width: 60px; float: left; margin-left: 2px; height: 60px;}
-header .user-options a:hover{background: rgba(255,255,255,.2);}
-header .user-options a i {display: block; width: 22px; margin: 18px auto; height: 22px;}
-header .user-options a i {background: url('../../images/images.png') no-repeat 1px -27px;}
-header .user-options a.notifications b{position: absolute; background: #ff2409; background-color: rgba(255,36,9,.8); border-radius: 100px; font-size: 12px; width: 21px;  line-height: 13px; border: 1px solid #d51700; top: 10px; right: 8px; text-align: center; color: white; font-weight: bold; text-decoration: none;}
-header .user-options a.compose i{background: url('../../images/images.png') no-repeat -74px -418px;}
-header .user-options a.options i{background: url('../../images/images.png') no-repeat -27px -27px;}
-header .user-options a.logout i{background: url('../../images/images.png') no-repeat -50px -28px;}
+header .user-options {float: right; height: 40px; overflow: visible;}
+header .user-options 
+	position: relative
+	& > a {background: rgba(255,255,255,.1); text-decoration: none; position: relative; display: inline-block; width: 60px; float: left; margin-left: 2px; height: 60px;}
+	& > a:hover, & > a.active{background: rgba(255,255,255,.2);}
+	a i {display: block; width: 22px; margin: 18px auto; height: 22px;}
+	a i {background: url('../../images/images.png') no-repeat 1px -27px;}
+	a.notifications b{position: absolute; background: #ff2409; background-position:  -4px -418px; background-color: rgba(255,36,9,.8); border-radius: 100px; font-size: 12px; width: 21px;  line-height: 13px; border: 1px solid #d51700; top: 10px; right: 8px; text-align: center; color: white; font-weight: bold; text-decoration: none;}
+	a.notifications i{background-position:  0px -417px;}
+	a.compose i{background: url('../../images/images.png') no-repeat -74px -418px;}
+	a.options i{background: url('../../images/images.png') -99px -418px;}
+	a.logout i{background: url('../../images/images.png') no-repeat -50px -28px;}
+	.options-dropdown 
+		background: white; display: none; top: 50px; right: 10px; position: absolute; z-index: 10000; box-shadow: 0 0 4px rgba(0,0,0,.4); border-radius: 3px;
+		span.triangle
+			position: absolute;
+			top: -5px; 
+			right: 15px;
+			width: 0; 
+			height: 0; 
+			border-left: 5px solid transparent;
+			border-right: 5px solid transparent;
+			border-bottom: 5px solid white;
+		a
+			display: block; padding: 6px 20px; border-bottom: 1px solid #f1f1f1; color: #333; font-weight: bold; font-size: 11px;
+			&:hover{color: #333; background: #f1f1f1}
+		a:first-child
+			border-top-left-radius: 3px;
+			border-top-right-radius: 3px;
+		a:last-child
+			border-bottom-left-radius: 3px;
+			border-bottom-right-radius: 3px;
+			border: 0;
+
+
+/*header .user-options a i{background-color: red !important;}*/
 .content{min-height: 500px; }
 .banner{
 	background: #fff ; 
@@ -268,19 +295,19 @@ body.profile-page {
 	.close-compose{position: fixed; right: 20px; top: 20px; background: black; color: white; font-weight: bold; text-transform: uppercase; padding: 10px 20px; display: block; border-radius: 4px;}
 	.compose-modal-inner{width: 500px; padding-bottom: 50px; margin: auto; margin-top: 40px;}
 	input.compose-title, textarea{width: 500px; font-size: 15px; border: 0; box-shadow: none; padding: 10px 0; border-radius: 0;}
-	input.compose-title{font-size: 26px; padding: 0; height: 27px; font-weight: bold; color: #333;}
+	input.compose-title{font-size: 26px; padding: 0; padding-top: 7px; height: 27px; font-weight: bold; color: #333;}
 
 	.insertion-point
 		height: 40px;
 		width: 5px;
-		margin-left: -10px;
+		left: -14px;
 		display: inline-block;
 		border-left: 5px solid #00a2ff;
 		visibility: hidden;
-
+		position: absolute;
 
 	form p:first-child > .insertion-point
-		visibility: visible; margin-bottom: -14px;
+		visibility: visible; 
 
 
 	.insertion {position: relative; margin-bottom: 30px; }
