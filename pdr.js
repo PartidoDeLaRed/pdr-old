@@ -62,7 +62,7 @@ require('./strategy');
  * Routes
  */
 
-require('./routes');
+require('./routes')(app);
 
 /*
  * Start Web server
