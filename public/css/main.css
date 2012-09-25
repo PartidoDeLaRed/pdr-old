@@ -74,14 +74,14 @@ header h1#logo {
   display: inline-block;
   margin: 0;
   margin-left: 20px;
-  padding: 12px 0;
   float: left;
   margin-right: 30px;
 }
 header h1#logo a {
-  width: 34px;
-  height: 34px;
-  background: url("../../images/logso.png?rand");
+  width: 52px;
+  height: 49px;
+  margin: 5px 0;
+  background: url("../../images/logo.png?rand");
   display: block;
   text-indent: -1000em;
 }
@@ -677,6 +677,7 @@ body.profile-page .activity-list .triangle {
 .compose-modal input.compose-title {
   font-size: 26px;
   padding: 0;
+  padding-top: 7px;
   height: 27px;
   font-weight: bold;
   color: #333;
@@ -684,14 +685,14 @@ body.profile-page .activity-list .triangle {
 .compose-modal .insertion-point {
   height: 40px;
   width: 5px;
-  margin-left: -10px;
+  left: -14px;
   display: inline-block;
   border-left: 5px solid #00a2ff;
   visibility: hidden;
+  position: absolute;
 }
 .compose-modal form p:first-child > .insertion-point {
   visibility: visible;
-  margin-bottom: -14px;
 }
 .compose-modal .insertion {
   position: relative;
