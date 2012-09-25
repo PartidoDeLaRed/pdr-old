@@ -225,6 +225,16 @@ header .user-options .options-dropdown a:last-child {
 }
 .title-propuestas {
   font-size: 14px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: normal;
+}
+.vote-option {
+  background: #fff;
+  margin-bottom: 20px;
+  padding: 20px;
+  width: 260px;
+  border-radius: 4px;
 }
 /*header .user-options a i{background-color: red !important;}*/
 .content {
@@ -288,7 +298,7 @@ header .user-options .options-dropdown a:last-child {
   display: inline-block;
 }
 a.nav {
-  top: 120px;
+  top: 64px;
   background: #fff url("../../images/arrow-left.png") center no-repeat;
   border-radius: 100px;
   display: inline-block;
