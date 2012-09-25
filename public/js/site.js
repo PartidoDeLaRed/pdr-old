@@ -22,4 +22,10 @@ $(document).ready(function(){
 	$('form.compose-modal-inner').sisyphus({timeout: 1, autoRelease: true});
 
 	$('.tt').tooltip();
+
+	$('a.tt.options').click(function(){
+		$(this).toggleClass('active');
+		$('.options-dropdown').toggle();
+		return false;
+	});
 });

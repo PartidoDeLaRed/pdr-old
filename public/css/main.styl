@@ -58,15 +58,42 @@ header nav a i{display: inline-block; width: 18px; margin-bottom: -6px; margin-r
 header nav a.votaciones i{background: url('../../images/images.png') no-repeat 0 0;}
 header nav a.users i{background: url('../../images/images.png') no-repeat -26px -1px; width: 22px;}
 header nav a.how-it-works i{background: url('../../images/images.png') no-repeat -57px -1px;}
-header .user-options {float: right; height: 40px;}
-header .user-options a {background: rgba(255,255,255,.1); text-decoration: none; position: relative; display: inline-block; width: 60px; float: left; margin-left: 2px; height: 60px;}
-header .user-options a:hover{background: rgba(255,255,255,.2);}
-header .user-options a i {display: block; width: 22px; margin: 18px auto; height: 22px;}
-header .user-options a i {background: url('../../images/images.png') no-repeat 1px -27px;}
-header .user-options a.notifications b{position: absolute; background: #ff2409; background-color: rgba(255,36,9,.8); border-radius: 100px; font-size: 12px; width: 21px;  line-height: 13px; border: 1px solid #d51700; top: 10px; right: 8px; text-align: center; color: white; font-weight: bold; text-decoration: none;}
-header .user-options a.compose i{background: url('../../images/images.png') no-repeat -74px -418px;}
-header .user-options a.options i{background: url('../../images/images.png') no-repeat -27px -27px;}
-header .user-options a.logout i{background: url('../../images/images.png') no-repeat -50px -28px;}
+header .user-options {float: right; height: 40px; overflow: visible;}
+header .user-options 
+	position: relative
+	& > a {background: rgba(255,255,255,.1); text-decoration: none; position: relative; display: inline-block; width: 60px; float: left; margin-left: 2px; height: 60px;}
+	& > a:hover, & > a.active{background: rgba(255,255,255,.2);}
+	a i {display: block; width: 22px; margin: 18px auto; height: 22px;}
+	a i {background: url('../../images/images.png') no-repeat 1px -27px;}
+	a.notifications b{position: absolute; background: #ff2409; background-position:  -4px -418px; background-color: rgba(255,36,9,.8); border-radius: 100px; font-size: 12px; width: 21px;  line-height: 13px; border: 1px solid #d51700; top: 10px; right: 8px; text-align: center; color: white; font-weight: bold; text-decoration: none;}
+	a.notifications i{background-position:  0px -417px;}
+	a.compose i{background: url('../../images/images.png') no-repeat -74px -418px;}
+	a.options i{background: url('../../images/images.png') -99px -418px;}
+	a.logout i{background: url('../../images/images.png') no-repeat -50px -28px;}
+	.options-dropdown 
+		background: white; display: none; top: 50px; right: 10px; position: absolute; z-index: 10000; box-shadow: 0 0 4px rgba(0,0,0,.4); border-radius: 3px;
+		span.triangle
+			position: absolute;
+			top: -5px; 
+			right: 15px;
+			width: 0; 
+			height: 0; 
+			border-left: 5px solid transparent;
+			border-right: 5px solid transparent;
+			border-bottom: 5px solid white;
+		a
+			display: block; padding: 6px 20px; border-bottom: 1px solid #f1f1f1; color: #333; font-weight: bold; font-size: 11px;
+			&:hover{color: #333; background: #f1f1f1}
+		a:first-child
+			border-top-left-radius: 3px;
+			border-top-right-radius: 3px;
+		a:last-child
+			border-bottom-left-radius: 3px;
+			border-bottom-right-radius: 3px;
+			border: 0;
+
+
+/*header .user-options a i{background-color: red !important;}*/
 .content{min-height: 500px; }
 .banner{
 	background: #fff ; 

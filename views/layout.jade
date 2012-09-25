@@ -59,14 +59,15 @@ html(lang='en')
                 a.notifications(href='', rel="tooltip", title="Redactar una propuesta", data-placement="bottom")
                   b 43
                   i
-                a.tt.options(href='', rel="tooltip", title="Editar opciones", data-placement="bottom")
+                a.tt.options(href='', rel="tooltip")
                   i
+                div.options-dropdown
+                  a(href="") Editar Perfil
+                  span.triangle
+                  a(href="") Cerrar session
 
             - } else {
               .login-top(style="float:right;padding:1em;")
-                //- a(id="fb-login-button", href="/auth/facebook", class="sb sb-small sb-facebook")
-                //-   i
-                //-   | Sign in with facebook
                 a(id="tw-login-button", href="/auth/twitter", class="sb sb-small sb-twitter")
                   i
                   | Sign in with twitter
