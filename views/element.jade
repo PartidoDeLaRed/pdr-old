@@ -1,6 +1,17 @@
 - var social = author.profiles.facebook ? 'facebook' : 'twitter';
 .content.container.clearfix
-  .row
-    include element/box
-    include element/info
-    include element/comments
+	.row
+		.span12
+			.banner
+				a.nav.left(href='')
+				a.nav.right(href='')
+				h2= element.title
+				p(style="padding-top:20px")= element.abstract
+				//- a.delegate(href='')
+				//- 	| Prefiero delegar mi voto a otra persona
+				//- 	i
+			h3.title-propuestas Propuestas a votar
+
+
+		include element/info
+		include element/comments

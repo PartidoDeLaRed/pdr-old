@@ -223,6 +223,9 @@ header .user-options .options-dropdown a:last-child {
   border-bottom-right-radius: 3px;
   border: 0;
 }
+.title-propuestas {
+  font-size: 14px;
+}
 /*header .user-options a i{background-color: red !important;}*/
 .content {
   min-height: 500px;
