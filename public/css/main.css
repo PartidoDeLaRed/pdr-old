@@ -386,7 +386,7 @@ h5 i {
 .autor-ley .username {
   font-weight: bold;
   color: #333;
-  display: inline-block;
+  display: block;
   margin-bottom: 6px;
 }
 .autor-ley .username em {
