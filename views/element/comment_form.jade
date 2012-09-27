@@ -1,0 +1,7 @@
+.quick-reply
+  form(method="post", action="/comments/process")
+    input(type="hidden", name="comment[reference]", value=element._id)
+    textarea(name="comment[text]", placeholder='Tu opinion aqui')
+    p
+      a(href="") Adjuntar propuesta
+    input.btn(type='submit', value='Responder')

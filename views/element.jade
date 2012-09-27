@@ -47,9 +47,9 @@
 				ul
 					li
 						a.avatar(href='')
-							img(src="http://avatars.io/#{social}/" + author.profiles[social].username)
+							img(src=author.imageUrl)
 						a.username(href=author.profiles[social].profileUrl, target="_blank")
-							| #{author.firstName} #{author.lastName}
+							| #{author.fullName}
 						
 						a(href="https://twitter.com/gravityonmars", class="twitter-follow-button", data-show-count="false", data-show-screen-name="false") Follow @gravityonmars
 						script

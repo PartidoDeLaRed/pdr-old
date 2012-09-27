@@ -1,6 +1,7 @@
 var mongoose = require('mongoose')
-  , Issue = mongoose.model('Issue');
-  
+  , Issue = mongoose.model('Issue')
+  , Comment = mongoose.model('Comment');
+
 module.exports = function(app, utils) {
   app.post('/issues/process', utils.restrict, function(req, res) {
     if(!req.body.issue) res.redirect('/');
@@ -27,7 +28,9 @@ module.exports = function(app, utils) {
   app.get('/issues/:id', function(req, res) {
     Issue.findById(req.params.id).populate('author').exec(function(err, issue) {
       if(err) console.log(err);
-      res.render('issue', {page: 'idea', issue: issue, author: issue.author});
+      Comment.find({context: 'issue', reference: issue._id}, null, {sort: {createdAt: -1}}).populate('responses').populate('author').exec(function(err, comments) {
+        res.render('issue', {page: 'idea', issue: issue, author: issue.author, comments: comments});
+      });
     });
   });
 

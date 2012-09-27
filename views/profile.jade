@@ -7,8 +7,8 @@ block content
     .row
       .span12
         .page-title.clearfix
-          img.big-avatar(src='http://avatars.io/#{social}/' + profile.profiles[social].username + '?size=medium')
-          h2= profile.firstName + " " + profile.lastName
+          img.big-avatar(src=profile.imageUrl)
+          h2= profile.fullName
           p.location= profile.city ? ( profile.city.name || profile.city ) : 'Ciudadano Mundial'
           p
             | Describe yourself.

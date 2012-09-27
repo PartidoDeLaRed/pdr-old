@@ -14,7 +14,7 @@
         a.avatar(href='')
           img(src="http://avatars.io/#{social}/" + author.profiles[social].username)
         a.username(href=author.profiles[social].profileUrl, target="_blank")
-          | #{author.firstName} #{author.lastName}
+          | #{author.fullName}
           //- em(style="clear:both;")= author.city ? author.city.name : "Ciudadano Mundial"
         a.follow.twitter-follow.button(href='https://twitter.com/gravityonmars', data-show-count="false") Seguirlo
   .leyes-similares.append-bottom.box

@@ -30,15 +30,23 @@ passport.use(new FacebookStrategy({
     callbackURL: config.auth.facebook.callback
   },
   function(accessToken, refreshToken, profile, done) {
+    var imageUrl = profile._json.picture.url || profile._json.picture;
+
     Citizen.findOne({ 'profiles.facebook.id': profile.id }, function(err, citizen) {
       if(!err && citizen) {
-        done(null, citizen);
+        if(citizen.imageUrl === imageUrl) return done(err, citizen);
+        citizen.imageUrl = imageUrl;
+        citizen.save(function(err, ctz) {
+          return done(err, ctz);
+        });
       } else if(!err) {
         var newCitizen = new Citizen();
         newCitizen.firstName = profile.name.givenName;
         newCitizen.lastName = profile.name.familyName;
         newCitizen.username = profile.username;
-        newCitizen.city = profile._json.location || profile._json.hometown || {}; 
+        newCitizen.location = profile._json.location.name; 
+        newCitizen.hometown = profile._json.hometown.name; 
+        newCitizen.imageUrl = imageUrl;
         newCitizen.profiles = {facebook: profile};       
         newCitizen.save(function(err, ctz) {
           if(!err) done(null, newCitizen);
@@ -57,20 +65,22 @@ passport.use(new TwitterStrategy({
     callbackURL: config.auth.twitter.callback
   },
   function(accessToken, refreshToken, profile, done) {
+    var imageUrl = profile._json.profile_image_url.replace('_normal.', ".");
+
     Citizen.findOne({ 'profiles.twitter.id': profile.id }, function(err, citizen) {
       if(!err && citizen) {
-        done(null, citizen);
+        if(citizen.imageUrl === imageUrl) return done(err, citizen);
+        citizen.imageUrl = imageUrl;
+        citizen.save(function(err, ctz) {
+          return done(err, ctz);
+        });
       } else if(!err) {
         var newCitizen = new Citizen();
 
-        var names = profile.displayName.split(' ');
-        if(names.length) {
-          newCitizen.firstName = names.shift();
-          newCitizen.lastName = names.join(' ');
-        }
-
+        newCitizen.fullName = profile.displayName;
         newCitizen.username = profile.username;
-        newCitizen.city = profile._json.location || profile._json.hometown || {}; 
+        newCitizen.location = profile._json.location; 
+        newCitizen.imageUrl = imageUrl;
         newCitizen.profiles = {twitter: profile};       
         newCitizen.save(function(err, ctz) {
           if(!err) done(null, newCitizen);

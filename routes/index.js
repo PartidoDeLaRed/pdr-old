@@ -1,6 +1,7 @@
 var mongoose = require('mongoose')
   , utils = require('../utils')
-  , Issue = mongoose.model('Issue');
+  , Issue = mongoose.model('Issue')
+  , Comment = mongoose.model('Comment');
 
 /**
  * HTTP authentication module.
@@ -12,21 +13,25 @@ var basic = require('http-auth')({
 
 
 module.exports = function(app) {
-  
+
   /*
    *  Homepage route
    */
   app.get('/', function(req, res, next) {
     if ('development' == app.get('env')) {
-      Issue.findOne(null,null, {sort: {createdAt: -1}}).populate('author').exec(function(err, idea) {
-          if(!idea) return res.render('index');
-          res.render('idea', {page: 'idea', idea: idea, author: idea.author });
+      Issue.findOne(null,null, {sort: {createdAt: -1}}).populate('author').exec(function(err, issue) {
+        if(!issue) return res.render('index');
+        Comment.find({context: 'issue', reference: issue._id}, null, {sort: {createdAt: -1}}).populate('responses').populate('author').exec(function(err, comments) {
+          res.render('issue', {page: 'idea', issue: issue, author: issue.author, comments: comments});
+        });
       });
     } else {
       basic.apply(req, res, function(username) {
-        Issue.findOne(null,null, {sort: {createdAt: -1}}).populate('author').exec(function(err, idea) {
-            if(!idea) return res.render('index');
-            res.render('idea', {page: 'idea', idea: idea, author: idea.author });
+        Issue.findOne(null, null, {sort: {createdAt: -1}}).populate('author').exec(function(err, issue) {
+          if(!issue) return res.render('index');
+          Comment.find({context: 'issue', reference: issue._id}, null, {sort: {createdAt: -1}}).populate('responses').populate('author').exec(function(err, comments) {
+            res.render('issue', {page: 'idea', issue: issue, author: issue.author, comments: comments});
+          });
         });
       });
     }
@@ -55,7 +60,12 @@ module.exports = function(app) {
   /*
    *  Profiles routes
    */
-  require('./profiles');
+  require('./profiles')(app, utils);
+
+  /*
+   *  Comments routes
+   */
+  require('./comments')(app, utils);
 
   /*
    *  Other routes
