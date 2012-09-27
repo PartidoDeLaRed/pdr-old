@@ -9,10 +9,10 @@ block content
         .page-title.clearfix
           img.big-avatar(src=profile.imageUrl)
           h2= profile.fullName
-          p.location= profile.city ? ( profile.city.name || profile.city ) : 'Ciudadano Mundial'
+          p.location= profile.location || 'Ciudadano Mundial'
           p
             | Describe yourself.
-          a(href=profile.profiles[social].profileUrl) Facebook
+          a(href='http://twitter.com/' + profile.username, target='_blank') Twitter
       .span2
         .box.sidebar.clearfix
           nav

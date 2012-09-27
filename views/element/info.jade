@@ -12,7 +12,7 @@
     ul
       li
         a.avatar(href='')
-          img(src="http://avatars.io/#{social}/" + author.profiles[social].username)
+          img(src=author.imageUrl)
         a.username(href=author.profiles[social].profileUrl, target="_blank")
           | #{author.fullName}
           //- em(style="clear:both;")= author.city ? author.city.name : "Ciudadano Mundial"
