@@ -270,7 +270,7 @@ header .user-options .options-dropdown a:last-child {
 }
 .banner h2 {
   font-weight: normal;
-  margin-bottom: 0px;
+  margin-bottom: 10px;
   padding-bottom: 0;
 }
 .banner .options {
@@ -313,6 +313,27 @@ header .user-options .options-dropdown a:last-child {
   width: 16px;
   height: 10px;
   display: inline-block;
+}
+.banner input.votar {
+  border: 3px solid #7a9c3a;
+  border-radius: 4px;
+  color: #fff;
+  text-transform: uppercase;
+  background: #9ac44a;
+  font-weight: bold;
+}
+.banner .issue-content {
+  margin-left: 40px;
+}
+.banner .issue-content a.full-read {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 4px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #666;
+}
+.banner .issue-content p.issue-content-description {
+  margin-bottom: 20px;
 }
 a.nav {
   top: 64px;
