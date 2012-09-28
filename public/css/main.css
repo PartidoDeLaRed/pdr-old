@@ -229,6 +229,7 @@ header .user-options .options-dropdown a:last-child {
 }
 .title-propuestas {
   font-size: 14px;
+  margin-top: 0;
   font-weight: normal;
 }
 .vote-option {

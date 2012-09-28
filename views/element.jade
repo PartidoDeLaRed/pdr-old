@@ -11,7 +11,7 @@
 					a(href="").full-read Leer Completo
 			- if(typeof(vote) != 'undefined' && vote.choices.length) {
 			.span5
-				h3.title-propuestas Propuestas a votar
+				h3.title-propuestas Propuestas a votar:
 				- vote.choices.forEach(function(choice) {
 				div.vote-option
 					.vote-option-left
@@ -21,7 +21,7 @@
 					a(href="").full-read Leer Completo
 				-	});
 
-				
+
 				a.delegate(href='')
 					| Prefiero delegar mi voto a otra persona
 					i
