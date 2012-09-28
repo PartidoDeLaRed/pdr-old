@@ -9,8 +9,13 @@ script(src='/js/vendor/timeago/locales/jquery.timeago.es.js')
 script(src='/js/vendor/sisyphus/sisyphus.min.js')
 
 //if lt IE 9
-	script(src='http://html5shim.googlecode.com/svn/trunk/html5.js')
+  script(src='http://html5shim.googlecode.com/svn/trunk/html5.js')
 
 script	
-	!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+  !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 script(src='/js/site.js')
+script(src='/js/pdr.js')
+script(src='/js/pdr/api/comments.js')
+
+script
+  PDR && PDR.initialize();

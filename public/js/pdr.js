@@ -1,6 +1,7 @@
 ;(function(window) {
   var PDR = window.PDR = {
-
+    api: {},
+    
     initialize: function(options, cb) {
       if(this._initialized) return this;
       if('function' === typeof options) {
@@ -10,6 +11,8 @@
 
       this
         .init('domEvents', cb);
+
+      this.request = superagent;
 
       this._initialized = true;
     },
