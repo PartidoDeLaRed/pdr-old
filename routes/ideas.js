@@ -12,7 +12,9 @@ module.exports = function(app, utils) {
 
   app.get('/ideas/:id', function(req, res) {
     Idea.findById(req.params.id).populate('author').exec(function(err, idea) {
-      res.render('idea', { page: 'idea', idea: idea, author: idea.author });
+      idea.loadComments(function(err, comments) {
+        res.render('idea', { page: 'idea', idea: idea, author: idea.author, comments: comments });
+      });
     });
   });
 

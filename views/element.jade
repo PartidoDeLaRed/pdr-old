@@ -12,8 +12,8 @@
 				//- 	i
 				p
 					a(href="").full-read Leer Completo
-			.span5.omega
-				- if('undefined' !== vote && vote.choices.length) {
+			- if(typeof(vote) != 'undefined' && vote.choices.length) {
+				.span5.omega
 					h3.title-propuestas Propuestas a votar
 					- vote.choices.forEach(function(choice) {
 					div.vote-option
@@ -23,8 +23,8 @@
 							= choice.idea.title
 						a(href="").full-read Leer Completo
 					-	});
-				- }
 				input.votar(value="Votar", type="submit")
+			- }
 
 		.clearfix
 
