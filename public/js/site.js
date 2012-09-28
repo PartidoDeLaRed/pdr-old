@@ -28,4 +28,6 @@ $(document).ready(function(){
 		$('.options-dropdown').toggle();
 		return false;
 	});
+
+	$('span.time').timeago();
 });
