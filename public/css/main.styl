@@ -101,8 +101,8 @@ header .user-options
 .content{min-height: 500px; }
 .banner
 	background: #fff ; 
-	margin-bottom: 20px;
-	padding: 20px 0;
+	margin-bottom: 30px;
+	padding: 30px 0;
 	border-bottom-right-radius: 4px;
 	border-bottom-left-radius: 4px;
 	position: relative;
@@ -141,7 +141,7 @@ a.nav:hover{border-color: #999}
 
 .box
 	margin-bottom: 30px; overflow: hidden;
-	h5{margin-bottom: 20px; overflow: hidden; font-size: 16px; font-weight: 100}
+	h5{margin-bottom: 14px; overflow: hidden; font-size: 16px; font-weight: 100}
 	ul {margin: 0;}
 	.box-content{background: white; padding: 20px;}
 
@@ -176,14 +176,16 @@ h5 i{margin-bottom: -2px; margin-right: 10px; display: inline-block;}
 	width: 18px;
 	height: 16px;
 }
-.comment {overflow: hidden; border-bottom: 1px dashed #ccc; margin-bottom: 22px; padding-bottom: 4px; position: relative;}
-.comment:last-child{border: 0; padding-bottom: 0; margin-bottom: 0}
-.comment.question{border-bottom: 0; margin-bottom: 10px;}
+.comment {border-left: 4px solid #f1f1f1; background: white; border-bottom: 1px dashed #ccc; padding: 20px 0; position: relative;}
+
+.comment .avatar{margin-left: -22px;}
+
+.comment.question{border-bottom: 0; background: white; }
 .comment.answer{border: 0; margin-bottom: 10px;}
 .comment.answer img{width: 36px;}
 .comment.answer.last{ border-bottom: 1px dashed #ccc; margin-bottom: 20px;}
-.comment.answer, .comment .right{padding-left: 70px;}
-.comment.answer .right{padding-left: 50px;}
+.comment.answer, .comment .right{padding-left: 30px;}
+.comment.answer .right{padding-left: 20px;}
 .comment .postmeta{float: right; color: #999; font-size: 12px;}
 .comment .name{font-weight: bold; margin-right: 6px; margin-bottom: 6px; display: inline-block;} 
 .comment.answer .name{margin-bottom: 0;}
@@ -201,9 +203,10 @@ h5 i{margin-bottom: -2px; margin-right: 10px; display: inline-block;}
 .comment .right .reply {opacity: 0;}
 .comment .right:hover .reply {opacity: 1;}
 
-.quick-reply {margin-bottom: 20px; background: url('../../images/bg-lines.png') left bottom repeat-x; padding-bottom: 20px}
+.quick-reply {margin-bottom: 4px; background: white; padding: 20px 20px 4px 20px}
 .quick-reply textarea{width: 96%; min-height: 80px; padding: 2%; border-radius: 3px; margin-bottom: 10px}
 
+.comment-list{background: white; padding: 0 40px;}
 
 footer{padding: 20px 0; font-size: 12px; color: #666; border-top: 1px dashed #ccc; margin-top: 30px;}
 footer .sharing{float: right; width: 400px; margin-top: -2px; text-align: right;}

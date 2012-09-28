@@ -6,40 +6,41 @@
       em= element.title
       | "
     include comment_form
-    - comments.forEach(function(comment) {
-      section.comment.question
-        .avatar
-          img(src=comment.author.imageUrl)
-        .right
-          .postmeta
-            span.time(title=comment.createdAt.toISOString())
-          span.name= comment.author.fullName
-          p= comment.text
-          a.reply(href='', style="display:none;")
-            i
-            | Responder
-          .hidden(style="display:none;")
-            .quick-reply
-              form(method="post", action="/comments/process")
-                input(type="hidden", name="comment[reference]", value=element._id)
-                textarea(name="comment[text]", placeholder='Tu opinion aqui')
-                p
-                  a(href="") Adjuntar propuesta
-                input.btn(type='submit', value='Responder')
-      - comment.responses.forEach(function(response, idx) {
-        - var last = (idx == comment.length - 1) ? 'last' : '';
-        //- if last, adds last class
-        section.comment.answer(class=last)
+    .comment-list
+      - comments.forEach(function(comment) {
+        section.comment.question.clearfix
           .avatar
-            img(src=respose.author.imageUrl)
+            img(src=comment.author.imageUrl)
           .right
             .postmeta
-              span.time(title=response.createdAt)
-            span.name response.author.fullName
-            span.location de response.author.location
-            p= response.text
-            a.reply(href='')
+              span.time(title=comment.createdAt.toISOString())
+            span.name= comment.author.fullName
+            p= comment.text
+            a.reply(href='', style="display:none;")
               i
               | Responder
+            .hidden(style="display:none;")
+              .quick-reply
+                form(method="post", action="/comments/process")
+                  input(type="hidden", name="comment[reference]", value=element._id)
+                  textarea(name="comment[text]", placeholder='Tu opinion aqui')
+                  p
+                    a(href="") Adjuntar propuesta
+                  input.btn(type='submit', value='Responder')
+        - comment.responses.forEach(function(response, idx) {
+          - var last = (idx == comment.length - 1) ? 'last' : '';
+          //- if last, adds last class
+          section.comment.answer(class=last)
+            .avatar
+              img(src=respose.author.imageUrl)
+            .right
+              .postmeta
+                span.time(title=response.createdAt)
+              span.name response.author.fullName
+              span.location de response.author.location
+              p= response.text
+              a.reply(href='')
+                i
+                | Responder
+        - });
       - });
-    - });
