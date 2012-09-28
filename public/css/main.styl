@@ -32,7 +32,8 @@ input,textarea{font-family: 'proxima-nova'}
 }
 
 body{background-color: #f1f1f1}
-a, a:visited{text-decoration: none; color: #468DC4}
+a, a:visited{text-decoration: none; color: #468DC4;}
+p a{border-bottom: 1px solid #ccc; padding-bottom: 4px; }
 a:hover{text-decoration: none;}
 header {
 	background: blue;
@@ -107,7 +108,7 @@ header .user-options
 	border-bottom-left-radius: 4px;
 	position: relative;
 	margin-left: 20px;
-	h2{font-weight: normal; margin-bottom: 10px; padding-bottom: 0;}
+	h2{font-weight: normal; margin: 0 0 10px 0; padding-bottom: 0;}
 	.options {margin-top: 30px;}
 	.options a
 		border: 3px solid rgba(0,0,0,.2);
@@ -120,17 +121,18 @@ header .user-options
 	.options a.yes{background-color: #97c349; }
 	.options a.no{background-color: #d2564f;}
 	.options a.na{background-color: #666; }
-	a.delegate{text-decoration: none; color: #4596b8;  border-bottom: 1px solid #ccc;  font-weight: bold; margin-top: 20px; display: inline-block; }
+	a.delegate{text-decoration: none; color: #4596b8; font-size: 12px; float: right; border-bottom: 1px solid #ccc;  font-weight: bold; margin-top: 10px; display: block; }
 	a.delegate i
 		background: url('../../images/images.png') no-repeat  -49px -88px;
 		width: 16px;
+		margin-left: 10px
 		height: 10px;
 		display: inline-block;
 	input.votar{border: 3px solid #7a9c3a; border-radius: 4px; color: white; text-transform: uppercase; background: #9ac44a; font-weight: bold;}
 	.issue-content
 		margin-left: 40px
 		a.full-read 
-			border-bottom: 1px solid #ccc; padding-bottom: 4px; text-transform: uppercase; font-weight: bold; color: #666
+			text-transform: uppercase; font-weight: bold; color: #666
 		p.issue-content-description{margin-bottom: 20px;}
 
 

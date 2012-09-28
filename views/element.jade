@@ -7,9 +7,6 @@
 				a.nav.right(href='')
 				h2= element.title
 				p.issue-content-description= element.abstract
-				//- a.delegate(href='')
-				//- 	| Prefiero delegar mi voto a otra persona
-				//- 	i
 				p
 					a(href="").full-read Leer Completo
 			.span5.omega
@@ -23,6 +20,11 @@
 						a(href="").full-read Leer Completo
 					-	});
 				- }
+
+				a.delegate(href='')
+					| Prefiero delegar mi voto a otra persona
+					i
+
 				input.votar(value="Votar", type="submit")
 
 		.clearfix
