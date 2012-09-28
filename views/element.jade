@@ -2,30 +2,32 @@
 .content.container.clearfix
 	.row
 		.banner.clearfix
-			.span6.alpha.issue-content
+			.span6.issue-content
 				a.nav.left(href='')
 				a.nav.right(href='')
 				h2= element.title
 				p.issue-content-description= element.abstract
 				p
 					a(href="").full-read Leer Completo
-			.span5.omega
-				- if(vote.choices.length) {
-					- vote.choices.forEach(function(choice) {
-					div.vote-option
-						.vote-option-left
-							span
-								input(type="radio")
-							= choice.idea.title
-						a(href="").full-read Leer Completo
-					-	});
-				- }
+			- if(typeof(vote) != 'undefined' && vote.choices.length) {
+			.span5
+				h3.title-propuestas Propuestas a votar
+				- vote.choices.forEach(function(choice) {
+				div.vote-option
+					.vote-option-left
+						span
+							input(type="radio")
+						= choice.idea.title
+					a(href="").full-read Leer Completo
+				-	});
 
+				
 				a.delegate(href='')
 					| Prefiero delegar mi voto a otra persona
 					i
-
 				input.votar(value="Votar", type="submit")
+			- }
+
 
 		.clearfix
 

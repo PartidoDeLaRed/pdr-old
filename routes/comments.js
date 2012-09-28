@@ -11,7 +11,7 @@ module.exports = function(app, utils) {
       composeCommentReference(req.header('referrer')) || 
       {context: 'issue', reference: req.body.comment.reference};
 
-    if(req.body.initiative) submitInitiative(commentReference.reference, req.body.initiative);
+    if(req.body.initiative && req.body.initiative.title.length) submitInitiative(commentReference.reference, req.user, req.body.initiative);
     
     var newComment = new Comment({
         context: commentReference.context
@@ -31,7 +31,7 @@ var caringRoutes = { //rutas extraidas de app.router!! con console.log
     'issue-vote': /\/voting\/issue\/(?:([^\/]+?))\/?$/g
   , 'idea-vote': /\/voting\/idea\/(?:([^\/]+?))\/?$/g
   , 'issue': /\/issues\/(?:([^\/]+?))\/?$/g
-  , 'idea': /\/idea\/(?:([^\/]+?))\/?$/g
+  , 'idea': /\/ideas\/(?:([^\/]+?))\/?$/g
 };
 
 var composeCommentReference = function(route) {
@@ -44,8 +44,10 @@ var composeCommentReference = function(route) {
   return null;
 };
 
-var submitInitiative = function(issueId, initiative) {
+var submitInitiative = function(issueId, author, initiative) {
   idea = new Idea(initiative);
+  idea.author = author;
+  idea.authors.push(author);
   idea.save(function(err, i) {
     if(!err && i) {
       issueVoteOption = new IssueVoteOption({idea: idea._id});
