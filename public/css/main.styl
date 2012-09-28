@@ -133,16 +133,19 @@ header .user-options
 			border-bottom: 1px solid #ccc; padding-bottom: 4px; text-transform: uppercase; font-weight: bold; color: #666
 		p.issue-content-description{margin-bottom: 20px;}
 
+
 a.nav{top: 64px; background: white url('../../images/arrow-left.png') center no-repeat; border-radius: 100px; display: inline-block; width: 30px; height: 30px; border: 2px solid #eee; position: absolute;}
 a.nav.right{right: -18px;background-image: url('../../images/arrow-right.png');}
 a.nav.left{left: -18px;}
 a.nav:hover{border-color: #999}
 
-.box {background: white; padding: 16px 20px 20px 20px; border-radius: 3px}
-.box h5{margin-bottom: 20px; font-size: 16px; font-weight: 100}
-.box ul {margin: 0;}
+.box
+	margin-bottom: 30px; overflow: hidden;
+	h5{margin-bottom: 20px; overflow: hidden; font-size: 16px; font-weight: 100}
+	ul {margin: 0;}
+	.box-content{background: white; padding: 20px;}
 
-.box.information{background: #fffbe0 url('../../images/icon-alert.png') 20px center  no-repeat;  position: relative; padding-left: 60px; color: #706400; font-size: 12px;}
+.box.information{background: #fffbe0 url('../../images/icon-alert.png') 20px center  no-repeat; padding: 20px; border-radius: 4px;  position: relative; padding-left: 60px; color: #706400; font-size: 12px;}
 .box.information strong{color: #706400;}
 
 
@@ -156,16 +159,16 @@ h5 i{margin-bottom: -2px; margin-right: 10px; display: inline-block;}
 .autor-ley ul li{clear: both; list-style: none; border-bottom: 1px solid rgba(0,0,0,.06); margin-bottom: 10px; padding-bottom: 10px;}
 .autor-ley ul li:last-child{border-bottom: 0; padding-bottom: 0; margin-bottom: 0}
 .autor-ley ul li a{text-decoration: none;}
-.autor-ley .avatar {float: left;  margin-right: 10px; padding: 2px; box-shadow: 0 1px 1px rgba(0,0,0,.2); float: left; border-radius: 100px; font-weight: bold;}
-.autor-ley .avatar img{max-width: 35px; border-radius: 100px; float: left;}
+.avatar {float: left;  margin-right: 10px; padding: 2px; box-shadow: 0 1px 1px rgba(0,0,0,.2); float: left; border-radius: 100px; font-weight: bold;}
+.avatar img{max-width: 35px; border-radius: 100px; float: left;}
 .autor-ley .username{font-weight: bold; color: #333; display: block; margin-bottom: 6px; }
 .autor-ley .username em{font-weight: normal; color: #999; margin-left: 6px; font-size: 12px;}
 .autor-ley .follow{font-weight: bold; display: block; color:#739bd5; font-size: 11px;}
 
 .leyes-similares h5 i{ background: url('../../images/images.png')  no-repeat -29px -59px; width: 18px; height: 16px;}
-.leyes-similares ul {margin-top: 0;}
+.leyes-similares ul {width: 100%; }
 .leyes-similares ul li {list-style: none; line-height: 30px;}
-.leyes-similares ul li a{border-left: 2px solid #b673d5; color: #333; padding-left: 10px;}
+.leyes-similares ul li a{margin-bottom: 1px; background: white; display: block;color: #333; padding: 10px 20px;}
 
 
 .comments h5 i{
@@ -181,8 +184,6 @@ h5 i{margin-bottom: -2px; margin-right: 10px; display: inline-block;}
 .comment.answer.last{ border-bottom: 1px dashed #ccc; margin-bottom: 20px;}
 .comment.answer, .comment .right{padding-left: 70px;}
 .comment.answer .right{padding-left: 50px;}
-.comment .avatar{float: left; width: 30%; display: block; position: absolute; width: 50px; }
-.comment .avatar img{max-width: 100%; border-radius: 3px}
 .comment .postmeta{float: right; color: #999; font-size: 12px;}
 .comment .name{font-weight: bold; margin-right: 6px; margin-bottom: 6px; display: inline-block;} 
 .comment.answer .name{margin-bottom: 0;}

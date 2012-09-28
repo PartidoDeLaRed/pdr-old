@@ -356,20 +356,26 @@ a.nav:hover {
   border-color: #999;
 }
 .box {
-  background: #fff;
-  padding: 16px 20px 20px 20px;
-  border-radius: 3px;
+  margin-bottom: 30px;
+  overflow: hidden;
 }
 .box h5 {
   margin-bottom: 20px;
+  overflow: hidden;
   font-size: 16px;
   font-weight: 100;
 }
 .box ul {
   margin: 0;
 }
+.box .box-content {
+  background: #fff;
+  padding: 20px;
+}
 .box.information {
   background: #fffbe0 url("../../images/icon-alert.png") 20px center no-repeat;
+  padding: 20px;
+  border-radius: 4px;
   position: relative;
   padding-left: 60px;
   color: #706400;
@@ -407,7 +413,7 @@ h5 i {
 .autor-ley ul li a {
   text-decoration: none;
 }
-.autor-ley .avatar {
+.avatar {
   float: left;
   margin-right: 10px;
   padding: 2px;
@@ -416,7 +422,7 @@ h5 i {
   border-radius: 100px;
   font-weight: bold;
 }
-.autor-ley .avatar img {
+.avatar img {
   max-width: 35px;
   border-radius: 100px;
   float: left;
@@ -445,16 +451,18 @@ h5 i {
   height: 16px;
 }
 .leyes-similares ul {
-  margin-top: 0;
+  width: 100%;
 }
 .leyes-similares ul li {
   list-style: none;
   line-height: 30px;
 }
 .leyes-similares ul li a {
-  border-left: 2px solid #b673d5;
+  margin-bottom: 1px;
+  background: #fff;
+  display: block;
   color: #333;
-  padding-left: 10px;
+  padding: 10px 20px;
 }
 .comments h5 i {
   background: url("../../images/images.png") no-repeat -57px -60px;
@@ -494,17 +502,6 @@ h5 i {
 }
 .comment.answer .right {
   padding-left: 50px;
-}
-.comment .avatar {
-  float: left;
-  width: 30%;
-  display: block;
-  position: absolute;
-  width: 50px;
-}
-.comment .avatar img {
-  max-width: 100%;
-  border-radius: 3px;
 }
 .comment .postmeta {
   float: right;

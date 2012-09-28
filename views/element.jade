@@ -26,8 +26,6 @@
 				- }
 				input.votar(value="Votar", type="submit")
 
-
-
 		.clearfix
 
 		.span4
@@ -41,16 +39,17 @@
 				h5
 					i
 					| Autor de la #{elementType.toLowerCase()}
-				ul
-					li
-						a.avatar(href='')
-							img(src=author.imageUrl)
-						a.username(href=author.profiles[social].profileUrl, target="_blank")
-							| #{author.fullName}
-						
-						a(href="https://twitter.com/gravityonmars", class="twitter-follow-button", data-show-count="false", data-show-screen-name="false") Follow @gravityonmars
-						script
-							!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+				.box-content
+					ul
+						li
+							a.avatar(href='')
+								img(src=author.imageUrl)
+							a.username(href=author.profiles[social].profileUrl, target="_blank")
+								| #{author.fullName}
+							
+							a(href="https://twitter.com/gravityonmars", class="twitter-follow-button", data-show-count="false", data-show-screen-name="false") Follow @gravityonmars
+							script
+								!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 
 			.leyes-similares.append-bottom.box
 				h5
