@@ -13,7 +13,8 @@
 				p
 					a(href="").full-read Leer Completo
 			.span5.omega
-				- if(vote.choices.length) {
+				- if('undefined' !== vote && vote.choices.length) {
+					h3.title-propuestas Propuestas a votar
 					- vote.choices.forEach(function(choice) {
 					div.vote-option
 						.vote-option-left
@@ -24,7 +25,6 @@
 					-	});
 				- }
 				input.votar(value="Votar", type="submit")
-		h3.title-propuestas Propuestas a votar
 
 
 
