@@ -16,7 +16,7 @@ module.exports = function(app, utils) {
       , text: req.body.comment.text
     }).save(function(err, comment) {
       if(err) {
-
+        
         res.redirect('back');
       }
       res.redirect('back');

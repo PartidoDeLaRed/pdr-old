@@ -14,7 +14,7 @@ var IdeaSchema = new Schema({
   link: {type: String},
   sources: {type: String},
   census: {type: [ObjectId], default: [], ref: 'Citizen' },
-  votes: {type: [ObjectId], default: [], ref: 'Vote'},
+  votes: {type: [ObjectId], default: [], ref: 'IdeaVote'},
   createdAt: { type: Date, default: Date.now },
   updatedAt: Date
 });

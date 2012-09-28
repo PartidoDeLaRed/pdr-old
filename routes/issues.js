@@ -28,8 +28,11 @@ module.exports = function(app, utils) {
   app.get('/issues/:id', function(req, res) {
     Issue.findById(req.params.id).populate('author').exec(function(err, issue) {
       if(err) console.log(err);
-      Comment.find({context: 'issue', reference: issue._id}, null, {sort: {createdAt: -1}}).populate('responses').populate('author').exec(function(err, comments) {
-        res.render('issue', {page: 'idea', issue: issue, author: issue.author, comments: comments});
+      if(!issue) return res.redirect('/');
+      issue.loadComments(function(err, comments) {
+        issue.loadVote(function(err, issueVote) {
+          res.render('issue', {page: 'idea', issue: issue, author: issue.author, comments: comments});
+        });
       });
     });
   });

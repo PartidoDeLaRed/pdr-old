@@ -3,7 +3,7 @@ var mongoose = require('mongoose')
 
 module.exports = function(app, utils) {
   app.get('/voting', function(req, res) {
-    IssueVote.find(null, function(err, results) {
+    IssueVote.find({}).populate('issue').exec(function(err, results) {
       res.render('voting', {page:'profile', votes: results || [] });
     });
   });

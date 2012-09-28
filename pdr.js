@@ -19,6 +19,7 @@ app.configure(function() {
   app.use(express.cookieParser('pdr es la posta'));
   app.use(express.session({
     cookie: {maxAge: 100000 * 2000}, // 20 minutes
+    secret: 'pdr-is-awesome',
     key: "pdr"
   }));
   app.use(passport.initialize());

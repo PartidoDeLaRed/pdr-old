@@ -19,24 +19,26 @@ module.exports = function(app) {
    */
   app.get('/', function(req, res, next) {
     if ('development' == app.get('env')) {
-      Issue.findOne(null,null, {sort: {createdAt: -1}}).populate('author').exec(function(err, issue) {
-        if(!issue) return res.render('index');
-        Comment.find({context: 'issue', reference: issue._id}, null, {sort: {createdAt: -1}}).populate('responses').populate('author').exec(function(err, comments) {
-          res.render('issue', {page: 'idea', issue: issue, author: issue.author, comments: comments});
-        });
-      });
+      index(req, res);
     } else {
       basic.apply(req, res, function(username) {
-        Issue.findOne(null, null, {sort: {createdAt: -1}}).populate('author').exec(function(err, issue) {
-          if(!issue) return res.render('index');
-          Comment.find({context: 'issue', reference: issue._id}, null, {sort: {createdAt: -1}}).populate('responses').populate('author').exec(function(err, comments) {
-            res.render('issue', {page: 'idea', issue: issue, author: issue.author, comments: comments});
-          });
-        });
+        index(req, res);
       });
     }
   });
 
+  var index = function(req, res) {
+    Issue.findOne(null, null, {sort: {createdAt: -1}}).populate('author').exec(function(err, issue) {
+      if(err) console.log(err);
+      if(!issue) return res.render('index');
+      issue.loadComments(function(err, comments) {
+        issue.loadVote(function(err, issueVote) {
+          res.render('issue', {page: 'idea', issue: issue, author: issue.author, comments: comments});
+        });
+      });
+    });
+  };
+  
   /*
    *  Auth routes
    */
