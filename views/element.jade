@@ -1,8 +1,8 @@
 - var social = author.profiles.facebook ? 'facebook' : 'twitter';
 .content.container.clearfix
 	.row
-		.span12
-			.banner
+		.banner.clearfix
+			.span6.alpha
 				a.nav.left(href='')
 				a.nav.right(href='')
 				h2= element.title
@@ -10,15 +10,21 @@
 				//- a.delegate(href='')
 				//- 	| Prefiero delegar mi voto a otra persona
 				//- 	i
-			h3.title-propuestas Propuestas a votar
 
-		- if(vote.choices.length) {
-			- vote.choices.forEach(function(choice) {
-					.span4.vote-option
-						h4= choice.idea.title
-						p= choice.idea.abstract.substr(0,60)
-			-	});
-		- }
+			.span5.omega
+				- if(vote.choices.length) {
+					- vote.choices.forEach(function(choice) {
+					div.vote-option
+						.vote-option-left
+							span
+								input(type="radio")
+							= choice.idea.title
+						a(href="").full-read Leer Completo
+					-	});
+				- }
+		h3.title-propuestas Propuestas a votar
+
+
 
 		.clearfix
 

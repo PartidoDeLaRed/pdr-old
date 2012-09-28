@@ -14,7 +14,6 @@
           .postmeta
             span.time(title=comment.createdAt.toISOString())
           span.name= comment.author.fullName
-          span.location de #{comment.author.location}
           p= comment.text
           a.reply(href='', style="display:none;")
             i
