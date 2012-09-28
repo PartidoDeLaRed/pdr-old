@@ -24,9 +24,27 @@
     },
 
     domEvents: function() {
-      $('.quick-reply a.initiative').live('click', function(ev) {
+      $('.quick-reply form').live('submit', function(ev) {
+        if(!$(this).find('textarea[name="comment[text]"]').val().trim()) return false;
+        return $(this).submit();
+      });
+      $('#compose-initiative .close-compose').live('click', function(ev) {
+      });
+
+      $('#compose-initiative button.btn').live('click', function(ev) {
         ev.preventDefault();
-        
+        $('a.compose-initiative').html($('.initiative input[name="initiative[title]"]').val())
+        .after("<span class='delete'> X</span>");
+        $('#compose-initiative').fadeOut();
+      });
+
+      $('.quick-reply p span.delete').live('click', function(ev) {
+        ev.preventDefault();
+        $(this).remove();
+        $('.initiative input, .initiative textarea').each(function(idx, el) {
+          $(el).val('');
+        });
+        $('a.compose-initiative').html("Adjuntar propuesta")
       });
     }
   };

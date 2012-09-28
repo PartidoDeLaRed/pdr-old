@@ -17,7 +17,10 @@ module.exports = function(app, utils) {
         authors: [req.user._id],
         census: [req.user._id]
       }).save(function(err, issue) {
-        if(err) console.log(err);
+        if(err) {
+          console.log(err)
+          return res.redirect('back');
+        };
         res.redirect('/issues/' + issue._id);
       });
     } else {

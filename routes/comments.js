@@ -1,13 +1,17 @@
 var mongoose = require('mongoose')
-  , Comment = mongoose.model('Comment');
+  , Comment = mongoose.model('Comment')
+  , Idea = mongoose.model('Idea')
+  , IssueVoteOption = mongoose.model('IssueVoteOption')
+  , IssueVote = mongoose.model('IssueVote');
 
 module.exports = function(app, utils) {
   app.post('/comments/process', function(req, res) {
     if(!req.body.comment) return res.redirect('back');
-
     commentReference = 
       composeCommentReference(req.header('referrer')) || 
       {context: 'issue', reference: req.body.comment.reference};
+
+    if(req.body.initiative) submitInitiative(commentReference.reference, req.body.initiative);
     
     var newComment = new Comment({
         context: commentReference.context
@@ -16,7 +20,6 @@ module.exports = function(app, utils) {
       , text: req.body.comment.text
     }).save(function(err, comment) {
       if(err) {
-        
         res.redirect('back');
       }
       res.redirect('back');
@@ -41,6 +44,16 @@ var composeCommentReference = function(route) {
   return null;
 };
 
-var errorHandler = function(err, req) {
+var submitInitiative = function(issueId, initiative) {
+  idea = new Idea(initiative);
+  idea.save(function(err, i) {
+    if(!err && i) {
+      issueVoteOption = new IssueVoteOption({idea: idea._id});
+      IssueVote.findOne({issue: issueId}, function(err, issueVote) {
+        issueVote.choices.push(issueVoteOption);
+        issueVote.save();
+      });
+    }
+  });
 
 }

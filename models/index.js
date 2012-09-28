@@ -9,14 +9,14 @@ require('./citizen');
 require('./issue');
 
 /*
- *  Issue Vote Model
- */
-require('./issueVote');
-
-/*
  *  Issue Vote Option Model
  */
 require('./issueVoteOption');
+
+/*
+ *  Issue Vote Model
+ */
+require('./issueVote');
 
 /*
  *  Idea Model

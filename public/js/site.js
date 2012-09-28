@@ -1,7 +1,13 @@
 $(document).ready(function(){
 
 	$('.compose-link').click(function(){
-		$('.compose-modal').fadeIn();
+		$('#compose').fadeIn();
+
+		return false;
+	});
+
+	$('.compose-initiative').click(function(){
+		$('#compose-initiative').fadeIn();
 
 		return false;
 	});

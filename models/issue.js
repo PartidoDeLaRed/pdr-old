@@ -6,8 +6,8 @@ var mongoose = require('mongoose')
  * Issue Schema
  */
 var IssueSchema = new Schema({
-  title: {type: String, min: 8, max: 256 },
-  abstract: { type: String, min: 256, max: 512},
+  title: {type: String, required: true, min: 8, max: 256 },
+  abstract: { type: String, required: true, min: 256, max: 512},
   essay: { type: String, min: 512, max: 2048},
   author: { type: ObjectId, ref: 'Citizen' },
   authors: { type: [ObjectId], required: true, default: [], ref: 'Citizen'},
@@ -27,7 +27,7 @@ IssueSchema.post('save', function() {
 });
 
 IssueSchema.methods.loadVote = function(cb) {
-  return this.model('IssueVote').findOne({issue: this._id}).populate('options').exec(cb);
+  return this.model('IssueVote').findOne({issue: this._id}).populate('choices.idea').exec(cb);
 };
 
 IssueSchema.methods.loadComments = function(cb) {
