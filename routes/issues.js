@@ -31,7 +31,7 @@ module.exports = function(app, utils) {
       if(!issue) return res.redirect('/');
       issue.loadComments(function(err, comments) {
         issue.loadVote(function(err, issueVote) {
-          res.render('issue', {page: 'idea', issue: issue, author: issue.author, comments: comments});
+          res.render('issue', {page: 'idea', issue: issue, author: issue.author, comments: comments, issueVote: issueVote});
         });
       });
     });

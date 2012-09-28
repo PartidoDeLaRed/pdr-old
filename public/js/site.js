@@ -29,5 +29,5 @@ $(document).ready(function(){
 		return false;
 	});
 
-	$('span.time').timeago();
+	$('.time').timeago();
 });

@@ -24,4 +24,7 @@
                 .activity-description
                   .triangle
                   a(href=route + element._id)= element.title
+                  | . 
+                  em.time(title=element.createdAt.toISOString())
+
             - })

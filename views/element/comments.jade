@@ -12,7 +12,7 @@
           img(src=comment.author.imageUrl)
         .right
           .postmeta
-            span.time 3 dias
+            span.time(title=comment.createdAt.toISOString())
           span.name= comment.author.fullName
           span.location de #{comment.author.location}
           p= comment.text
@@ -35,7 +35,7 @@
             img(src=respose.author.imageUrl)
           .right
             .postmeta
-              span.time 3 dias
+              span.time(title=response.createdAt)
             span.name response.author.fullName
             span.location de response.author.location
             p= response.text
