@@ -54,7 +54,7 @@ html(lang='en')
             - if('undefined' !== typeof citizen) {
               - var social = citizen.profiles.facebook ? 'facebook' : 'twitter';
               .user-options
-                a.tt.compose.compose-link(rel="tooltip", title="Redactar una problematica", data-placement="bottom", href='#compose')
+                a.tt.compose.compose-link(data-toggle="modal", role="button", href='#compose', data-backdrop="false", data-keyboard="false", rel="tooltip", title="Redactar una problematica", data-placement="bottom")
                   i
                 a.notifications(href='', rel="tooltip", title="Redactar una propuesta", data-placement="bottom")
                   b 43

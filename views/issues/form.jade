@@ -1,5 +1,5 @@
-#compose(style="display: none").compose-modal
-  a.close-compose(href="") Cerrar
+#compose.compose-modal(role="dialog", aria-hidden="true", style="display:none;")
+  a.close-compose(href="", data-dismiss="modal") Cerrar
 
   form.compose-modal-inner(method="post", action="/issues/process")
     input(type="hidden", name="issue[_id]")

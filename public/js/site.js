@@ -1,23 +1,5 @@
 $(document).ready(function(){
 
-	$('.compose-link').click(function(){
-		$('#compose').fadeIn();
-
-		return false;
-	});
-
-	$('.compose-initiative').click(function(){
-		$('#compose-initiative').fadeIn();
-
-		return false;
-	});
-
-	$('.close-compose').click(function(){
-		$('.compose-modal').fadeOut('fast');
-		return false;
-	});
-
-
 	$('.compose-text').focus(function(){
 		$('.insertion-point').css('visibility', 'hidden');
 		$(this).prev('.insertion-point').css('visibility', 'visible');

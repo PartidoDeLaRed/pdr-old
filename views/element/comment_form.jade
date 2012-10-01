@@ -3,9 +3,9 @@
     input(type="hidden", name="comment[reference]", value=element._id)
     textarea(name="comment[text]", placeholder='Tu opinion aqui')
     p
-      a.compose-initiative(rel="tooltip", title="Redactar una iniciativa", data-placement="bottom", href='#compose-initiative') Adjuntar propuesta
-    #compose-initiative(style="display: none").compose-modal
-      a.close-compose(href="") Cerrar
+      a.tt.compose-initiative(data-toggle="modal", role="button", href='#compose-initiative', data-backdrop="false", data-keyboard="false", rel="tooltip", title="Redactar una iniciativa", data-placement="bottom") Adjuntar propuesta
+    #compose-initiative.compose-modal(role="dialog", aria-hidden="true", style="display:none;")
+      a.close-compose(href="", data-dismiss="modal") Cerrar
 
       .initiative.compose-modal-inner
         p.insertion
