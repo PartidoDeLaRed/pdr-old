@@ -14,7 +14,7 @@
 					.modal-body
 						p.issue-content-description= element.abstract
 						p.issue-content-description= element.essay
-					.modal-fotter
+					.modal-footer
 						button.btn(type="button", data-dismiss="modal", aria-hidden="true") Cerrar
 				p
 					a(data-toggle="modal", role="button", href="#issue-full").full-read Leer Completo
@@ -34,7 +34,7 @@
 							.modal-body
 								p.issue-content-description= choice.idea.abstract
 								p.issue-content-description= choice.idea.essay
-							.modal-fotter
+							.modal-footer
 								button.btn(type="button", data-dismiss="modal", aria-hidden="true") Cerrar
 						a(data-toggle="modal", role="button", href="#choice-full-#{choice.id}").full-read Leer Completo
 					-	});
