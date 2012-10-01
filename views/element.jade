@@ -7,8 +7,17 @@
 				a.nav.right(href='')
 				h2= element.title
 				p.issue-content-description= element.abstract
+				#issue-full.modal(role="dialog", style="display:none;")
+					.modal-header
+						button.close(type="button", data-dismiss="modal", aria-hidden="true") x
+						h2= element.title
+					.modal-body
+						p.issue-content-description= element.abstract
+						p.issue-content-description= element.essay
+					.modal-fotter
+						button.btn(type="button", data-dismiss="modal", aria-hidden="true") Cerrar
 				p
-					a(href="").full-read Leer Completo
+					a(data-toggle="modal", role="button", href="#issue-full").full-read Leer Completo
 			- if(typeof(vote) != 'undefined' && vote.choices.length) {
 				.span5.omega
 					h3.title-propuestas Propuestas a votar
@@ -16,9 +25,18 @@
 					div.vote-option
 						.vote-option-left
 							span
-								input(type="radio")
+								input(type="radio", name="choice")
 							= choice.idea.title
-						a(href="").full-read Leer Completo
+						.modal(id="choice-full-#{choice.id}", role="dialog", style="display:none;")
+							.modal-header
+								button.close(type="button", data-dismiss="modal", aria-hidden="true") x
+								h2= choice.idea.title
+							.modal-body
+								p.issue-content-description= choice.idea.abstract
+								p.issue-content-description= choice.idea.essay
+							.modal-fotter
+								button.btn(type="button", data-dismiss="modal", aria-hidden="true") Cerrar
+						a(data-toggle="modal", role="button", href="#choice-full-#{choice.id}").full-read Leer Completo
 					-	});
 					a.delegate(href='')
 						| Prefiero delegar mi voto a otra persona
