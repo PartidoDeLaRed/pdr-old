@@ -2,14 +2,11 @@
 .content.container.clearfix
 	.row
 		.banner.clearfix
-			.span6.alpha.issue-content
+			.span6.issue-content
 				a.nav.left(href='')
 				a.nav.right(href='')
 				h2= element.title
 				p.issue-content-description= element.abstract
-				//- a.delegate(href='')
-				//- 	| Prefiero delegar mi voto a otra persona
-				//- 	i
 				p
 					a(href="").full-read Leer Completo
 			- if(typeof(vote) != 'undefined' && vote.choices.length) {
@@ -23,8 +20,12 @@
 							= choice.idea.title
 						a(href="").full-read Leer Completo
 					-	});
+					a.delegate(href='')
+						| Prefiero delegar mi voto a otra persona
+						i
 					input.votar(value="Votar", type="submit")
 			- }
+
 
 		.clearfix
 
