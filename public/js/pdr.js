@@ -26,9 +26,7 @@
     domEvents: function() {
       $('.quick-reply form').live('submit', function(ev) {
         if(!$(this).find('textarea[name="comment[text]"]').val().trim()) return false;
-        return $(this).submit();
-      });
-      $('#compose-initiative .close-compose').live('click', function(ev) {
+        return setTimeout($(this).submit,500);
       });
 
       $('#compose-initiative button.btn').live('click', function(ev) {
