@@ -19,13 +19,13 @@
 				p
 					a(data-toggle="modal", role="button", href="#issue-full").full-read Leer Completo
 			- if(typeof(vote) != 'undefined' && vote.choices.length) {
-				.span5.omega
+				form.span5.omega(action="/issues/#{element.id}/vote", method="post")
 					h3.title-propuestas Propuestas a votar
 					- vote.choices.forEach(function(choice) {
 					div.vote-option
 						.vote-option-left
 							span
-								input(type="radio", name="choice")
+								input(type="radio", name="choice", value=choice.idea.id)
 							= choice.idea.title
 						.modal(id="choice-full-#{choice.id}", role="dialog", style="display:none;")
 							.modal-header

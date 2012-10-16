@@ -1,5 +1,6 @@
 var mongoose = require('mongoose')
   , Issue = mongoose.model('Issue')
+  , IssueVote = mongoose.model('IssueVote')
   , Comment = mongoose.model('Comment');
 
 module.exports = function(app, utils) {
@@ -26,6 +27,33 @@ module.exports = function(app, utils) {
     } else {
       //Here to edit... ?
     }
+  });
+
+  app.post('/issues/:id/vote', utils.restrict, function(req, res) {
+    // find issueVote where user did not vote already
+    IssueVote.findOne({issue: req.params.id, voters: {"$ne": req.user.id}}).exec(function(err, issueVote) {
+      if(err) console.log(err);
+      // if no issueVote found, choices are that que already voted
+      // or issue does not exist!
+      if(!issueVote) return res.redirect('back');
+      var voted = issueVote.choices.some(function(choice) {
+        if(choice.idea.equals(req.body.choice)) {
+          //count up this choice
+          choice.count++;
+          //update issueVote voters
+          return true;
+        };
+        return false;
+      });
+      if(voted) {
+        issueVote.voters.push(req.user);
+        issueVote.save(function(err) {
+          res.redirect('back');
+        });
+      } else {
+        res.redirect('back');
+      }
+    });
   });
 
   app.get('/issues/:id', function(req, res) {

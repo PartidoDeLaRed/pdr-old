@@ -1,7 +1,7 @@
 #compose.compose-modal(role="dialog", aria-hidden="true", style="display:none;")
   a.close-compose(href="", data-dismiss="modal") Cerrar
 
-  form.compose-modal-inner(method="post", action="/issues/process")
+  form.compose-modal-inner(method="post", action="/issues/process", autocomplete="off")
     input(type="hidden", name="issue[_id]")
     p.insertion
       span.insertion-point
