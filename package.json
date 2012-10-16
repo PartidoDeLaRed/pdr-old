@@ -21,6 +21,7 @@
       , "passport-facebook": "*"
       , "passport-twitter": "*"
       , "mongoose": "*"
+      , "connect-mongodb": "*"
       , "pause": "*"
       , "bytes": "*"
       , "mime": "*"
