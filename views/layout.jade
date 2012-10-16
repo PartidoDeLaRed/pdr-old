@@ -15,7 +15,7 @@ html(lang='en')
     //
     //   CSS
     //    ================================================== 
-    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
 
     //- Plugins
 
@@ -38,7 +38,7 @@ html(lang='en')
     header
       .container
         .row
-          .span12
+          .span9
             h1#logo
               a(href='/') Partido De La Red
             nav
@@ -50,7 +50,7 @@ html(lang='en')
                 | Usuarios
               a.how-it-works(href='/help')
                 i
-                | ¿Como funciona?
+                | Ayuda
             - if('undefined' !== typeof citizen) {
               - var social = citizen.profiles.facebook ? 'facebook' : 'twitter';
               .user-options

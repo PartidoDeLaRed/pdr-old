@@ -1,92 +1,52 @@
 - var social = author.profiles.facebook ? 'facebook' : 'twitter';
-.content.container.clearfix
+.container.clearfix
 	.row
-		.banner.clearfix
-			.span6.issue-content
-				a.nav.left(href='')
-				a.nav.right(href='')
-				h2= element.title
-				p.issue-content-description= element.abstract
-				#issue-full.modal(role="dialog", style="display:none;")
-					.modal-header
-						button.close(type="button", data-dismiss="modal", aria-hidden="true") x
-						h2= element.title
-					.modal-body
-						p.issue-content-description= element.abstract
-						p.issue-content-description= element.essay
-					.modal-footer
-						button.btn(type="button", data-dismiss="modal", aria-hidden="true") Cerrar
-				p
-					a(data-toggle="modal", role="button", href="#issue-full").full-read Leer Completo
-			- if(typeof(vote) != 'undefined' && vote.choices.length) {
-				form.span5.omega(action="/issues/#{element.id}/vote", method="post")
-					h3.title-propuestas Propuestas a votar
-					- vote.choices.forEach(function(choice) {
-					div.vote-option
-						.vote-option-left
-							span
-								input(type="radio", name="choice", value=choice.idea.id)
-							= choice.idea.title
-						.modal(id="choice-full-#{choice.id}", role="dialog", style="display:none;")
-							.modal-header
-								button.close(type="button", data-dismiss="modal", aria-hidden="true") x
-								h2= choice.idea.title
-							.modal-body
-								p.issue-content-description= choice.idea.abstract
-								p.issue-content-description= choice.idea.essay
-							.modal-footer
-								button.btn(type="button", data-dismiss="modal", aria-hidden="true") Cerrar
+		.span9
+			.banner.clearfix
+				.issue-content.alpha
+					a.nav.left(href='')
+					a.nav.right(href='')
+					h4 Problematica
+					h2= element.title
+					p.issue-content-description= element.abstract
+					#issue-full.modal(role="dialog", style="display:none;")
+						.modal-header
+							button.close(type="button", data-dismiss="modal", aria-hidden="true") x
+							h2= element.title
+						.modal-body
+							p.issue-content-description= element.abstract
+							p.issue-content-description= element.essay
+						.modal-footer
+							button.btn(type="button", data-dismiss="modal", aria-hidden="true") Cerrar
+					p
+						a(data-toggle="modal", role="button", href="#issue-full").full-read Leer Completo
+		- if(typeof(vote) != 'undefined' && vote.choices.length) {
+			.span9
+
+				a.delegate(href='')
+					| Prefiero delegar mi voto a otra persona
+					i
+				h3.title-propuestas Propuestas a votar
+			- vote.choices.forEach(function(choice) {
+			.span3
+				.vote-option
+					h4= choice.idea.title
+					p= choice.idea.essay
+
+					.modal(id="choice-full-#{choice.id}", role="dialog", style="display:none;")
+						.modal-header
+							button.close(type="button", data-dismiss="modal", aria-hidden="true") x
+							h2= choice.idea.title
+						.modal-body
+							p.issue-content-description= choice.idea.essay
+						.modal-footer
+							button.btn(type="button", data-dismiss="modal", aria-hidden="true") Cerrar
+					.buttons
+						a(href="").votar Votar
 						a(data-toggle="modal", role="button", href="#choice-full-#{choice.id}").full-read Leer Completo
-					-	});
-					a.delegate(href='')
-						| Prefiero delegar mi voto a otra persona
-						i
-					input.votar(value="Votar", type="submit")
-			- }
+			-	});
 
+	- }
 
-		.clearfix
-
-		.span4
-			.information.box.append-bottom
-				| Esta #{elementType.toLowerCase()} se encuentra en proceso de 
-				strong validacion 
-				| y la han visto 
-				strong 1202 personas
-				| .
-			.box.append-bottom.autor-ley
-				h5
-					i
-					| Autor de la #{elementType.toLowerCase()}
-				.box-content
-					ul
-						li
-							a.avatar(href='')
-								img(src=author.imageUrl)
-							a.username(href=author.profiles[social].profileUrl, target="_blank")
-								| #{author.fullName}
-							
-							a(href="https://twitter.com/gravityonmars", class="twitter-follow-button", data-show-count="false", data-show-screen-name="false") Follow @gravityonmars
-							script
-								!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-
-			.leyes-similares.append-bottom.box
-				h5
-					i
-					| #{elementType}s Similares
-				
-				ul
-					li
-						a(href='') Despenalización del aborto
-					li
-						a(href='') Expropiación de YPF
-					li
-						a(href='') Fertilización asistida
-					li
-						a(href='') Modificación de la carta o...
-					li
-						a(href='') Muerte Digna 
-					li
-						a(href='') Transferencia de los subte...
-		
-		include element/comments
+		.row
+			include element/comments
