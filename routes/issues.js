@@ -33,7 +33,7 @@ module.exports = function(app, utils) {
     // find issueVote where user did not vote already
     IssueVote.findOne({issue: req.params.id, voters: {"$ne": req.user.id}}).exec(function(err, issueVote) {
       if(err) console.log(err);
-      // if no issueVote found, choices are that que already voted
+      // if no issueVote found, choices are already voted
       // or issue does not exist!
       if(!issueVote) return res.redirect('back');
       var voted = issueVote.choices.some(function(choice) {
@@ -73,5 +73,54 @@ module.exports = function(app, utils) {
       res.render('issues', {page:'profile', issues: results || [] });
     });
   });
+
+  app.post('/api/issues/:id/vote', utils.restrict, loadIssueId, loadIssueVoteByIssueId, checkIssueHasChoice, loadAllowedVoters, vote, function(req, res) {
+    res.send(req.body.idea);
+  });
 }
 
+var loadIssueId = function(req, res, next) {
+  req.issueId = req.params.id || req.query.id || req.body.id;
+  next();
+};
+
+var loadIssueVoteByIssueId = function(req, res, next) {
+  IssueVote.findOne({issue: req.issueId}, function(err, issueVote) {
+    if(err) console.log('error loading issue vote >>', err);
+    if(!issueVote) console.log("no issue vote for issue:", req.issueId);
+    if(err || !issueVote) return next();
+
+    req.issueVote = issueVote;
+    next();
+  });
+};
+
+var checkIssueHasChoice = function(req, res, next) {
+  if(!req.issueVote) return next();
+  var choice = req.issueVote.choices.id(req.body.choice);
+  if(!choice) console.log('issue', req.issueId, 'has no choice', req.body.choice);
+  req.choice = choice;
+  next();
+};
+
+var loadAllowedVoters = function(req, res, next) {
+  req.voters = [req.user.id]; //change this for appropiate logic
+                              //that loads allowed voters by delegations!
+  next();
+};
+
+var vote = function(req, res, next) {
+  //errors before!
+  if(!req.issueVote || !req.choice || !req.voters) return next();
+
+  // Let mongoose find out who can vote!
+  var voters = req.issueVote.voters.addToSet(req.voters);
+  if(!voters.length) return next(); //already voted!
+
+  req.choice.result += voters.length;
+
+  req.issueVote.save(function(err) {
+    if(err) console.log(err);
+    next();
+  });
+}

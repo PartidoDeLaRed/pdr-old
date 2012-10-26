@@ -16,17 +16,11 @@
               span.time(title=comment.createdAt.toISOString())
             span.name= comment.author.fullName
             p= comment.text
-            a.reply(href='', style="display:none;")
+            a.reply(href='')
               i
               | Responder
-            .hidden(style="display:none;")
-              .quick-reply
-                form(method="post", action="/comments/process")
-                  input(type="hidden", name="comment[reference]", value=element._id)
-                  textarea(name="comment[text]", placeholder='Tu opinion aqui')
-                  p
-                    a(href="") Adjuntar propuesta
-                  input.btn(type='submit', value='Responder')
+            .hidden
+            include comment_form
         - comment.responses.forEach(function(response, idx) {
           - var last = (idx == comment.length - 1) ? 'last' : '';
           //- if last, adds last class
