@@ -71,7 +71,6 @@
 							i.icon
 							span Resultados preliminares
 						.box-content.clearfix
-
 							- var totalVoters = vote.voters.length || 1;
 							- vote.choices.forEach(function(choice) {
 								.partial(style="width:100%;float:left;")
@@ -90,7 +89,7 @@
 											p.issue-content-description= choice.idea.essay
 										.modal-footer
 											button.btn(type="button", data-dismiss="modal", aria-hidden="true") Cerrar
-					- });
+							- });
 				- };
 			- }
 
