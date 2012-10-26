@@ -30,6 +30,7 @@
         PDR.api.comments.publish($(this).serialize(), function(err, res) {
           $form.find('input[type="text"],textarea').val('');
           $('.quick-reply p span.delete').click();
+          $('.comment-list').prepend(res);
         });
       });
 
