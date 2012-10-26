@@ -4,11 +4,14 @@
 		.span9
 			.banner.clearfix
 				.issue-content.alpha
+					
 					a.nav.left(href='')
 					a.nav.right(href='')
-					h4 Problematica
+					
+					h4.issue-title Problematica
 					h2= element.title
 					p.issue-content-description= element.abstract
+					
 					#issue-full.modal(role="dialog", style="display:none;")
 						.modal-header
 							button.close(type="button", data-dismiss="modal", aria-hidden="true") x
@@ -20,6 +23,7 @@
 							button.btn(type="button", data-dismiss="modal", aria-hidden="true") Cerrar
 					p
 						a(data-toggle="modal", role="button", href="#issue-full").full-read Leer Completo
+		
 		- if(typeof(vote) != 'undefined' && vote.choices.length) {
 			.span9
 				a.delegate(href='')
@@ -31,9 +35,11 @@
 				.vote-option(data-issue="#{element.id}", data-choice="#{choice.id}", data-idea="#{choice.idea.id}")
 					h4= choice.idea.title
 					p= choice.idea.essay
+					p
+						a(data-toggle="modal", role="button", href="#choice-full-#{choice.id}").full-read Leer Completo
 					.buttons
 						a.vote(href="#") Votar
-						a(data-toggle="modal", role="button", href="#choice-full-#{choice.id}").full-read Leer Completo
+						
 					
 					.modal(id="choice-full-#{choice.id}", role="dialog", style="display:none;")
 						.modal-header
