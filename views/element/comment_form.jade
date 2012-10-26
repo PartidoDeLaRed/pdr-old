@@ -1,25 +1,28 @@
 - var comment = comment || {};
+- var voted = voted || false;
 .quick-reply
   form(method="post", action="/comments/process")
-    input(type="hidden", name="comment[reference]", value=element._id)
+    input(type="hidden", name="comment[reference]", value=element.id)
     textarea(name="comment[text]", placeholder='Tu opinion aqui')
-    p
-      a.tt.compose-initiative(data-toggle="modal", role="button", href='#compose-initiative#{comment ? "-comment-" + comment.id : ""}', data-backdrop="false", data-keyboard="false", rel="tooltip", title="Redactar una iniciativa", data-placement="bottom") Adjuntar propuesta
-    .initiative-form.compose-modal(id='compose-initiative#{comment ? "-comment-" + comment.id : ""}', role="dialog", aria-hidden="true", style="display:none;")
-      a.close-compose(href="", data-dismiss="modal") Cerrar
+    - if(!voted) {
+      p
+        a.tt.compose-initiative(data-toggle="modal", role="button", href='#compose-initiative#{comment ? "-comment-" + comment.id : ""}', data-backdrop="false", data-keyboard="false", rel="tooltip", title="Redactar una iniciativa", data-placement="bottom") Adjuntar propuesta
+      .initiative-form.compose-modal(id='compose-initiative#{comment ? "-comment-" + comment.id : ""}', role="dialog", aria-hidden="true", style="display:none;")
+        a.close-compose(href="", data-dismiss="modal") Cerrar
 
-      .initiative.compose-modal-inner
-        p.insertion
-          span.insertion-point
-          input.compose-title.compose-text(name="initiative[title]", type="text", placeholder="Titulo de la iniciativa")
+        .initiative.compose-modal-inner
+          p.insertion
+            span.insertion-point
+            input.compose-title.compose-text(name="initiative[title]", type="text", placeholder="Titulo de la iniciativa")
 
-        p.insertion
-          span.insertion-point
-          textarea.brief.compose-text.expand(name="initiative[abstract]", placeholder="Resumen de la iniciativa")
+          p.insertion
+            span.insertion-point
+            textarea.brief.compose-text.expand(name="initiative[abstract]", placeholder="Resumen de la iniciativa")
 
-        p.insertion
-          span.insertion-point
-          textarea.compose-content.compose-text.expand(name="initiative[essay]", placeholder="Contenido de la iniciativa")
+          p.insertion
+            span.insertion-point
+            textarea.compose-content.compose-text.expand(name="initiative[essay]", placeholder="Contenido de la iniciativa")
 
-        button(type="button", class="btn", value="Adjuntar iniciativa") Adjuntar iniciativa
+          button(type="button", class="btn", value="Adjuntar iniciativa") Adjuntar iniciativa
+    - }
     input.btn(type='submit', value='Responder')

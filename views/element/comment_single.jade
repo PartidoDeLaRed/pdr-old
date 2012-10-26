@@ -1,0 +1,28 @@
+section.comment.question.clearfix
+  .avatar
+    img(src=comment.author.imageUrl)
+  .right
+    .postmeta
+      span.time(title=comment.createdAt.toISOString())
+    span.name= comment.author.fullName
+    p= comment.text
+    //- a.reply(href='')
+    //-   i
+    //-   | Responder
+    //- include comment_form
+- comment.responses.forEach(function(response, idx) {
+  - var last = (idx == comment.length - 1) ? 'last' : '';
+  //- if last, adds last class
+  section.comment.answer(class=last)
+    .avatar
+      img(src=response.author.imageUrl)
+    .right
+      .postmeta
+        span.time(title=response.createdAt)
+      span.name response.author.fullName
+      span.location de response.author.location
+      p= response.text
+      a.reply(href='')
+        i
+        | Responder
+- });

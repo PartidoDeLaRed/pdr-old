@@ -2,7 +2,8 @@ var mongoose = require('mongoose')
   , Comment = mongoose.model('Comment')
   , Idea = mongoose.model('Idea')
   , IssueVoteOption = mongoose.model('IssueVoteOption')
-  , IssueVote = mongoose.model('IssueVote');
+  , IssueVote = mongoose.model('IssueVote')
+  , jade = require('jade');
 
 module.exports = function(app, utils) {
   app.post('/comments/process', function(req, res) {
@@ -40,11 +41,14 @@ module.exports = function(app, utils) {
       , reference: commentReference.reference
       , author: req.user
       , text: req.body.comment.text
-    }).save(function(err, comment) {
+    });
+    newComment.save(function(err, comment) {
       if(err) {
         res.send(err);
       }
-      res.send(comment.id);
+      var cm = comment.toObject();
+      cm.author = req.user;
+      res.render('element/comment_single', {comment: cm, element: {id: cm.reference}});
     });
   });
 };

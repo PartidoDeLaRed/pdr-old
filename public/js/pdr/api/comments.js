@@ -15,7 +15,7 @@
       .send(options)
       .end(function(res) {
         if(!res.ok) console.log('comments-publish', res.error);
-        return fn && fn(res.error, res.body);
+        return fn && fn(res.error, res.text);
       });
     }
   };
