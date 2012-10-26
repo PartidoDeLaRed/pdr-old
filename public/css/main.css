@@ -262,6 +262,7 @@ h3.block-title {
 }
 .block-ideas .vote-option {
   background: #fff;
+  display: block;
   min-height: 200px;
   padding: 14px;
   overflow: hidden;
@@ -288,6 +289,37 @@ h3.block-title {
   text-transform: uppercase;
   background: #9ac44a;
   font-weight: bold;
+}
+.block-ideas .vote-option.create-idea {
+  font-size: 24px;
+  text-align: center;
+  color: #56acc5;
+}
+.block-ideas .vote-option.create-idea i {
+  display: inline-block;
+  margin-top: 60px;
+  font-style: normal;
+  background: #56acc5;
+  color: #fff;
+  font-weight: bold;
+  width: 48px;
+  line-height: 50px;
+  height: 48px;
+  font-size: 60px;
+  text-align: center;
+  border-radius: 100px;
+}
+.block-ideas .vote-option.create-idea span {
+  display: block;
+  margin-top: 20px;
+}
+.block-ideas .vote-option.create-idea:hover {
+  background: #56acc5;
+  color: #fff;
+}
+.block-ideas .vote-option.create-idea:hover i {
+  background: #fff;
+  color: #56acc5;
 }
 .block-results .partial {
   margin-bottom: 20px;
