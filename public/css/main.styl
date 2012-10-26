@@ -126,12 +126,40 @@ h3.block-title
 
 
 	.vote-option
-		background: white; min-height: 200px; padding: 14px; overflow: hidden; position: relative; border-radius: 4px;
+		background: white; display: block; min-height: 200px; padding: 14px; overflow: hidden; position: relative; border-radius: 4px;
 		h4{margin-top: 0; font-size: 16px; line-height: 24px;}
 		a.full-read
 			font-style: italic;
 
 		.vote{border: 2px solid #7a9c3a; text-shadow: 0 1px 0 rgba(0,0,0,.2); padding: 4px 10px; position: absolute; bottom: 14px; display: inline-block; border-radius: 4px; color: white; text-transform: uppercase; background: #9ac44a; font-weight: bold;}
+
+	.vote-option.create-idea
+		font-size: 24px;  text-align: center;
+		color: #56acc5;
+
+		i
+			display: inline-block;
+			margin-top: 60px;
+			font-style: normal;
+			background: #56acc5;
+			color: white;
+			font-weight: bold;
+			width: 48px;
+			line-height: 50px;
+			height: 48px;
+			font-size: 60px;
+			text-align: center;
+			border-radius: 100px;
+		span
+			display: block;
+			margin-top: 20px;
+
+		&:hover
+			background: #56acc5;
+			color: white;
+			i
+				background: white;
+				color: #56acc5;
 
 .block-results
 	.partial
