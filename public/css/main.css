@@ -9,6 +9,15 @@
 html {
   -webkit-font-smoothing: antialiased;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "futura-pt";
+  font-weight: bold;
+}
 /*.container{width: 800px;}*/
 .append-bottom {
   margin-bottom: 20px;
@@ -64,14 +73,6 @@ header {
   background-image: -o-linear-gradient(#68a0b6 3.3%, #44798d);
   padding-top: 4px;
 }
-header .container .span9 {
-  background-color: #78c0d6;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  background-image: -webkit-linear-gradient(#78c0d6 3.3%, #52adc7);
-  background-image: -moz-linear-gradient(#78c0d6 3.3%, #52adc7);
-  background-image: -o-linear-gradient(#78c0d6 3.3%, #52adc7);
-}
 header h1#logo {
   display: inline-block;
   margin: 0;
@@ -86,6 +87,14 @@ header h1#logo a {
   background: url("../../images/logo.png?rand");
   display: block;
   text-indent: -1000em;
+}
+header .container .span9 {
+  background-color: #78c0d6;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  background-image: -webkit-linear-gradient(#78c0d6 3.3%, #52adc7);
+  background-image: -moz-linear-gradient(#78c0d6 3.3%, #52adc7);
+  background-image: -o-linear-gradient(#78c0d6 3.3%, #52adc7);
 }
 header nav {
   display: inline-block;
@@ -128,8 +137,6 @@ header .user-options {
   float: right;
   height: 40px;
   overflow: visible;
-}
-header .user-options {
   position: relative;
 }
 header .user-options > a {
@@ -225,42 +232,57 @@ header .user-options .options-dropdown a:last-child {
   border-bottom-right-radius: 3px;
   border: 0;
 }
-.title-propuestas {
-  font-size: 14px;
-  margin-top: 0;
-  font-weight: normal;
+.block-ideas a.delegate {
+  text-decoration: none;
+  float: right;
+  color: #4596b8;
+  font-size: 12px;
+  float: right;
+  border-bottom: 1px solid #ccc;
+  font-weight: bold;
+  margin-top: 10px;
+  display: block;
 }
-.vote-option {
+.block-ideas a.delegate i {
+  background: url("../../images/images.png") no-repeat -49px -88px;
+  width: 16px;
+  margin-left: 10px;
+  height: 10px;
+  display: inline-block;
+}
+.block-ideas .vote-option {
   background: #fff;
   min-height: 200px;
   padding: 14px;
   overflow: hidden;
   position: relative;
-  margin-bottom: 20px;
   border-radius: 4px;
 }
-.vote-option h4 {
+.block-ideas .vote-option h4 {
   margin-top: 0;
   font-size: 16px;
   line-height: 24px;
 }
-.vote-option a.full-read {
-  display: inline-block;
-  background: #3a6d7b;
+.block-ideas .vote-option a.full-read {
+  font-style: italic;
+}
+.block-ideas .vote-option .vote {
+  border: 2px solid #7a9c3a;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.2);
+  padding: 4px 10px;
   position: absolute;
   bottom: 14px;
+  display: inline-block;
   border-radius: 4px;
-  padding: 4px 10px;
-  font-weight: bold;
   color: #fff;
   text-transform: uppercase;
-  font-size: 11px;
+  background: #9ac44a;
+  font-weight: bold;
 }
-/*header .user-options a i{background-color: red !important;}*/
 .banner {
   background: #fff;
   margin-bottom: 30px;
-  padding: 30px 0;
+  padding: 10px 0;
   border-bottom-right-radius: 4px;
   border-bottom-left-radius: 4px;
   position: relative;
@@ -270,57 +292,19 @@ header .user-options .options-dropdown a:last-child {
   margin: 0 0 10px 0;
   padding-bottom: 0;
 }
-.banner .options {
-  margin-top: 30px;
-}
-.banner .options a {
-  border: 3px solid rgba(0,0,0,0.2);
-  border-radius: 100px;
-  text-transform: uppercase;
-  padding: 10px 0;
-  width: 140px;
-  position: relative;
-  text-decoration: none;
-  display: inline-block;
-  color: #fff;
-  font-weight: bold;
-  font-size: 14px;
-  font-weight: bold;
-  margin-left: 14px;
-}
-.banner .options a.yes {
-  background-color: #97c349;
-}
-.banner .options a.no {
-  background-color: #d2564f;
-}
-.banner .options a.na {
-  background-color: #666;
-}
-.banner a.delegate {
-  text-decoration: none;
-  color: #4596b8;
-  font-size: 12px;
-  float: right;
-  border-bottom: 1px solid #ccc;
-  font-weight: bold;
-  margin-top: 10px;
-  display: block;
-}
-.banner a.delegate i {
-  background: url("../../images/images.png") no-repeat -49px -88px;
-  width: 16px;
-  margin-left: 10px;
-  height: 10px;
-  display: inline-block;
-}
 .banner .issue-content {
   margin-left: 20px;
+}
+.banner .issue-content .issue-title {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 0;
 }
 .banner .issue-content a.full-read {
   text-transform: uppercase;
   font-weight: bold;
   color: #666;
+  margin-top: 0;
 }
 .banner .issue-content p.issue-content-description {
   margin-bottom: 20px;
@@ -407,15 +391,6 @@ a.nav:hover {
   display: block;
   color: #739bd5;
   font-size: 11px;
-}
-.vote {
-  border: 3px solid #7a9c3a;
-  display: inline-block;
-  border-radius: 4px;
-  color: #fff;
-  text-transform: uppercase;
-  background: #9ac44a;
-  font-weight: bold;
 }
 .comments .comments h5 i {
   background: url("../../images/images.png") no-repeat -57px -60px;
