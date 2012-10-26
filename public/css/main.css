@@ -250,7 +250,7 @@ h3.block-title {
   float: right;
   border-bottom: 1px solid #ccc;
   font-weight: bold;
-  margin-top: 20px;
+  margin-top: 30px;
   display: block;
 }
 .block-ideas a.delegate i {
@@ -288,6 +288,35 @@ h3.block-title {
   text-transform: uppercase;
   background: #9ac44a;
   font-weight: bold;
+}
+.block-results .partial {
+  margin-bottom: 20px;
+}
+.block-results .partial h5 {
+  margin-top: 0;
+}
+.block-results .partial:last-child {
+  margin-bottom: 0;
+}
+.block-results .partial .bar {
+  color: #fff;
+  background-color: #e3b56b;
+  border-radius: 100px;
+  display: block;
+  font-weight: bold;
+  font-size: 11px;
+  min-width: 44px;
+}
+.block-results .partial .bar span {
+  padding: 0 10px;
+  font-size: 14px;
+  display: block;
+}
+.block-results .partial:first-child .bar {
+  background-color: #60cb68;
+}
+.block-results .partial:last-child .bar {
+  background-color: #7560cb;
 }
 .banner {
   background: #fff;

@@ -36,6 +36,7 @@
 							i
 						h3.block-title Propuestas a votar
 					- vote.choices.forEach(function(choice) {
+
 						.span3
 							.vote-option(data-issue="#{element.id}", data-choice="#{choice.id}", data-idea="#{choice.idea.id}")
 								h4= choice.idea.title
@@ -61,6 +62,7 @@
 					.span9.box.block-results
 						h3.block-title Resultados preliminares
 						.box-content.clearfix
+
 							- var totalVoters = vote.voters.length || 1;
 							- vote.choices.forEach(function(choice) {
 								.partial(style="width:100%;float:left;")
@@ -68,22 +70,19 @@
 									h5
 										a(data-toggle="modal", role="button", href="#results-choice-full-#{choice.id}")
 											| #{choice.idea.title}
-									.bar(style="width:#{partial}px;min-width:5px;float:left;background:#555;text-indent:-5000px")
-										| a
-									.numeric(style="float:left;margin-left:5px;")
-										| #{partial} %
+									.bar(style="width:#{partial}%;")
+										span
+											| #{partial} %
 									.modal(id="results-choice-full-#{choice.id}", role="dialog", style="display:none;")
 										.modal-header
 											button.close(type="button", data-dismiss="modal", aria-hidden="true") x
 											h2= choice.idea.title
-											//- h4 Propuesta ideada por #{choice.idea.authors[0].fullname}
 										.modal-body
 											p.issue-content-description= choice.idea.essay
 										.modal-footer
 											button.btn(type="button", data-dismiss="modal", aria-hidden="true") Cerrar
-
-							- });
-				- }
+					- });
+				- };
 			- }
 
 			include element/comments
