@@ -25,9 +25,15 @@
     domEvents: function() {
       $('.quick-reply form').live('submit', function(ev) {
         var $form = $(this);
+        var ini = false;
         ev.preventDefault();
         if(!$form.find('textarea[name="comment[text]"]').val().trim()) return;
+        if($form.find('input[name="initiative[title]"]').val()) ini = true;
         PDR.api.comments.publish($(this).serialize(), function(err, res) {
+          if(ini) {
+            return window.location.reload();
+          };
+          
           $form.find('input[type="text"],textarea').val('');
           $('.quick-reply p span.delete').click();
           $('.comment-list').prepend(res);
