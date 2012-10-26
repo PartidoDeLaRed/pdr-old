@@ -2,7 +2,7 @@
 .container.clearfix
 	.row
 		.span9
-			.banner.clearfix
+			.banner.clearfix.box
 				.issue-content.alpha
 					
 					a.nav.left(href='')
@@ -24,7 +24,7 @@
 					p
 						a(data-toggle="modal", role="button", href="#issue-full").full-read Leer Completo
 		
-		.block-ideas
+		.block-ideas.box.clearfix
 			- if(typeof(vote) != 'undefined' && vote.choices.length) {
 				- if(vote.voters.indexOf(citizen.id) >=0 )  {
 					- var voted = true;
@@ -46,6 +46,7 @@
 									- if(!voted) {
 										a.vote(href="#") Votar
 									- };
+								
 								.modal(id="choice-full-#{choice.id}", role="dialog", style="display:none;")
 									.modal-header
 										button.close(type="button", data-dismiss="modal", aria-hidden="true") x
@@ -56,7 +57,9 @@
 										button.btn(type="button", data-dismiss="modal", aria-hidden="true") Cerrar
 					-	});
 				- };
-				.span9
+			.span9.box.block-results
+				h3.block-title Resultados preliminares
+				.box-content.clearfix
 					- if(vote.voters.length > 0 ) {
 						- vote.choices.forEach(function(choice) {
 							.partial(style="width:100%;float:left;")

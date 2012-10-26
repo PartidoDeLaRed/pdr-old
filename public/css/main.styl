@@ -75,9 +75,7 @@ header
 
 
 	.user-options 
-		float: right; height: 40px; overflow: visible;
-
-		position: relative
+		float: right; height: 40px; overflow: visible; position: relative
 		& > a {background: rgba(255,255,255,.1); text-decoration: none; position: relative; display: inline-block; width: 60px; float: left; margin-left: 2px; height: 60px;}
 		& > a:hover, & > a.active{background: rgba(255,255,255,.2);}
 		a i {display: block; width: 22px; margin: 18px auto; height: 22px;}
@@ -110,13 +108,14 @@ header
 				border: 0;
 
 
-.block-title
+h3.block-title
 	font-weight: bold;
 	font-size: 14px;
 	text-transform: uppercase;
 	font-weight: 900;
-.block-ideas
+	margin-top: 20px;
 
+.block-ideas
 	a.delegate{text-decoration: none; float: right; color: #4596b8; font-size: 12px; float: right; border-bottom: 1px solid #ccc;  font-weight: bold; margin-top: 20px; display: block; }
 	a.delegate i
 		background: url('../../images/images.png') no-repeat  -49px -88px;
@@ -137,12 +136,11 @@ header
 
 .banner
 	background: #fff ; 
-	margin-bottom: 30px;
 	padding: 10px 0;
 	border-bottom-right-radius: 4px;
 	border-bottom-left-radius: 4px;
 	position: relative;
-	h2{margin: 10px 0 10px 0; padding-bottom: 0;}
+	h2{margin: 0 0 10px 0; padding-bottom: 0;}
 
 	.issue-content
 		margin-left: 20px
@@ -160,10 +158,8 @@ a.nav.left{left: -18px;}
 a.nav:hover{border-color: #999}
 
 .box
-	margin-bottom: 30px; overflow: hidden;
-	h5{margin-bottom: 14px; overflow: hidden; font-size: 16px; font-weight: 100}
 	ul {margin: 0;}
-	.box-content{background: white; padding: 20px;}
+	.box-content{background: white;  border-radius: 4px; padding: 20px;}
 
 .box.information{background: #fffbe0 url('../../images/icon-alert.png') 20px center  no-repeat; display: none; padding: 20px; border-radius: 4px;  position: relative; padding-left: 60px; color: #706400; font-size: 12px;}
 .box.information strong{color: #706400;}
