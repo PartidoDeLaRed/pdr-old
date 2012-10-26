@@ -253,6 +253,9 @@ i.icon {
 .comments i.icon {
   background-image: url("../images/icon-comments.png");
 }
+.block-ideas {
+  margin-bottom: 0;
+}
 .block-ideas a.delegate {
   text-decoration: none;
   float: right;
@@ -279,6 +282,7 @@ i.icon {
   overflow: hidden;
   position: relative;
   border-radius: 4px;
+  margin-bottom: 20px;
 }
 .block-ideas .vote-option h4 {
   margin-top: 0;
