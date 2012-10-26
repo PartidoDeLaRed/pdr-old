@@ -289,6 +289,27 @@ h3.block-title {
   background: #9ac44a;
   font-weight: bold;
 }
+.block-results .partial {
+  margin-bottom: 30px;
+}
+.block-results .partial h5 {
+  margin-top: 0;
+}
+.block-results .partial:last-child {
+  margin-bottom: 0;
+}
+.block-results .partial .bar {
+  color: #fff;
+  background-color: #334344;
+  border-radius: 100px;
+  display: block;
+  font-weight: bold;
+  font-size: 11px;
+  min-width: 40px;
+}
+.block-results .partial .bar span {
+  padding: 0 10px;
+}
 .banner {
   background: #fff;
   padding: 10px 0;
