@@ -44,6 +44,18 @@
 						.modal-footer
 							button.btn(type="button", data-dismiss="modal", aria-hidden="true") Cerrar
 			-	});
+			.span9
+				- if(vote.voters.length > 0 ) {
+					- vote.choices.forEach(function(choice) {
+						.partial(style="width:100%;float:left;")
+							- var partial = choice.result / vote.voters.length * 100;
+							h5= choice.idea.title
+							.bar(style="width:#{partial}px;min-width:5px;float:left;background:#555;text-indent:-5000px")
+								| a
+							.numeric(style="float:left;margin-left:5px;")
+								| #{partial} %
+					- });
+				- };
 		- }
 
 		.row
