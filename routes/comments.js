@@ -6,6 +6,7 @@ var mongoose = require('mongoose')
 
 module.exports = function(app, utils) {
   app.post('/comments/process', function(req, res) {
+
     if(!req.body.comment) return res.redirect('back');
     commentReference = 
       composeCommentReference(req.header('referrer')) || 
@@ -21,6 +22,27 @@ module.exports = function(app, utils) {
     }).save(function(err, comment) {
       if(err) {
         res.redirect('back');
+      }
+      res.redirect('back');
+    });
+  });
+
+  app.post('/api/comments/publish', utils.restrict, function(req, res) {
+    if(!req.body.comment) return res.redirect('back');
+    commentReference = 
+      composeCommentReference(req.header('referrer')) || 
+      {context: 'issue', reference: req.body.comment.reference};
+
+    if(req.body.initiative && req.body.initiative.title.length) submitInitiative(commentReference.reference, req.user, req.body.initiative);
+    
+    var newComment = new Comment({
+        context: commentReference.context
+      , reference: commentReference.reference
+      , author: req.user
+      , text: req.body.comment.text
+    }).save(function(err, comment) {
+      if(err) {
+        res.send(err);
       }
       res.redirect('back');
     });

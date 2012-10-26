@@ -24,8 +24,13 @@
 
     domEvents: function() {
       $('.quick-reply form').live('submit', function(ev) {
-        if(!$(this).find('textarea[name="comment[text]"]').val().trim()) return false;
-        return setTimeout($(this).submit,500);
+        var $form = $(this);
+        ev.preventDefault();
+        if(!$form.find('textarea[name="comment[text]"]').val().trim()) return;
+        PDR.api.comments.publish($(this).serialize(), function(err, res) {
+          $form.find('input[type="text"],textarea').val('');
+          $('.quick-reply p span.delete').click();
+        });
       });
 
       $('.initiative-form button.btn').live('click', function(ev) {
