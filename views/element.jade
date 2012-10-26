@@ -24,32 +24,33 @@
 					p
 						a(data-toggle="modal", role="button", href="#issue-full").full-read Leer Completo
 		
-		- if(typeof(vote) != 'undefined' && vote.choices.length) {
-			.span9
-				a.delegate(href='')
-					| Prefiero delegar mi voto a otra persona
-					i
-				h3.title-propuestas Propuestas a votar
-			- vote.choices.forEach(function(choice) {
-			.span3
-				.vote-option(data-issue="#{element.id}", data-choice="#{choice.id}", data-idea="#{choice.idea.id}")
-					h4= choice.idea.title
-					p= choice.idea.essay
-					p
-						a(data-toggle="modal", role="button", href="#choice-full-#{choice.id}").full-read Leer Completo
-					.buttons
-						a.vote(href="#") Votar
+		.block-ideas
+			- if(typeof(vote) != 'undefined' && vote.choices.length) {
+				.span9
+					a.delegate(href='')
+						| Prefiero delegar mi voto a otra persona
+						i
+					h3.title-propuestas Propuestas a votar
+				- vote.choices.forEach(function(choice) {
+				.span3
+					.vote-option(data-issue="#{element.id}", data-choice="#{choice.id}", data-idea="#{choice.idea.id}")
+						h4= choice.idea.title
+						p= choice.idea.essay
+						p
+							a(data-toggle="modal", role="button", href="#choice-full-#{choice.id}").full-read Leer Completo
+						.buttons
+							a.vote(href="#") Votar
+							
 						
-					
-					.modal(id="choice-full-#{choice.id}", role="dialog", style="display:none;")
-						.modal-header
-							button.close(type="button", data-dismiss="modal", aria-hidden="true") x
-							h2= choice.idea.title
-						.modal-body
-							p.issue-content-description= choice.idea.essay
-						.modal-footer
-							button.btn(type="button", data-dismiss="modal", aria-hidden="true") Cerrar
-			-	});
+						.modal(id="choice-full-#{choice.id}", role="dialog", style="display:none;")
+							.modal-header
+								button.close(type="button", data-dismiss="modal", aria-hidden="true") x
+								h2= choice.idea.title
+							.modal-body
+								p.issue-content-description= choice.idea.essay
+							.modal-footer
+								button.btn(type="button", data-dismiss="modal", aria-hidden="true") Cerrar
+				-	});
 			.span9
 				- if(vote.voters.length > 0 ) {
 					- vote.choices.forEach(function(choice) {
@@ -64,5 +65,4 @@
 				- };
 		- }
 
-		.row
 			include element/comments
