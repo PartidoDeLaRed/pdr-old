@@ -61,7 +61,10 @@ a:visited {
 }
 p a {
   border-bottom: 1px solid #ccc;
-  padding-bottom: 4px;
+  padding-bottom: 2px;
+}
+p a:hover {
+  border-color: #333;
 }
 a:hover {
   text-decoration: none;
@@ -232,6 +235,12 @@ header .user-options .options-dropdown a:last-child {
   border-bottom-right-radius: 3px;
   border: 0;
 }
+.block-title {
+  font-weight: bold;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 900;
+}
 .block-ideas a.delegate {
   text-decoration: none;
   float: right;
@@ -240,7 +249,7 @@ header .user-options .options-dropdown a:last-child {
   float: right;
   border-bottom: 1px solid #ccc;
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 20px;
   display: block;
 }
 .block-ideas a.delegate i {
@@ -288,8 +297,7 @@ header .user-options .options-dropdown a:last-child {
   position: relative;
 }
 .banner h2 {
-  font-weight: normal;
-  margin: 0 0 10px 0;
+  margin: 10px 0 10px 0;
   padding-bottom: 0;
 }
 .banner .issue-content {
@@ -297,7 +305,7 @@ header .user-options .options-dropdown a:last-child {
 }
 .banner .issue-content .issue-title {
   font-size: 12px;
-  color: #666;
+  color: #999;
   margin-bottom: 0;
 }
 .banner .issue-content a.full-read {

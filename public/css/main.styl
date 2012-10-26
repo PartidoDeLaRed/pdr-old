@@ -36,7 +36,11 @@ input,textarea{font-family: 'proxima-nova'}
 
 body{background-color: #f1f1f1}
 a, a:visited{text-decoration: none; color: #468DC4;}
-p a{border-bottom: 1px solid #ccc; padding-bottom: 4px; }
+p 
+	a
+		border-bottom: 1px solid #ccc; padding-bottom: 2px;
+		&:hover
+			border-color: #333;
 a:hover{text-decoration: none;}
 header {
 
@@ -106,9 +110,14 @@ header
 				border: 0;
 
 
+.block-title
+	font-weight: bold;
+	font-size: 14px;
+	text-transform: uppercase;
+	font-weight: 900;
 .block-ideas
 
-	a.delegate{text-decoration: none; float: right; color: #4596b8; font-size: 12px; float: right; border-bottom: 1px solid #ccc;  font-weight: bold; margin-top: 10px; display: block; }
+	a.delegate{text-decoration: none; float: right; color: #4596b8; font-size: 12px; float: right; border-bottom: 1px solid #ccc;  font-weight: bold; margin-top: 20px; display: block; }
 	a.delegate i
 		background: url('../../images/images.png') no-repeat  -49px -88px;
 		width: 16px;
@@ -133,12 +142,12 @@ header
 	border-bottom-right-radius: 4px;
 	border-bottom-left-radius: 4px;
 	position: relative;
-	h2{font-weight: normal; margin: 0 0 10px 0; padding-bottom: 0;}
+	h2{margin: 10px 0 10px 0; padding-bottom: 0;}
 
 	.issue-content
 		margin-left: 20px
 		.issue-title
-			font-size: 12px; color: #666; margin-bottom: 0;
+			font-size: 12px; color: #999; margin-bottom: 0;
 		a.full-read 
 			text-transform: uppercase; font-weight: bold; color: #666; margin-top: 0;
 		p.issue-content-description{margin-bottom: 20px;}
