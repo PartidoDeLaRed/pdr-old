@@ -135,21 +135,32 @@ h3.block-title
 
 .block-results
 	.partial
-		margin-bottom: 30px;
+		margin-bottom: 20px;
 		h5
 			margin-top: 0;
 		&:last-child
 			margin-bottom: 0;
 		.bar
 			color: white;
-			background-color: #334344;
+			background-color: #e3b56b;
 			border-radius: 100px;
 			display: block;
 			font-weight: bold;
 			font-size: 11px;
-			min-width: 40px;
+			min-width: 44px;
+
 			span
 				padding: 0 10px;
+				font-size: 14px
+				display: block;
+
+	.partial:first-child
+		.bar	
+			background-color: #60cb68;
+
+	.partial:last-child
+		.bar	
+			background-color: #7560cb;
 
 .banner
 	background: #fff ; 

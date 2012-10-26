@@ -29,50 +29,59 @@
 				- if(vote.voters.indexOf(citizen.id) >=0 )  {
 					- var voted = true;
 				- };
-				.span9
-					- if(!voted) {
+				- if(!voted) {
+					.span9
 						a.delegate(href='')
 							| Prefiero delegar mi voto a otra persona
 							i
-					- };
-					h3.block-title Propuestas a votar
-				- vote.choices.forEach(function(choice) {
-					.span3
-						.vote-option(data-issue="#{element.id}", data-choice="#{choice.id}", data-idea="#{choice.idea.id}")
-							h4= choice.idea.title
-							p= choice.idea.essay
-							p
-								a(data-toggle="modal", role="button", href="#choice-full-#{choice.id}").full-read Leer Completo
-							.buttons
-								- if(!voted) {
-									a.vote(href="#") Votar
-								- };
-							
-							.modal(id="choice-full-#{choice.id}", role="dialog", style="display:none;")
-								.modal-header
-									button.close(type="button", data-dismiss="modal", aria-hidden="true") x
-									h2= choice.idea.title
-								.modal-body
-									p.issue-content-description= choice.idea.essay
-								.modal-footer
-									button.btn(type="button", data-dismiss="modal", aria-hidden="true") Cerrar
-				-	});
-
-
-		.span9.box.block-results
-			h3.block-title Resultados preliminares
-			.box-content.clearfix
-				- if(vote.voters.length > 0 ) {
+						h3.block-title Propuestas a votar
 					- vote.choices.forEach(function(choice) {
-						.partial(style="width:100%;float:left;")
-							- var partial = choice.result / vote.voters.length * 100;
-							h5= choice.idea.title
-							.bar(style="width:#{partial}%;")
-								span
-									| #{partial} %
-					- });
-				- };
-		- }
 
+						.span3
+							.vote-option(data-issue="#{element.id}", data-choice="#{choice.id}", data-idea="#{choice.idea.id}")
+								h4= choice.idea.title
+								p= choice.idea.essay
+								p
+									a(data-toggle="modal", role="button", href="#choice-full-#{choice.id}").full-read Leer Completo
+								.buttons
+									- if(!voted) {
+										a.vote(href="#") Votar
+									- };
+								
+								.modal(id="choice-full-#{choice.id}", role="dialog", style="display:none;")
+									.modal-header
+										button.close(type="button", data-dismiss="modal", aria-hidden="true") x
+										h2= choice.idea.title
+									.modal-body
+										p.issue-content-description= choice.idea.essay
+									.modal-footer
+										button.btn(type="button", data-dismiss="modal", aria-hidden="true") Cerrar
+					-	});
+				- };
+			.span9.box.block-results
+				h3.block-title Resultados preliminares
+				.box-content.clearfix
+					- if(vote.voters.length > 0 ) {
+						- vote.choices.forEach(function(choice) {
+							.partial(style="width:100%;float:left;")
+								- var partial = choice.result / vote.voters.length * 100;
+								h5
+									a(data-toggle="modal", role="button", href="#results-choice-full-#{choice.id}")
+										| #{choice.idea.title}
+								.bar(style="width:#{partial}%;")
+									span
+										| #{partial} %
+								.modal(id="results-choice-full-#{choice.id}", role="dialog", style="display:none;")
+									.modal-header
+										button.close(type="button", data-dismiss="modal", aria-hidden="true") x
+										h2= choice.idea.title
+									.modal-body
+										p.issue-content-description= choice.idea.essay
+									.modal-footer
+										button.btn(type="button", data-dismiss="modal", aria-hidden="true") Cerrar
+
+						- });
+					- };
+			- }
 
 			include element/comments
