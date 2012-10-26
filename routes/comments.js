@@ -44,7 +44,7 @@ module.exports = function(app, utils) {
       if(err) {
         res.send(err);
       }
-      res.redirect('back');
+      res.send(comment.id);
     });
   });
 };
