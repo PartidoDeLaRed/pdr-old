@@ -43,7 +43,7 @@
 						.span3
 							.vote-option(data-issue="#{element.id}", data-choice="#{choice.id}", data-idea="#{choice.idea.id}")
 								h4= choice.idea.title
-								p= choice.idea.essay.substr(0,100)
+								p= choice.idea.essay.substr(0,80).trim().concat('...')
 								p
 									a(data-toggle="modal", role="button", href="#choice-full-#{choice.id}").full-read Leer Completo
 								.buttons
