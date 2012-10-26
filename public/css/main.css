@@ -297,7 +297,7 @@ header .user-options .options-dropdown a:last-child {
   position: relative;
 }
 .banner h2 {
-  margin: 10px 0 10px 0;
+  margin: 0 0 10px 0;
   padding-bottom: 0;
 }
 .banner .issue-content {
@@ -340,19 +340,13 @@ a.nav:hover {
 }
 .box {
   margin-bottom: 30px;
-  overflow: hidden;
-}
-.box h5 {
-  margin-bottom: 14px;
-  overflow: hidden;
-  font-size: 16px;
-  font-weight: 100;
 }
 .box ul {
   margin: 0;
 }
 .box .box-content {
   background: #fff;
+  border-radius: 4px;
   padding: 20px;
 }
 .box.information {

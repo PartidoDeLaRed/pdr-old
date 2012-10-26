@@ -24,7 +24,7 @@
 					p
 						a(data-toggle="modal", role="button", href="#issue-full").full-read Leer Completo
 		
-		.block-ideas
+		.block-ideas.box.clearfix
 			- if(typeof(vote) != 'undefined' && vote.choices.length) {
 				.span9
 					a.delegate(href='')
@@ -51,7 +51,11 @@
 							.modal-footer
 								button.btn(type="button", data-dismiss="modal", aria-hidden="true") Cerrar
 				-	});
-			.span9
+
+
+		.span9.box
+			h3.block-title Resultados preliminares
+			.box-content.clearfix
 				- if(vote.voters.length > 0 ) {
 					- vote.choices.forEach(function(choice) {
 						.partial(style="width:100%;float:left;")
