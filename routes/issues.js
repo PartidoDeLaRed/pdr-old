@@ -62,7 +62,7 @@ module.exports = function(app, utils) {
       if(!issue) return res.redirect('/');
       issue.loadComments(function(err, comments) {
         issue.loadVote(function(err, issueVote) {
-          res.render('issue', {page: 'idea', issue: issue, author: issue.author, comments: comments, issueVote: issueVote});
+          res.render('issues/single', {page: 'idea', issue: issue, author: issue.author, comments: comments, issueVote: issueVote});
         });
       });
     });
@@ -70,7 +70,7 @@ module.exports = function(app, utils) {
 
   app.get('/issues', function(req, res) {
     Issue.find(null, function(err, results) {
-      res.render('issues', {page:'profile', issues: results || [] });
+      res.render('issues/list', {page:'profile', issues: results || [] });
     });
   });
 

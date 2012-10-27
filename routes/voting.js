@@ -8,7 +8,7 @@ module.exports = function(app, utils) {
     //   res.render('voting', {page:'profile', votes: results || [] });
     // });
     Issue.find(null, function(err, results) {
-      res.render('issues', {page:'profile', issues: results || [] });
+      res.render('issues/list', {page:'profile', issues: results || [] });
     });
   });
 };

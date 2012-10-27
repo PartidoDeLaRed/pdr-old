@@ -33,7 +33,7 @@ module.exports = function(app) {
       if(!issue) return res.render('index');
       issue.loadComments(function(err, comments) {
         issue.loadVote(function(err, issueVote) {
-          res.render('issue', {page: 'idea', issue: issue, author: issue.author, comments: comments, issueVote: issueVote});
+          res.render('issues/single', {page: 'idea', issue: issue, author: issue.author, comments: comments, issueVote: issueVote});
         });
       });
     });

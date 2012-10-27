@@ -13,14 +13,14 @@ module.exports = function(app, utils) {
   app.get('/ideas/:id', function(req, res) {
     Idea.findById(req.params.id).populate('author').exec(function(err, idea) {
       idea.loadComments(function(err, comments) {
-        res.render('idea', { page: 'idea', idea: idea, author: idea.author, comments: comments });
+        res.render('ideas/single', { page: 'idea', idea: idea, author: idea.author, comments: comments });
       });
     });
   });
 
   app.get('/ideas', function(req, res) {
     Idea.find(null, function(err, results) {
-      res.render('ideas', {page:'profile', ideas: results || [] });
+      res.render('ideas/list', {page:'profile', ideas: results || [] });
     });
   });
 
