@@ -22,17 +22,6 @@
       , "passport-twitter": "*"
       , "mongoose": "*"
       , "connect-mongodb": "*"
-      , "pause": "*"
-      , "bytes": "*"
-      , "mime": "*"
-      , "mongodb": "*"
-      , "bson": "*"
-      , "ms": "*"
-      , "hooks": "*"
-      , "qs": "*"
-      , "formidable": "*"
-      , "node-uuid": "*"
-      , "htpasswd": "*"
     }
   , "devDependencies": {}
   , "main": "pdr"
