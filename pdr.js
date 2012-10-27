@@ -9,6 +9,8 @@ var express = require('express')
  */
 var app = exports.app = express();
 
+app.set('categories', require('./fixtures/categories.json'));
+
 app.configure('development', function() {
   app.use(express.errorHandler());
   app.set('config', require('./config.dev.json'));
@@ -42,7 +44,7 @@ app.configure(function() {
   app.use(function(req, res, next) {
     if(!res.locals.page) res.locals.page = "default";
     if(req.isAuthenticated() && req.user) res.locals.citizen = req.user;
-    res.locals.categories = require('./fixtures/categories.json');
+    res.locals.categories = app.get('categories');
     next();
   });
   app.use(app.router);
