@@ -1,43 +1,56 @@
 /*
- *  Citizen Model
+ *  Module dependencies
  */
-require('./citizen');
+var mongoose = require('mongoose');
 
-/*
- *  Issue Model
- */
-require('./issue');
+module.exports = function(app) {
+  /*
+   *  Connect to mongo
+   */
+  mongoose.connect(app.get('mongoUrl'))
 
-/*
- *  Issue Vote Option Model
- */
-require('./issueVoteOption');
+  /*
+   *  Citizen Model
+   */
+  require('./citizen');
 
-/*
- *  Issue Vote Model
- */
-require('./issueVote');
+  /*
+   *  Issue Model
+   */
+  require('./issue');
 
-/*
- *  Idea Model
- */
-require('./idea');
+  /*
+   *  Issue Vote Option Model
+   */
+  require('./issueVoteOption');
 
-/*
- *  Idea Vote Model
- */
-require('./ideaVote');
+  /*
+   *  Issue Vote Model
+   */
+  require('./issueVote');
 
-/*
- *  Activity Model
- */
-require('./activity');
+  /*
+   *  Idea Model
+   */
+  require('./idea');
 
-/*
- *  Comment Model
- */
-require('./comment');
+  /*
+   *  Idea Vote Model
+   */
+  require('./ideaVote');
 
- /*
-  *  Hash Model
-  */
+  /*
+   *  Activity Model
+   */
+  require('./activity');
+
+  /*
+   *  Comment Model
+   */
+  require('./comment');
+
+   /*
+    *  Hash Model
+    */
+
+}
