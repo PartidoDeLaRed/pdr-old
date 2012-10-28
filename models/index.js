@@ -20,14 +20,14 @@ module.exports = function(app) {
   require('./issue');
 
   /*
-   *  Issue Vote Option Model
-   */
-  require('./issueVoteOption');
-
-  /*
    *  Issue Vote Model
    */
   require('./issueVote');
+  
+  /*
+   *  Issue Vote Option Model
+   */
+  require('./issueVoteOption');
 
   /*
    *  Idea Model

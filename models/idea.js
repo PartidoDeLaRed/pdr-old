@@ -10,17 +10,17 @@ var IdeaSchema = new Schema({
   abstract: { type: String, required: true, min: 256, max: 512},
   essay: { type: String, min: 512, max: 2048},
   author: { type: ObjectId, required: true, ref: 'Citizen' },
-  authors: { type: [ObjectId], required: true, default: [], ref: 'Citizen'},
+  authors: [{ type: ObjectId, required: true, ref: 'Citizen'}],
   link: {type: String},
   sources: {type: String},
-  census: {type: [ObjectId], default: [], ref: 'Citizen' },
-  votes: {type: [ObjectId], default: [], ref: 'IdeaVote'},
+  census: [{type: ObjectId, ref: 'Citizen' }],
+  votes: [{type: ObjectId, ref: 'IdeaVote'}],
   createdAt: { type: Date, default: Date.now },
   updatedAt: Date
 });
 
 IdeaSchema.methods.loadComments = function(cb) {
-  return this.model('Comment').find({context: 'idea', reference: this._id}, null, {sort: {createdAt: -1}}).populate('responses').populate('author').exec(cb);
+  return this.model('Comment').find({context: 'idea', reference: this._id}, null, {sort: {createdAt: -1}}).populate('author').exec(cb);
 };
 
 module.exports = mongoose.model('Idea', IdeaSchema);
