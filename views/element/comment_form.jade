@@ -2,9 +2,10 @@
 - var voted = voted || false;
 .quick-reply
   form(method="post", action="/comments/process")
+    input(type="hidden", name="comment[id]", value=comment.id)
     input(type="hidden", name="comment[reference]", value=element.id)
     textarea(name="comment[text]", placeholder='Tu opinion aqui')
-    - if(!voted) {
+    - if(!voted && !comment.id) {
       p
         a.tt.compose-initiative(data-toggle="modal", role="button", href='#compose-initiative#{comment ? "-comment-" + comment.id : ""}', data-backdrop="false", data-keyboard="false", rel="tooltip", title="Redactar una iniciativa", data-placement="bottom") Adjuntar propuesta
       .initiative-form.compose-modal(id='compose-initiative#{comment ? "-comment-" + comment.id : ""}', role="dialog", aria-hidden="true", style="display:none;")

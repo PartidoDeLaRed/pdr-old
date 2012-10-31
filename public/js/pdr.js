@@ -25,18 +25,30 @@
     domEvents: function() {
       $('.quick-reply form').live('submit', function(ev) {
         var $form = $(this);
-        var ini = false;
+        var ini = false, reply = false;
         ev.preventDefault();
         if(!$form.find('textarea[name="comment[text]"]').val().trim()) return;
         if($form.find('input[name="initiative[title]"]').val()) ini = true;
+        if($form.find('input[name="comment[id]"]').val()) reply = true;
         PDR.api.comments.publish($(this).serialize(), function(err, res) {
           if(ini) {
             return window.location.reload();
           };
-          
           $form.find('input[type="text"],textarea').val('');
-          $('.quick-reply p span.delete').click();
-          $('.comment-list').prepend(res);
+
+          if(reply) { //comment reply
+            $parentComment = $form.closest('.comment.question');
+            $parentComment
+              .find('.comment-reply-form')
+              .hide()
+              .prev('.reply')
+              .show();
+
+            $parentComment.after(res);
+          } else { //new parent comment
+            $('.quick-reply p span.delete').click();
+            $('.comment-list').prepend(res);
+          }
         });
       });
 
@@ -54,6 +66,12 @@
           $(el).val('');
         });
         $('a.compose-initiative').html("Adjuntar propuesta")
+      });
+
+      $('.comment .reply').live('click', function(ev) {
+        ev.preventDefault();
+        $(ev.target).hide();
+        $(ev.target).next('.comment-reply-form').show();
       });
 
       $('.vote-option a.vote').live('click', function(ev) {

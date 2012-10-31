@@ -1,7 +1,6 @@
 var mongoose = require('mongoose')
   , utils = require('../utils')
-  , Issue = mongoose.model('Issue')
-  , Comment = mongoose.model('Comment');
+  , Issue = mongoose.model('Issue');
 
 /**
  * HTTP authentication module.
@@ -28,6 +27,7 @@ module.exports = function(app) {
   });
 
   var index = function(req, res) {
+
     Issue.findOne(null, null, {sort: {createdAt: -1}}).populate('author').exec(function(err, issue) {
       if(err) console.log(err);
       if(!issue) return res.render('index');

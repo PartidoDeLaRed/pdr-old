@@ -1,0 +1,10 @@
+- var reply = reply || {};
+- var last = last || "";
+section.comment.answer(class=last)
+  .avatar
+    img(src=reply.author.imageUrl)
+  .right
+    .postmeta
+      span.time(title=reply.createdAt.toISOString())
+    span.name= reply.author.fullName
+    p= reply.text

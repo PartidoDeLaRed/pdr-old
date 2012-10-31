@@ -1,55 +1,34 @@
 var mongoose = require('mongoose')
   , Comment = mongoose.model('Comment')
+  , CommentReply = mongoose.model('CommentReply')
   , Idea = mongoose.model('Idea')
   , IssueVoteOption = mongoose.model('IssueVoteOption')
   , IssueVote = mongoose.model('IssueVote')
   , jade = require('jade');
 
 module.exports = function(app, utils) {
-  app.post('/comments/process', function(req, res) {
-
-    if(!req.body.comment) return res.redirect('back');
-    commentReference = 
-      composeCommentReference(req.header('referrer')) || 
-      {context: 'issue', reference: req.body.comment.reference};
-
-    if(req.body.initiative && req.body.initiative.title.length) submitInitiative(commentReference.reference, req.user, req.body.initiative);
-    
-    var newComment = new Comment({
-        context: commentReference.context
-      , reference: commentReference.reference
-      , author: req.user
-      , text: req.body.comment.text
-    }).save(function(err, comment) {
-      if(err) {
+  app.post('/comments/process', utils.restrict, processCommentReference, processInitiative, checkParentComment, function(req, res) {    
+    if(req.parentComment) {
+      replyCommentSubmit(req, res, function() {
         res.redirect('back');
-      }
-      res.redirect('back');
-    });
+      });
+    } else {
+      newCommentSubmit(req, res, function() {
+        res.redirect('back');
+      });
+    }
   });
 
-  app.post('/api/comments/publish', utils.restrict, function(req, res) {
-    if(!req.body.comment) return res.redirect('back');
-    commentReference = 
-      composeCommentReference(req.header('referrer')) || 
-      {context: 'issue', reference: req.body.comment.reference};
-
-    if(req.body.initiative && req.body.initiative.title.length) submitInitiative(commentReference.reference, req.user, req.body.initiative);
-    
-    var newComment = new Comment({
-        context: commentReference.context
-      , reference: commentReference.reference
-      , author: req.user
-      , text: req.body.comment.text
-    });
-    newComment.save(function(err, comment) {
-      if(err) {
-        res.send(err);
-      }
-      var cm = comment.toObject();
-      cm.author = req.user;
-      res.render('element/comment_single', {comment: cm, element: {id: cm.reference}});
-    });
+  app.post('/api/comments/publish', utils.restrict, processCommentReference, processInitiative, checkParentComment, function(req, res) {
+    if(req.parentComment) {
+      replyCommentSubmit(req, res, function() {
+        res.render('element/comment_reply_single', {reply: req.comment});
+      });
+    } else {
+      newCommentSubmit(req, res, function() {
+        res.render('element/comment_single', {comment: req.comment, element: {id: req.reference.reference}});
+      });
+    }
   });
 };
 
@@ -70,18 +49,84 @@ var composeCommentReference = function(route) {
   return null;
 };
 
-var submitInitiative = function(issueId, author, initiative) {
-  idea = new Idea(initiative);
-  idea.author = author;
-  idea.authors.push(author);
-  idea.save(function(err, i) {
+var processCommentReference = function(req, res, next) {
+    if(!req.body.comment) return res.redirect('back');
+    req.reference = 
+      composeCommentReference(req.header('referrer')) || 
+      {context: 'issue', reference: req.body.comment.reference};
+
+    next();
+};
+
+var processInitiative = function(req, res, next) {
+  if(!req.body.initiative || !req.body.initiative.title.length) return next();
+  req.idea = new Idea(req.body.initiative);
+  req.idea.author = req.user;
+  req.idea.authors.push(req.user);
+  req.idea.save(function(err, i) {
     if(!err && i) {
-      issueVoteOption = new IssueVoteOption({idea: idea._id});
-      IssueVote.findOne({issue: issueId}, function(err, issueVote) {
-        issueVote.choices.push(issueVoteOption);
+      req.issueVoteOption = new IssueVoteOption({idea: req.idea});
+      IssueVote.findOne({issue: req.reference.reference}, function(err, issueVote) {
+        issueVote.choices.push(req.issueVoteOption);
         issueVote.save();
+        next();
       });
     }
   });
+};
 
-}
+var checkParentComment = function(req, res, next) {
+  if(!req.body.comment.id) return next();
+  Comment.findById(req.body.comment.id, function(err, comment) {
+    if(err) console.log(err);
+    if(comment) {
+      req.parentComment = comment;
+    }
+    next();
+  });
+};
+
+var newCommentSubmit = function(req, res, next) {
+  var newComment = new Comment({
+      context: req.reference.context
+    , reference: req.reference.reference
+    , author: req.user
+    , text: req.body.comment.text
+  });
+
+  if(req.issueVoteOption) {
+    newComment.metadata = {
+      initiative: {
+          choice: req.issueVoteOption._id
+        , idea: req.idea
+        , ideaAuthor: req.idea.author
+      }
+    }
+  }
+
+  newComment.save(function(err, comment) {
+    if(err) console.log(err);
+    if(!comment) return next();
+    var cm = comment.toObject();
+    cm.author = req.user;
+    req.comment = cm;
+    next();
+  });
+
+};
+
+var replyCommentSubmit = function(req, res, next) {
+  var commentReply = new CommentReply({
+      author: req.user
+    , text: req.body.comment.text
+  });
+
+  req.parentComment.replies.push(commentReply);
+  req.parentComment.save(function(err) {
+    if(err) console.log(err);
+    var cm = commentReply.toObject();
+    cm.author = req.user;
+    req.comment = cm;
+    next();
+  });
+};
