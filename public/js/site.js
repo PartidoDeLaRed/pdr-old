@@ -17,5 +17,7 @@ $(document).ready(function(){
 		return false;
 	});
 
-	$('.time').timeago();
+	$('.time').livequery(function() {
+		$(this).timeago();
+	});
 });
