@@ -31,7 +31,12 @@ IssueSchema.methods.loadVote = function(cb) {
 };
 
 IssueSchema.methods.loadComments = function(cb) {
-  return this.model('Comment').find({context: 'issue', reference: this._id}, null, {sort: {createdAt: -1}}).populate('responses').populate('author').exec(cb);
+  var q = this.model('Comment').find({context: 'issue', reference: this._id}, null, {sort: {createdAt: -1}});
+  q.populate('author')
+  q.populate('replies.author')
+  q.populate('metadata.initiative.idea')
+  q.populate('metadata.initiative.ideaAuthor')
+  return q.exec(cb);
 };
 
 module.exports = mongoose.model('Issue', IssueSchema);

@@ -49,8 +49,15 @@ module.exports = function(app) {
    */
   require('./comment');
 
+  /*
+   *  Comment Reply Model
+   */
+  require('./commentReply');
+
    /*
     *  Hash Model
     */
+  // remporary an object with categories!!
 
+  
 }
