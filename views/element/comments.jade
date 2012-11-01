@@ -6,7 +6,8 @@
       em= element.title
       | "
     include comment_form
-    .comment-list
-      - comments.forEach(function(comment) {
-        include comment_single
-      - });
+    .comment-list-container
+      .comment-list.clearfix
+        - comments.forEach(function(comment) {
+          include comment_single
+        - });

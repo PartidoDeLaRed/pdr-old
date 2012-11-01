@@ -472,6 +472,9 @@ a.nav:hover {
   color: #739bd5;
   font-size: 11px;
 }
+.comments .comment-list-container {
+  background: #fff;
+}
 .comments a.idea-attachment {
   background: #eee;
   color: #333;
@@ -496,11 +499,15 @@ a.nav:hover {
   width: 18px;
   height: 16px;
 }
-.comments .comment {
+.comments .comment-list {
   border-left: 4px solid #f1f1f1;
+  margin-left: 40px;
+  padding: 0 40px;
+}
+.comments .comment {
   background: #fff;
+  margin-left: -40px;
   border-bottom: 1px dashed #ccc;
-  padding: 20px 0;
   position: relative;
 }
 .comments .comment .avatar {
@@ -509,25 +516,26 @@ a.nav:hover {
 }
 .comments .comment.question {
   border-bottom: 0;
+  margin-top: 30px;
   background: #fff;
 }
 .comments .comment.answer {
   border: 0;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
+  margin-left: 14px;
 }
 .comments .comment.answer img {
   width: 36px;
+  height: 36px;
+}
+.comments .comment.answer .name {
+  margin-bottom: 0;
 }
 .comments .comment.answer.last {
-  border-bottom: 1px dashed #ccc;
-  margin-bottom: 20px;
+  margin-bottom: 60px;
 }
-.comments .comment.answer,
 .comments .comment .right {
   margin-left: 30px;
-}
-.comments .comment.answer .right {
-  padding-left: 20px;
 }
 .comments .comment .postmeta {
   float: right;
@@ -539,9 +547,6 @@ a.nav:hover {
   margin-right: 6px;
   margin-bottom: 6px;
   display: block;
-}
-.comments .comment.answer .name {
-  margin-bottom: 0;
 }
 .comments .comment .location {
   font-style: italic;
@@ -559,6 +564,7 @@ a.nav:hover {
   font-weight: bold;
   font-size: 11px;
   margin-top: 4px;
+  margin-bottom: 6px;
   display: block;
 }
 .comments .reply i {
@@ -592,10 +598,6 @@ a.nav:hover {
 .comment .quick-reply {
   padding: 0;
   margin-top: 20px;
-}
-.comment-list {
-  background: #fff;
-  padding: 0 40px;
 }
 footer {
   padding: 20px 0;
