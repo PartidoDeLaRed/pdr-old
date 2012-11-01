@@ -917,7 +917,6 @@ textarea::-webkit-input-placeholder {
   padding-right: 14px;
 }
 .page-homepage .box-homepage .box-content {
-  padding-top: 10px;
   padding-bottom: 10px;
 }
 .page-homepage .box-homepage .box-content h4 {
@@ -949,6 +948,9 @@ textarea::-webkit-input-placeholder {
 }
 .page-homepage .box-homepage .users a img {
   border-radius: 100px;
+}
+.tooltip {
+  font-weight: bold;
 }
 a.sb {
   $border_radius: 4px;
