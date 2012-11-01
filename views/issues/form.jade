@@ -1,7 +1,11 @@
 #compose.compose-modal(role="dialog", aria-hidden="true", style="display:none;")
-  a.close-compose(href="", data-dismiss="modal") Cerrar
 
   form.compose-modal-inner(method="post", action="/issues/process", autocomplete="off")
+
+    h2  Crear problematica
+
+    p.description Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quam mi, elementum vel eleifend ac, venenatis non lorem. Nam tristique ullamcorper sem quis iaculis
+
     input(type="hidden", name="issue[_id]")
     p.insertion
       span.insertion-point
@@ -9,10 +13,9 @@
 
     p.insertion
       span.insertion-point
-      textarea.brief.compose-text.expand(name="issue[abstract]", placeholder="Resumen de la problematica")
-
-    p.insertion
-      span.insertion-point
-      textarea.compose-content.compose-text.expand(name="issue[essay]", placeholder="Contenido de la problematica")
+      textarea.compose-content.compose-text(name="issue[essay]", placeholder="Contenido de la problematica")
 
     input(type="submit", class="btn", value="Crear problematica") 
+
+    a.close-compose(href="", data-dismiss="modal") ×
+

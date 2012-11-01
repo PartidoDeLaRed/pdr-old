@@ -18,6 +18,9 @@ h6 {
   font-family: "futura-pt";
   font-weight: bold;
 }
+a {
+  outline: 0 !important;
+}
 /*.container{width: 800px;}*/
 .append-bottom {
   margin-bottom: 20px;
@@ -276,6 +279,7 @@ i.icon {
 }
 .block-ideas .vote-option {
   background: #fff;
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.05), 0 0 0 1px rgba(0,0,0,0.2);
   display: block;
   min-height: 200px;
   padding: 14px;
@@ -471,6 +475,25 @@ a.nav:hover {
   color: #739bd5;
   font-size: 11px;
 }
+.comments a.idea-attachment {
+  background: #eee;
+  color: #333;
+  padding: 4px 10px;
+  display: inline-block;
+  margin-top: 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  position: relative;
+}
+.comments a.idea-attachment i {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #eee;
+  position: absolute;
+  top: -4px;
+}
 .comments .comments h5 i {
   background: url("../../images/images.png") no-repeat -57px -60px;
   width: 18px;
@@ -478,14 +501,14 @@ a.nav:hover {
 }
 .comments .comment {
   border-left: 4px solid #f1f1f1;
-  border-radius: 4px;
   background: #fff;
   border-bottom: 1px dashed #ccc;
   padding: 20px 0;
   position: relative;
 }
 .comments .comment .avatar {
-  margin-left: -25px;
+  position: absolute;
+  left: -25px;
 }
 .comments .comment.question {
   border-bottom: 0;
@@ -504,7 +527,7 @@ a.nav:hover {
 }
 .comments .comment.answer,
 .comments .comment .right {
-  padding-left: 30px;
+  margin-left: 30px;
 }
 .comments .comment.answer .right {
   padding-left: 20px;
@@ -518,7 +541,7 @@ a.nav:hover {
   font-weight: bold;
   margin-right: 6px;
   margin-bottom: 6px;
-  display: inline-block;
+  display: block;
 }
 .comments .comment.answer .name {
   margin-bottom: 0;
@@ -529,7 +552,6 @@ a.nav:hover {
   font-size: 12px;
 }
 .comments .comment .right {
-  display: inline-block;
   display: block;
 }
 .comments .comment .right p {
@@ -539,12 +561,15 @@ a.nav:hover {
 .comments .reply {
   font-weight: bold;
   font-size: 11px;
+  margin-top: 4px;
+  display: block;
 }
 .comments .reply i {
   background: url("../../images/images.png") no-repeat -32px -89px;
   width: 12px;
   height: 8px;
   display: inline-block;
+  margin-right: 10px;
 }
 .comments .comment .right .reply {
   opacity: 0;
@@ -557,12 +582,19 @@ a.nav:hover {
   background: #fff;
   padding: 20px 20px 4px 20px;
 }
-.quick-reply textarea {
+.quick-reply textarea.textarea-quick-reply {
   width: 96%;
-  min-height: 80px;
+  min-height: 40px;
   padding: 2%;
   border-radius: 3px;
   margin-bottom: 10px;
+}
+.quick-reply textarea.textarea-quick-reply:focus {
+  min-height: 84px;
+}
+.comment .quick-reply {
+  padding: 0;
+  margin-top: 20px;
 }
 .comment-list {
   background: #fff;
@@ -747,7 +779,7 @@ body.profile-page .activity-list .triangle {
   background: url("../../images/images.png") no-repeat 0 -352px;
 }
 .compose-modal {
-  background: #fff;
+  background: rgba(255,255,255,0.8);
   position: fixed;
   overflow-y: scroll !important;
   z-index: 1000;
@@ -756,40 +788,60 @@ body.profile-page .activity-list .triangle {
   left: 0;
   bottom: 0;
 }
-.compose-modal .close-compose {
-  position: fixed;
-  right: 20px;
-  top: 20px;
-  background: #000;
-  color: #fff;
-  font-weight: bold;
-  text-transform: uppercase;
-  padding: 10px 20px;
-  display: block;
-  border-radius: 4px;
+.compose-modal h2 {
+  width: 300px;
+  margin: 0;
+  margin-bottom: 20px;
+  padding: 0;
+  display: inline-block;
+}
+.compose-modal p.description {
+  color: #666;
+  margin-bottom: 30px;
+}
+.compose-modal a.close-compose {
+  right: 50px;
+  top: 30px;
+  position: absolute;
+  color: #666;
+  opacity: 1;
+  font-size: 30px;
+  line-height: 36px;
+  font-family: "Helvetica", Arial;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  background: #f1f1f1;
+  display: inline-block;
+  font-weight: 900;
+}
+.compose-modal a.close-compose:hover {
+  backgroud: #000;
 }
 .compose-modal .compose-modal-inner {
   width: 500px;
-  padding-bottom: 50px;
+  position: relative;
+  background: #fff;
+  border: 8px solid #ccc;
+  padding: 30px 50px;
   margin: auto;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 .compose-modal input.compose-title,
 .compose-modal textarea {
-  width: 500px;
+  width: 486px;
   font-size: 15px;
-  border: 0;
-  box-shadow: none;
-  padding: 10px 0;
   border-radius: 0;
 }
 .compose-modal input.compose-title {
-  font-size: 26px;
-  padding: 0;
-  padding-top: 7px;
-  height: 27px;
+  font-size: 22px;
+  line-height: 20px;
+  height: 30px;
   font-weight: bold;
   color: #333;
+}
+.compose-modal textarea.compose-content {
+  height: 200px;
 }
 .compose-modal .insertion-point {
   height: 40px;

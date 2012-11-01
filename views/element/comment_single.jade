@@ -8,9 +8,10 @@ section.comment.question.clearfix
     p= comment.text
     - var commentInitiative = comment.metadata ? comment.metadata.initiative : {};
     - if(commentInitiative.choice) {
-      p
-        a(data-toggle="modal", role="button", href="#choice-full-#{commentInitiative.choice}")
-         | #{commentInitiative.idea.title}
+      a.idea-attachment(data-toggle="modal", role="button", href="#choice-full-#{commentInitiative.choice}") 
+        i 
+        span El usuario adjunto la propuesta: 
+        strong #{commentInitiative.idea.title}
     - }
     a.reply(href='')
       i

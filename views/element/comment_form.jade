@@ -4,21 +4,21 @@
   form(method="post", action="/comments/process")
     input(type="hidden", name="comment[id]", value=comment.id)
     input(type="hidden", name="comment[reference]", value=element.id)
-    textarea(name="comment[text]", placeholder='Tu opinion aqui')
+    textarea.textarea-quick-reply.expand(name="comment[text]", placeholder='Tu opinion aqui')
     - if(!voted && !comment.id) {
       p
         a.tt.compose-initiative(data-toggle="modal", role="button", href='#compose-initiative#{comment ? "-comment-" + comment.id : ""}', data-backdrop="false", data-keyboard="false", rel="tooltip", title="Redactar una iniciativa", data-placement="bottom") Adjuntar propuesta
       .initiative-form.compose-modal(id='compose-initiative#{comment ? "-comment-" + comment.id : ""}', role="dialog", aria-hidden="true", style="display:none;")
-        a.close-compose(href="", data-dismiss="modal") Cerrar
 
         .initiative.compose-modal-inner
+          a.close-compose(href="", data-dismiss="modal") ×
+
+          h2  Crear iniciativa
+          p.description Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quam mi, elementum vel eleifend ac, venenatis non lorem. Nam tristique ullamcorper sem quis iaculis
+
           p.insertion
             span.insertion-point
             input.compose-title.compose-text(name="initiative[title]", type="text", placeholder="Titulo de la iniciativa")
-
-          p.insertion
-            span.insertion-point
-            textarea.brief.compose-text.expand(name="initiative[abstract]", placeholder="Resumen de la iniciativa")
 
           p.insertion
             span.insertion-point

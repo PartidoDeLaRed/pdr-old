@@ -7,9 +7,7 @@ block content
 				form(action="/ideas/process", method="post")
 					label Titulo
 					input(type="text", name="idea[title]", value="")
-          label Resumen
-          input(type="text", name="idea[abstract]", value="")
-          label Contenido
-          input(type="text", name="idea[essay]", value="")
+					label Contenido
+					textarea(name="idea[essay]")
 
-					input(type="submit", value="Liberar idea")
+					input(type="submit", value="Crear idea")

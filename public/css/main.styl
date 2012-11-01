@@ -11,6 +11,9 @@ h1,h2,h3,h4,h5,h6
 	font-family: "futura-pt";
 	font-weight: bold;
 
+a 
+	outline: 0 !important;
+
 /*.container{width: 800px;}*/
 .append-bottom{margin-bottom: 20px;}
 input,textarea{font-family: 'proxima-nova'}
@@ -134,7 +137,7 @@ i.icon
 
 
 	.vote-option
-		background: white; display: block; min-height: 200px; padding: 14px; overflow: hidden; position: relative; border-radius: 4px; margin-bottom: 20px;
+		background: white; box-shadow:   0 0 0 3px  rgba(0,0,0,.05), 0 0 0 1px rgba(0,0,0,.2); display: block; min-height: 200px; padding: 14px; overflow: hidden; position: relative; border-radius: 4px; margin-bottom: 20px;
 		h4{margin-top: 0; font-size: 16px; line-height: 24px;}
 		a.full-read
 			font-style: italic;
@@ -239,40 +242,65 @@ a.nav:hover{border-color: #999}
 
 
 .comments
+	a.idea-attachment
+		background: #eee;
+		color: #333;
+		padding: 4px 10px;
+		display: inline-block;
+		margin-top: 10px;
+		border-radius: 4px;
+		font-size: 11px;
+		position: relative;
+		i
+			width: 0; 
+			height: 0; 
+			border-left: 5px solid transparent;
+			border-right: 5px solid transparent;
+
+			border-bottom: 5px solid #eee;
+			position: absolute;
+			top: -4px;
+
 	.comments h5 i{
 		background: url('../../images/images.png')no-repeat -57px -60px;
 		width: 18px;
 		height: 16px;
 	}
-	.comment {border-left: 4px solid #f1f1f1; border-radius: 4px; background: white; border-bottom: 1px dashed #ccc; padding: 20px 0; position: relative;}
+	.comment {border-left: 4px solid #f1f1f1; background: white; border-bottom: 1px dashed #ccc; padding: 20px 0; position: relative;}
 
-	.comment .avatar{margin-left: -25px;}
+	.comment .avatar{position: absolute; left: -25px;}
 
 	.comment.question{border-bottom: 0; background: white; }
 	.comment.answer{border: 0; margin-bottom: 10px;}
 	.comment.answer img{width: 36px;}
 	.comment.answer.last{ border-bottom: 1px dashed #ccc; margin-bottom: 20px;}
-	.comment.answer, .comment .right{padding-left: 30px;}
+	.comment.answer, .comment .right{margin-left: 30px;}
 	.comment.answer .right{padding-left: 20px;}
 	.comment .postmeta{float: right; color: #999; font-size: 12px;}
-	.comment .name{font-weight: bold; margin-right: 6px; margin-bottom: 6px; display: inline-block;} 
+	.comment .name{font-weight: bold; margin-right: 6px; margin-bottom: 6px; display: block;} 
 	.comment.answer .name{margin-bottom: 0;}
 	.comment .location{font-style: italic; color: #999; font-size: 12px;}
-	.comment .right{display: inline-block;  display: block;  }
+	.comment .right{ display: block;  }
 	.comment .right p{margin-bottom: 0; line-height: 20px;}
-	.reply{font-weight: bold; font-size: 11px;}
+	.reply{font-weight: bold; font-size: 11px; margin-top: 4px; display: block;}
 	.reply i{
 		background: url('../../images/images.png') no-repeat -32px -89px;
 		width: 12px;
 		height: 8px;
 		display: inline-block;
+		margin-right: 10px;
 	}
 
 	.comment .right .reply {opacity: 0;}
 	.comment .right:hover .reply {opacity: 1;}
 
 .quick-reply {margin-bottom: 4px; background: white; padding: 20px 20px 4px 20px}
-.quick-reply textarea{width: 96%; min-height: 80px; padding: 2%; border-radius: 3px; margin-bottom: 10px}
+.quick-reply textarea.textarea-quick-reply
+	width: 96%; min-height: 40px; padding: 2%; border-radius: 3px; margin-bottom: 10px
+	&:focus
+		min-height: 84px;
+
+.comment .quick-reply{padding: 0; margin-top: 20px;}
 
 .comment-list{background: white; padding: 0 40px;}
 
@@ -367,11 +395,40 @@ body.profile-page {
 }
 
 .compose-modal
-	background: white; position: fixed; overflow-y: scroll !important; z-index: 1000; top: 0; right: 0; left: 0; bottom: 0; 
-	.close-compose{position: fixed; right: 20px; top: 20px; background: black; color: white; font-weight: bold; text-transform: uppercase; padding: 10px 20px; display: block; border-radius: 4px;}
-	.compose-modal-inner{width: 500px; padding-bottom: 50px; margin: auto; margin-top: 40px;}
-	input.compose-title, textarea{width: 500px; font-size: 15px; border: 0; box-shadow: none; padding: 10px 0; border-radius: 0;}
-	input.compose-title{font-size: 26px; padding: 0; padding-top: 7px; height: 27px; font-weight: bold; color: #333;}
+	background: rgba(255,255,255,.8); position: fixed; 
+	overflow-y: scroll !important; z-index: 1000; 
+	top: 0; right: 0; left: 0; bottom: 0; 
+
+	h2{width: 300px; margin: 0; margin-bottom: 20px; padding: 0; display: inline-block;}
+	p.description
+		color: #666;
+		margin-bottom: 30px;
+
+	a.close-compose
+		right: 50px;
+		top: 30px;
+		position: absolute; 
+		color: #666;
+		opacity: 1;
+		font-size: 30px;
+		line-height: 36px;
+		font-family: "Helvetica", Arial;
+		height: 40px;
+		width: 40px;
+		text-align: center;
+		background: #f1f1f1;
+		display: inline-block;
+		font-weight: 900;
+		&:hover
+			backgroud: black;
+
+	.compose-modal-inner{width: 500px; position: relative; background: white; border: 8px solid #ccc; padding: 30px 50px; margin: auto; margin-top: 20px;}
+	input.compose-title, textarea{width: 486px; font-size: 15px;  border-radius: 0;}
+	input.compose-title{font-size: 22px; line-height: 20px; height: 30px; font-weight: bold; color: #333;}
+
+	textarea.compose-content
+		height: 200px;
+
 
 	.insertion-point
 		height: 40px;
