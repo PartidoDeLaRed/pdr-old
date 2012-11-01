@@ -799,7 +799,7 @@ body.profile-page .activity-list .triangle {
   margin-bottom: 30px;
 }
 .compose-modal a.close-compose {
-  right: 50px;
+  right: 30px;
   top: 30px;
   position: absolute;
   color: #666;
@@ -813,16 +813,18 @@ body.profile-page .activity-list .triangle {
   background: #f1f1f1;
   display: inline-block;
   font-weight: 900;
+  border-radius: 4px;
 }
 .compose-modal a.close-compose:hover {
-  backgroud: #000;
+  background: #eee;
+  color: #000;
 }
 .compose-modal .compose-modal-inner {
   width: 500px;
   position: relative;
   background: #fff;
   border: 8px solid #ccc;
-  padding: 30px 50px;
+  padding: 30px;
   margin: auto;
   margin-top: 20px;
 }
@@ -892,6 +894,61 @@ input::-webkit-input-placeholder {
 input::-moz-placeholder,
 textarea::-webkit-input-placeholder {
   color: #333;
+}
+.page-homepage .welcome {
+  background: #fff;
+  padding: 20px;
+}
+.page-homepage .box-homepage {
+  background: #fff;
+  border-radius: 3px;
+}
+.page-homepage .box-homepage h5 {
+  color: #fff;
+  background: #333;
+  font-size: 12px;
+  line-height: 36px;
+  display: block;
+}
+.page-homepage .box-homepage .box-content,
+.page-homepage .box-homepage h5,
+.page-homepage .box-homepage .users {
+  padding-left: 14px;
+  padding-right: 14px;
+}
+.page-homepage .box-homepage .box-content {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.page-homepage .box-homepage .box-content h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+.page-homepage .box-homepage .box-content p {
+  color: #666;
+}
+.page-homepage .box-homepage .users {
+  background: #f9f9f9;
+  padding-bottom: 10px;
+}
+.page-homepage .box-homepage .users span {
+  font-weight: bold;
+  font-size: 11px;
+  display: inline-block;
+  color: #999;
+}
+.page-homepage .box-homepage .users a {
+  width: 24px;
+  height: 24px;
+  border-radius: 100px;
+  display: inline-block;
+  margin-right: 6px;
+  padding: 1px;
+  background: #fff;
+  margin-top: 10px;
+}
+.page-homepage .box-homepage .users a img {
+  border-radius: 100px;
 }
 a.sb {
   $border_radius: 4px;

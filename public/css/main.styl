@@ -413,7 +413,7 @@ body.profile-page {
 		margin-bottom: 30px;
 
 	a.close-compose
-		right: 50px;
+		right: 30px;
 		top: 30px;
 		position: absolute; 
 		color: #666;
@@ -427,10 +427,12 @@ body.profile-page {
 		background: #f1f1f1;
 		display: inline-block;
 		font-weight: 900;
+		border-radius: 4px;
 		&:hover
-			backgroud: black;
+			background: #eee;
+			color: black
 
-	.compose-modal-inner{width: 500px; position: relative; background: white; border: 8px solid #ccc; padding: 30px 50px; margin: auto; margin-top: 20px;}
+	.compose-modal-inner{width: 500px; position: relative; background: white; border: 8px solid #ccc; padding: 30px ; margin: auto; margin-top: 20px;}
 	input.compose-title, textarea{width: 486px; font-size: 15px;  border-radius: 0;}
 	input.compose-title{font-size: 22px; line-height: 20px; height: 30px; font-weight: bold; color: #333;}
 
@@ -477,6 +479,55 @@ textarea{resize: none; color: #333;}
 input::-webkit-input-placeholder {color: #333; padding-top: 4px;}
 input::-moz-placeholder {}
 textarea::-webkit-input-placeholder{color: #333;}
+
+
+.page-homepage
+
+	.welcome
+		background: white;
+		padding: 20px;
+
+	.box-homepage
+		background: white; border-radius: 3px;
+		h5
+			color: white;
+			background: #333;
+			font-size: 12px;
+			line-height: 36px;
+			display: block;
+
+		.box-content, h5, .users
+			padding-left: 14px;
+			padding-right: 14px;
+
+		.box-content
+			h4
+				margin-top: 0;
+				margin-bottom: 10px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+
+			p 
+				color: #666;
+		.users
+			background: #f9f9f9;
+			padding-bottom: 10px;
+			span
+				font-weight: bold;
+				font-size: 11px;
+				display: inline-block;
+				color: #999;
+			a
+				width: 24px;
+				height: 24px;
+				border-radius: 100px;
+				display: inline-block;
+				margin-right: 6px;
+				padding: 1px;
+				background: white;
+				margin-top: 10px;
+				img
+					border-radius: 100px;
 
 a.sb{
 
