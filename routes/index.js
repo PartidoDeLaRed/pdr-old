@@ -16,28 +16,33 @@ module.exports = function(app) {
   /*
    *  Homepage route
    */
+
   app.get('/', function(req, res, next) {
-    if ('development' == app.get('env')) {
-      index(req, res);
-    } else {
-      basic.apply(req, res, function(username) {
-        index(req, res);
-      });
-    }
+    res.render('homepage');
   });
 
-  var index = function(req, res) {
+  // app.get('/', function(req, res, next) {
+  //   if ('development' == app.get('env')) {
+  //     index(req, res);
+  //   } else {
+  //     basic.apply(req, res, function(username) {
+  //       index(req, res);
+  //     });
+  //   }
+  // });
 
-    Issue.findOne(null, null, {sort: {createdAt: -1}}).populate('author').exec(function(err, issue) {
-      if(err) console.log(err);
-      if(!issue) return res.render('index');
-      issue.loadComments(function(err, comments) {
-        issue.loadVote(function(err, issueVote) {
-          res.render('issues/single', {page: 'idea', issue: issue, author: issue.author, comments: comments, issueVote: issueVote});
-        });
-      });
-    });
-  };
+  // var index = function(req, res) {
+
+  //   Issue.findOne(null, null, {sort: {createdAt: -1}}).populate('author').exec(function(err, issue) {
+  //     if(err) console.log(err);
+  //     if(!issue) return res.render('index');
+  //     issue.loadComments(function(err, comments) {
+  //       issue.loadVote(function(err, issueVote) {
+  //         res.render('issues/single', {page: 'idea', issue: issue, author: issue.author, comments: comments, issueVote: issueVote});
+  //       });
+  //     });
+  //   });
+  // };
   
   /*
    *  Auth routes
