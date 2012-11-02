@@ -20,4 +20,12 @@ $(document).ready(function(){
 	$('.time').livequery(function() {
 		$(this).timeago();
 	});
+
+
+	$('.box-homepage-list').masonry({
+	    // options
+	    itemSelector : '.span-3',
+    	columnWidth : 220
+
+  	});
 });
