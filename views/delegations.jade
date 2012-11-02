@@ -5,7 +5,7 @@ block content
 
   .container
     .row
-      .span12
+      .span9
         .page-title.clearfix
           img.big-avatar(src=profile.imageUrl)
           h2= profile.fullName
@@ -16,23 +16,26 @@ block content
       .span2
         .box.sidebar.clearfix
           nav
-            a.actividad.selected(href='')
+            a.actividad(href='')
               i
               | Actividad
-            a.perfil(href='')
+            a.perfil(href='/profile/me')
               i
               | Perfil
-            a.delegaciones(href='')
+            a.delegaciones.selected(href='/profiles/#{profile.id}/delegations')
               i
               | Delegaciones
-            a.opciones(href='')
+            a.opciones(href='/profile/delegations')
               i
               | Opciones
               
-      .span10
+      .span7
         .box
-          h3 Delegaciones
-          form(action="/delegation/process", method="post")
-          - each category_name, category_id in categories
-            label= category_name
-            input(type="text", name="delegation[#{category_id}]", value="")
+          .box-content
+            h3 Delegaciones
+            p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur viverra nisl a nisl faucibus molestie. Aliquam ac elit odio. Nunc commodo mi vitae ipsum tempus egestas.
+            form(action="/delegation/process", method="post")
+            - each category_name, category_id in categories
+              .deletagation-item.clearfix
+                label= category_name
+                input(type="text", name="delegation[#{category_id}]", value="")
