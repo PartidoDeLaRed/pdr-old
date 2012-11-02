@@ -6,9 +6,10 @@ block content
 			.span9
 				.welcome
 					h1	Partido de la red
+					p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur viverra nisl a nisl faucibus molestie. Aliquam ac elit odio. Nunc commodo mi vitae ipsum tempus egestas.
 
 
-		.row
+		.row.box-homepage-list
 			- issues.forEach(function(issue) {
 				.span3
 					.box-homepage
@@ -23,3 +24,4 @@ block content
 								img(src="#{issue.author.imageUrl}")
 								//- Faltan los usuarios en comentarios!!
 			-	});
+		.clear

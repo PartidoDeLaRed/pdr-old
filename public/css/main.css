@@ -690,15 +690,20 @@ body.profile-page .activity-list .activity-item .activity-icon i {
 }
 body.profile-page .activity-list .activity-item .activity-description {
   position: relative;
+  width: 460px;
+  margin-left: 20px;
   background-color: #f1f1f1;
-  margin: 0 0 0 14px;
+  margin: 0 0 0 0;
   float: left;
-  padding: 10px 14px;
+  padding: 0 14px;
   border-radius: 4px;
 }
 body.profile-page .activity-list .activity-item .activity-description a {
   color: #000;
   font-weight: bold;
+}
+body.profile-page .activity-list .activity-item .activity-description .triangle {
+  display: none;
 }
 body.profile-page .activity-list .activity-item:last-child {
   margin-bottom: 0;
@@ -897,7 +902,7 @@ textarea::-webkit-input-placeholder {
 }
 .page-homepage .welcome {
   background: #fff;
-  padding: 20px;
+  padding: 14px;
 }
 .page-homepage .box-homepage {
   background: #fff;
@@ -915,9 +920,6 @@ textarea::-webkit-input-placeholder {
 .page-homepage .box-homepage .users {
   padding-left: 14px;
   padding-right: 14px;
-}
-.page-homepage .box-homepage .box-content {
-  padding-bottom: 10px;
 }
 .page-homepage .box-homepage .box-content h4 {
   margin-top: 0;
