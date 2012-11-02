@@ -3,25 +3,17 @@
     button.close(type="button", data-dismiss="modal", aria-hidden="true") x
     h2 Formulario de delegación
   .modal-body
-    form()
-      p Delego mi poder de voto a
-      p
-        input(type="text", name="delegation[citizen]", placeholder="Empieze a escribir el nombre") 
-      - if(element !== 'undefined' && element.id) {
-        p
-          input(type="checkbox", name="delegation[issue]", value="#{element.id}")
-          label(style="display:inline-block;margin-left:10px;")
-            | en esta problematica
-        p y/o
-      - };
-      p
-        input(type="checkbox", name="delegation[category][check]", value="1")
-        label(style="display:inline-block;margin-left:10px;")
-         | en la categoria
-        select(name="delegation[category][id]", style="display:inline-block;margin-left:20px;")
-          - each category_name, category_id in categories
-            option(value="category_id")= category_name
+    form().form-delegation
+
+      h4  Ustes esta delegando su voto en Ricardo Rauch para el topico Ciencia y Tecnologia
+
+      img.profile-delegation(src="https://twimg0-a.akamaihd.net/profile_images/2583335118/yts2np89ifncbi0j3vgm.jpeg")
+
+      p 
+        a(href="") Prefiero delegar mi poder de voto en otra persona
+      //- p
+      //-   input(type="text", name="delegation[citizen]", placeholder="Empieze a escribir el nombre") 
+
 
   .modal-footer
-    button.btn(type="button", data-dismiss="modal", aria-hidden="true") Cerrar
-    button.btn(type="button", data-dismiss="modal", aria-hidden="true") Delegar
+    button.btn(type="button", data-dismiss="modal", aria-hidden="true") Confirmar delegacion
