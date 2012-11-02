@@ -2,13 +2,13 @@
 - var voted = voted || false;
 .quick-reply
   form(method="post", action="/comments/process")
-    input(type="hidden", name="comment[id]", value=comment.id)
+    input(type="hidden", name="comment[id]", value=comment._id)
     input(type="hidden", name="comment[reference]", value=element.id)
     textarea.textarea-quick-reply.expand(name="comment[text]", placeholder='Tu opinion aqui')
-    - if(!voted && !comment.id) {
+    - if(!voted && !comment._id) {
       p
-        a.tt.compose-initiative(data-toggle="modal", role="button", href='#compose-initiative#{comment ? "-comment-" + comment.id : ""}', data-backdrop="false", data-keyboard="false", rel="tooltip", title="Redactar una iniciativa", data-placement="bottom") Adjuntar propuesta
-      .initiative-form.compose-modal(id='compose-initiative#{comment ? "-comment-" + comment.id : ""}', role="dialog", aria-hidden="true", style="display:none;")
+        a.tt.compose-initiative(data-toggle="modal", role="button", href='#compose-initiative#{comment ? "-comment-" + comment._id : ""}', data-backdrop="false", data-keyboard="false", rel="tooltip", title="Redactar una iniciativa", data-placement="bottom") Adjuntar propuesta
+      .initiative-form.compose-modal(id='compose-initiative#{comment ? "-comment-" + comment._id : ""}', role="dialog", aria-hidden="true", style="display:none;")
 
         .initiative.compose-modal-inner
           a.close-compose(href="", data-dismiss="modal") ×
