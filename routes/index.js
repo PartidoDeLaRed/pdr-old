@@ -18,9 +18,6 @@ module.exports = function(app) {
    */
 
   app.get('/', function(req, res, next) {
-  });
-
-  app.get('/', function(req, res, next) {
     if ('development' == app.get('env')) {
       index(req, res);
     } else {
