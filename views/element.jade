@@ -31,9 +31,11 @@
 				- };
 				- if(!voted) {
 					.span9
-						a.delegate(href='')
+						a.delegate(data-toggle="modal", role="button", href="#delegation")
 							| Prefiero delegar mi voto a otra persona
 							i
+						include element/delegation_form
+
 						h3.block-title.title-propuestas
 							i.icon
 							| Propuestas a votar

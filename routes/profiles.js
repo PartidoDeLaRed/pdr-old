@@ -16,4 +16,11 @@ module.exports = function(app, utils) {
       });
     }
   });
+
+  app.get('/profiles/:id/delegations', utils.restrict, function(req, res) {
+    Citizen.findById(req.params.id, function(err, citizen) {
+      if(!err && citizen) return res.render('delegations', {page: 'profile', profile: citizen});
+      res.send(404, 'Sorry, we cannot find that!'); //should be res.render('404'{status: 404, err: err });
+    });
+  });
 }

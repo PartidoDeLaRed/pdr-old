@@ -28,4 +28,6 @@ CitizenSchema.virtual('fullName').set(function(name) {
   }
 });
 
+CitizenSchema.index({firstName:1, lastName:1});
+
 module.exports = mongoose.model('Citizen', CitizenSchema);
