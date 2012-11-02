@@ -9,7 +9,7 @@
 					a.nav.right(href='')
 					
 					h4.issue-title Problematica de 
-						a(href="") Ciencia y Tecnologia
+						a(href="")= categories[element.category]
 					h2= element.title
 					p.issue-content-description= element.abstract
 					
@@ -18,7 +18,6 @@
 							button.close(type="button", data-dismiss="modal", aria-hidden="true") x
 							h2= element.title
 						.modal-body
-							p.issue-content-description= element.abstract
 							p.issue-content-description= element.essay
 						.modal-footer
 							button.btn(type="button", data-dismiss="modal", aria-hidden="true") Cerrar

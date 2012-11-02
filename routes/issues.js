@@ -12,7 +12,7 @@ module.exports = function(app, utils) {
     if(!req.body.issue._id) {
       var newIssue = new Issue({
         title: req.body.issue.title,
-        abstract: req.body.issue.abstract,
+        category: req.body.issue.category,
         essay: req.body.issue.essay,
         author: req.user._id,
         authors: [req.user._id],

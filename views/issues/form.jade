@@ -13,6 +13,11 @@
 
     p.insertion
       span.insertion-point
+      select(name="issue[category]")
+        - each category_name, category_id in categories
+          option(value=category_id)= category_name
+    p.insertion
+      span.insertion-point
       textarea.compose-content.compose-text(name="issue[essay]", placeholder="Contenido de la problematica")
 
     input(type="submit", class="btn", value="Crear problematica") 

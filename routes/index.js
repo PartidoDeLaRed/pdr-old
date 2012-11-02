@@ -18,31 +18,26 @@ module.exports = function(app) {
    */
 
   app.get('/', function(req, res, next) {
-    res.render('homepage');
   });
 
-  // app.get('/', function(req, res, next) {
-  //   if ('development' == app.get('env')) {
-  //     index(req, res);
-  //   } else {
-  //     basic.apply(req, res, function(username) {
-  //       index(req, res);
-  //     });
-  //   }
-  // });
+  app.get('/', function(req, res, next) {
+    if ('development' == app.get('env')) {
+      index(req, res);
+    } else {
+      basic.apply(req, res, function(username) {
+        index(req, res);
+      });
+    }
+  });
 
-  // var index = function(req, res) {
-
-  //   Issue.findOne(null, null, {sort: {createdAt: -1}}).populate('author').exec(function(err, issue) {
-  //     if(err) console.log(err);
-  //     if(!issue) return res.render('index');
-  //     issue.loadComments(function(err, comments) {
-  //       issue.loadVote(function(err, issueVote) {
-  //         res.render('issues/single', {page: 'idea', issue: issue, author: issue.author, comments: comments, issueVote: issueVote});
-  //       });
-  //     });
-  //   });
-  // };
+  var index = function(req, res) {
+    Issue
+      .find(null, null, {sort: {createdAt: -1}})
+      .populate('author')
+      .exec(function(err, issues) {
+        res.render('homepage', {issues: issues});
+      });
+  };
   
   /*
    *  Auth routes
