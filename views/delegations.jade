@@ -38,4 +38,5 @@ block content
             - each category_name, category_id in categories
               .deletagation-item.clearfix
                 label= category_name
-                input(type="text", name="delegation[#{category_id}]", value="")
+                input.delegation-input(type="text", name="delegation[#{category_id}]", value="")
+

@@ -23,4 +23,14 @@ module.exports = function(app, utils) {
       res.send(404, 'Sorry, we cannot find that!'); //should be res.render('404'{status: 404, err: err });
     });
   });
-}
+
+  app.get('/api/profiles/textbox', utils.restrict, function(req, res) {
+    Citizen.find({}, 'firstName lastName fullName id', function(err, citizens) {
+      var result = [];
+      citizens.forEach(function(citizen) {
+        result.push({id:citizen.id, name: citizen.fullName});
+      });
+      res.json(result);
+    });
+  });
+};
