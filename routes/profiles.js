@@ -24,8 +24,14 @@ module.exports = function(app, utils) {
     });
   });
 
-  app.get('/api/profiles/textbox', utils.restrict, function(req, res) {
-    Citizen.find({}, 'firstName lastName fullName id', function(err, citizens) {
+  app.get('/api/profiles?', utils.restrict, function(req, res) {
+    var query = new RegExp(".*" + req.param('q') + ".*","i");
+    
+    Citizen.
+      find()
+      .or([{firstName: query}, {lastName: query}])
+      .select('firstName lastName')
+      .exec(function(err, citizens) {
       var result = [];
       citizens.forEach(function(citizen) {
         result.push({id:citizen.id, name: citizen.fullName});
