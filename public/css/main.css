@@ -907,6 +907,10 @@ textarea::-webkit-input-placeholder {
 .page-homepage .box-homepage {
   background: #fff;
   border-radius: 3px;
+  width: 220px;
+  float: left;
+  margin-top: 20px;
+  margin-left: 20px;
 }
 .page-homepage .box-homepage h5 {
   color: #fff;
@@ -914,6 +918,7 @@ textarea::-webkit-input-placeholder {
   font-size: 12px;
   line-height: 36px;
   display: block;
+  margin-top: 0;
 }
 .page-homepage .box-homepage .box-content,
 .page-homepage .box-homepage h5,
