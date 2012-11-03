@@ -87,6 +87,8 @@
           window.location.reload();
         });
       });
+
+      $('.delegation-input').tokenInput('/api/profiles');
     }
   };
 })(window);

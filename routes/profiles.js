@@ -23,4 +23,20 @@ module.exports = function(app, utils) {
       res.send(404, 'Sorry, we cannot find that!'); //should be res.render('404'{status: 404, err: err });
     });
   });
-}
+
+  app.get('/api/profiles?', utils.restrict, function(req, res) {
+    var query = new RegExp(".*" + req.param('q') + ".*","i");
+    
+    Citizen.
+      find()
+      .or([{firstName: query}, {lastName: query}])
+      .select('firstName lastName')
+      .exec(function(err, citizens) {
+      var result = [];
+      citizens.forEach(function(citizen) {
+        result.push({id:citizen.id, name: citizen.fullName});
+      });
+      res.json(result);
+    });
+  });
+};
