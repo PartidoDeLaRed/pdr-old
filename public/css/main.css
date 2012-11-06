@@ -42,17 +42,26 @@ input[type="button"] {
   color: #666;
   display: inline-block;
   background-color: #e5e7ee;
-  background-image: -webkit-gradient(linear, 0 0, 0 26, color-stop(0.076, #fcfcfd), to(#e5e7ee));
-  background-image: -webkit-linear-gradient(#fcfcfd, #e5e7ee);
-  background-image: -moz-linear-gradient(#fcfcfd, #e5e7ee);
-  background-image: -o-linear-gradient(#fcfcfd, #e5e7ee);
+  background-image: -webkit-linear-gradient(#f1f1f1, #ddd);
+  background-image: -moz-linear-gradient(#f1f1f1, #ddd);
+  background-image: -o-linear-gradient(#f1f1f1, #ddd);
   font-weight: bold;
   text-shadow: 0 1px 0 #fff;
-  padding: 6px 10px;
+  padding: 6px 20px;
   cursor: pointer;
   text-decoration: none;
+  min-width: 100px;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  font-family: "futura-pt";
+  text-transform: uppercase;
+}
+.btn:hover {
+  background: #333;
+  background-image: -webkit-linear-gradient(#f9f9f9, #ddd);
+  background-image: -moz-linear-gradient(#f9f9f9, #ddd);
+  background-image: -o-linear-gradient(#f9f9f9, #ddd);
 }
 body {
   background-color: #f1f1f1;
@@ -914,7 +923,7 @@ textarea::-webkit-input-placeholder {
 }
 .page-homepage .box-homepage h5 {
   color: #fff;
-  background: #d97430;
+  background: #250933;
   font-size: 12px;
   line-height: 36px;
   display: block;
@@ -955,6 +964,9 @@ textarea::-webkit-input-placeholder {
 }
 .page-homepage .box-homepage .users a img {
   border-radius: 100px;
+}
+.page-homepage .box-homepage:hover {
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 .tooltip {
   font-weight: bold;

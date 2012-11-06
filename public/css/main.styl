@@ -18,24 +18,32 @@ a
 .append-bottom{margin-bottom: 20px;}
 input,textarea{font-family: 'proxima-nova'}
 .button, button, input[type="submit"], input[type="reset"], input[type="button"]{padding: 8px 20px;}
-.btn{
+.btn
 	border: 1px solid #999;
 	box-shadow: 0 1px 0 rgba(255, 255, 255, .2) inset;
 	color: #666;
 	display: inline-block;
 	background-color: #E5E7EE;
-	background-image: -webkit-gradient(linear, 0 0, 0 26, color-stop(0.076, #FCFCFD), to(#E5E7EE));
-	background-image: -webkit-linear-gradient(#FCFCFD, #E5E7EE);
-	background-image: -moz-linear-gradient(#FCFCFD, #E5E7EE);
-	background-image: -o-linear-gradient(#FCFCFD, #E5E7EE);
+	background-image: -webkit-linear-gradient(#f1f1f1, #ddd);
+	background-image: -moz-linear-gradient(#f1f1f1, #ddd);
+	background-image: -o-linear-gradient(#f1f1f1, #ddd);
 	font-weight: bold;
 	text-shadow: 0 1px 0 white;
-	padding: 6px 10px;
+	padding: 6px 20px;
 	cursor: pointer;
 	text-decoration: none;
+	min-width: 100px;
 	border-radius: 4px;
-	font-size: 12px;
-}
+	font-size: 11px;
+	letter-spacing: 1px;
+	font-family:  "futura-pt";
+	text-transform: uppercase;
+
+	&:hover
+		background: #333;
+		background-image: -webkit-linear-gradient(#f9f9f9, #ddd);
+		background-image: -moz-linear-gradient(#f9f9f9, #ddd);
+		background-image: -o-linear-gradient(#f9f9f9, #ddd);
 
 body{background-color: #f1f1f1}
 a, a:visited{text-decoration: none; color: #468DC4;}
@@ -44,11 +52,9 @@ p
 		border-bottom: 1px solid #ccc; padding-bottom: 2px;
 		&:hover
 			border-color: #333;
-a:hover{text-decoration: none;}
-header {
 
-}
-	
+a:hover{text-decoration: none;}
+
 header
 	background: blue;
 	background-image: -webkit-linear-gradient(#68a0b6 3.3%, #44798d);
@@ -492,7 +498,7 @@ textarea::-webkit-input-placeholder{color: #333;}
 		background: white; border-radius: 3px; width: 220px; float: left; margin-top: 20px; margin-left: 20px; 
 		h5
 			color: white;
-			background: #d97430;
+			background: #250933;
 			font-size: 12px;
 			line-height: 36px;
 			display: block;
@@ -528,6 +534,8 @@ textarea::-webkit-input-placeholder{color: #333;}
 				margin-top: 10px;
 				img
 					border-radius: 100px;
+		&:hover
+			box-shadow: 0 0 10px rgba(0,0,0,.2);
 
 .tooltip
 	font-weight: bold;
