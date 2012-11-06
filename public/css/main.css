@@ -29,11 +29,6 @@ input,
 textarea {
   font-family: 'proxima-nova';
 }
-.button,
-input[type="submit"],
-input[type="reset"] {
-  padding: 8px 20px;
-}
 .btn {
   border: 1px solid #999;
   box-shadow: 0 1px 0 rgba(255,255,255,0.2) inset;
@@ -682,6 +677,9 @@ body.profile-page .afiliacion {
   color: #3c88c0;
   font-weight: bold;
 }
+body.profile-page h3 {
+  margin-top: 0;
+}
 body.profile-page .activity-list {
   margin: 30px 0;
   border-left: 1px solid #ccc;
@@ -708,17 +706,21 @@ body.profile-page .activity-list .activity-item .activity-icon i {
 }
 body.profile-page .activity-list .activity-item .activity-description {
   position: relative;
-  width: 460px;
+  width: 440px;
+  float: right;
   margin-left: 20px;
-  background-color: #f1f1f1;
+  background-color: #fff;
   margin: 0 0 0 0;
-  float: left;
-  padding: 0 14px;
   border-radius: 4px;
 }
 body.profile-page .activity-list .activity-item .activity-description a {
   color: #000;
   font-weight: bold;
+}
+body.profile-page .activity-list .activity-item .activity-description em {
+  color: #999;
+  display: block;
+  font-size: 11px;
 }
 body.profile-page .activity-list .activity-item .activity-description .triangle {
   display: none;
