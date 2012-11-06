@@ -30,10 +30,8 @@ textarea {
   font-family: 'proxima-nova';
 }
 .button,
-button,
 input[type="submit"],
-input[type="reset"],
-input[type="button"] {
+input[type="reset"] {
   padding: 8px 20px;
 }
 .btn {
@@ -62,6 +60,16 @@ input[type="button"] {
   background-image: -webkit-linear-gradient(#f9f9f9, #ddd);
   background-image: -moz-linear-gradient(#f9f9f9, #ddd);
   background-image: -o-linear-gradient(#f9f9f9, #ddd);
+}
+.modal-backdrop {
+  background-color: #fff;
+}
+.modal {
+  border-color: #ccc;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+.modal .modal-footer {
+  text-align: left;
 }
 body {
   background-color: #f1f1f1;
@@ -791,6 +799,30 @@ body.profile-page .activity-list .triangle {
 .box.sidebar nav a.opciones i {
   background: url("../../images/images.png") no-repeat 0 -352px;
 }
+a.close-compose,
+.modal .close {
+  right: 30px;
+  top: 30px;
+  position: absolute;
+  color: #666;
+  opacity: 1;
+  font-size: 30px;
+  line-height: 36px;
+  font-family: "Helvetica", Arial;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  background: #f1f1f1;
+  display: inline-block;
+  font-weight: 900;
+  border-radius: 4px;
+  font-weight: normal;
+}
+a.close-compose:hover,
+.modal .close:hover {
+  background: #eee;
+  color: #000;
+}
 .compose-modal {
   background: rgba(255,255,255,0.8);
   position: fixed;
@@ -811,27 +843,6 @@ body.profile-page .activity-list .triangle {
 .compose-modal p.description {
   color: #666;
   margin-bottom: 30px;
-}
-.compose-modal a.close-compose {
-  right: 30px;
-  top: 30px;
-  position: absolute;
-  color: #666;
-  opacity: 1;
-  font-size: 30px;
-  line-height: 36px;
-  font-family: "Helvetica", Arial;
-  height: 40px;
-  width: 40px;
-  text-align: center;
-  background: #f1f1f1;
-  display: inline-block;
-  font-weight: 900;
-  border-radius: 4px;
-}
-.compose-modal a.close-compose:hover {
-  background: #eee;
-  color: #000;
 }
 .compose-modal .compose-modal-inner {
   width: 500px;
@@ -965,8 +976,22 @@ textarea::-webkit-input-placeholder {
 .page-homepage .box-homepage .users a img {
   border-radius: 100px;
 }
+.page-homepage .box-homepage .arrow {
+  background: url("../../images/arrow-right.png") center no-repeat;
+  width: 46px;
+  height: 46px;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  opacity: 0.5;
+}
 .page-homepage .box-homepage:hover {
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+.page-homepage .box-homepage:hover .arrow {
+  opacity: 1;
+  background-color: #fff;
 }
 .tooltip {
   font-weight: bold;

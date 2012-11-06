@@ -17,7 +17,7 @@ a
 /*.container{width: 800px;}*/
 .append-bottom{margin-bottom: 20px;}
 input,textarea{font-family: 'proxima-nova'}
-.button, button, input[type="submit"], input[type="reset"], input[type="button"]{padding: 8px 20px;}
+.button, input[type="submit"], input[type="reset"]{padding: 8px 20px;}
 .btn
 	border: 1px solid #999;
 	box-shadow: 0 1px 0 rgba(255, 255, 255, .2) inset;
@@ -44,6 +44,18 @@ input,textarea{font-family: 'proxima-nova'}
 		background-image: -webkit-linear-gradient(#f9f9f9, #ddd);
 		background-image: -moz-linear-gradient(#f9f9f9, #ddd);
 		background-image: -o-linear-gradient(#f9f9f9, #ddd);
+
+
+.modal-backdrop
+	background-color: white;
+
+.modal
+	border-color: #ccc;
+	box-shadow: 0 0 10px rgba(0,0,0,.2);
+
+	.modal-footer
+		text-align: left;
+
 
 body{background-color: #f1f1f1}
 a, a:visited{text-decoration: none; color: #468DC4;}
@@ -409,6 +421,29 @@ body.profile-page {
 	nav a.opciones i{	background: url('../../images/images.png') no-repeat  0 -352px;}
 }
 
+
+a.close-compose, .modal .close
+	right: 30px;
+	top: 30px;
+	position: absolute; 
+	color: #666;
+	opacity: 1;
+	font-size: 30px;
+	line-height: 36px;
+	font-family: "Helvetica", Arial;
+	height: 40px;
+	width: 40px;
+	text-align: center;
+	background: #f1f1f1;
+	display: inline-block;
+	font-weight: 900;
+	border-radius: 4px;
+	font-weight: normal;
+	&:hover
+		background: #eee;
+		color: black
+
+
 .compose-modal
 	background: rgba(255,255,255,.8); position: fixed; 
 	overflow-y: scroll !important; z-index: 1000; 
@@ -419,25 +454,7 @@ body.profile-page {
 		color: #666;
 		margin-bottom: 30px;
 
-	a.close-compose
-		right: 30px;
-		top: 30px;
-		position: absolute; 
-		color: #666;
-		opacity: 1;
-		font-size: 30px;
-		line-height: 36px;
-		font-family: "Helvetica", Arial;
-		height: 40px;
-		width: 40px;
-		text-align: center;
-		background: #f1f1f1;
-		display: inline-block;
-		font-weight: 900;
-		border-radius: 4px;
-		&:hover
-			background: #eee;
-			color: black
+
 
 	.compose-modal-inner{width: 500px; position: relative; background: white; border: 8px solid #ccc; padding: 30px ; margin: auto; margin-top: 20px;}
 	input.compose-title, textarea{width: 486px; font-size: 15px;  border-radius: 0;}
@@ -534,8 +551,15 @@ textarea::-webkit-input-placeholder{color: #333;}
 				margin-top: 10px;
 				img
 					border-radius: 100px;
+
+		.arrow 
+			background:  url('../../images/arrow-right.png') center no-repeat; 
+			width: 46px; height: 46px; display: block; position: absolute; bottom: 0; right: 0;
+			opacity: .5;
 		&:hover
 			box-shadow: 0 0 10px rgba(0,0,0,.2);
+			.arrow
+				opacity: 1; background-color: white;
 
 .tooltip
 	font-weight: bold;
