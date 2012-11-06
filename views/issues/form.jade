@@ -4,18 +4,21 @@
 
     h2  Crear problematica
 
-    p.description Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quam mi, elementum vel eleifend ac, venenatis non lorem. Nam tristique ullamcorper sem quis iaculis
+    p.description Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quam mi, elementum vel eleifend ac, venenatis non lorem. Nam tristique ullamcorper.
 
     input(type="hidden", name="issue[_id]")
-    p.insertion
-      span.insertion-point
-      input.compose-title.compose-text(name="issue[title]", type="text", placeholder="Titulo de la problematica")
 
     p.insertion
       span.insertion-point
       select(name="issue[category]")
         - each category_name, category_id in categories
           option(value=category_id)= category_name
+
+    p.insertion
+      span.insertion-point
+      input.compose-title.compose-text(name="issue[title]", type="text", placeholder="Titulo de la problematica")
+
+
     p.insertion
       span.insertion-point
       textarea.compose-content.compose-text(name="issue[essay]", placeholder="Contenido de la problematica")
