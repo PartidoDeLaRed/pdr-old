@@ -11,17 +11,16 @@ block content
 
 		.row.box-homepage-list
 			- issues.forEach(function(issue) {
-				.span3
-					.box-homepage
-						h5= categories[issue.category]
-						.box-content
-							h4 
-								a(href="/issues/#{issue.id}")= issue.title
-							p= issue.abstract
+				.box-homepage
+					h5= categories[issue.category]
+					.box-content
+						h4 
+							a(href="/issues/#{issue.id}")= issue.title
+						p= issue.abstract
 
-						.users
-							a(href="/profiles/#{issue.author.id}", rel="tooltip", title="#{issue.author.fullName}", data-placement="bottom", class="tt")
-								img(src="#{issue.author.imageUrl}")
-								//- Faltan los usuarios en comentarios!!
+					.users
+						a(href="/profiles/#{issue.author.id}", rel="tooltip", title="#{issue.author.fullName}", data-placement="bottom", class="tt")
+							img(src="#{issue.author.imageUrl}")
+							//- Faltan los usuarios en comentarios!!
 			-	});
 		.clear

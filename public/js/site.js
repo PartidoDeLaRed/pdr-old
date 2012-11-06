@@ -24,8 +24,7 @@ $(document).ready(function(){
 
 	$('.box-homepage-list').masonry({
 	    // options
-	    itemSelector : '.span-3',
-    	columnWidth : 220
+	    itemSelector : '.box-homepage'
 
   	});
 });
