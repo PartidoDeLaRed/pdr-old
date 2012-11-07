@@ -1,42 +1,12 @@
-extends layout
+extends layout_profile
 
-block content
-  - var social = profile.profiles.facebook ? 'facebook' : 'twitter';
+block profile_content
 
-  .container
-    .row
-      .span9
-        .page-title.clearfix
-          img.big-avatar(src=profile.imageUrl)
-          h2= profile.fullName
-          p.location= profile.location || 'Ciudadano Mundial'
-          p
-            | Describe yourself.
-          a(href='http://twitter.com/' + profile.username, target='_blank') Twitter
-      .span2
-        .box.sidebar.clearfix
-          nav
-            a.actividad(href='')
-              i
-              | Actividad
-            a.perfil(href='/profile/me')
-              i
-              | Perfil
-            a.delegaciones.selected(href='/profiles/#{profile.id}/delegations')
-              i
-              | Delegaciones
-            a.opciones(href='/profile/delegations')
-              i
-              | Opciones
-              
-      .span7
-        .box
-          .box-content
-            h3 Delegaciones
-            p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur viverra nisl a nisl faucibus molestie. Aliquam ac elit odio. Nunc commodo mi vitae ipsum tempus egestas.
-            form(action="/delegation/process", method="post")
-            - each category_name, category_id in categories
-              .deletagation-item.clearfix
-                label= category_name
-                input.delegation-input(type="text", name="delegation[#{category_id}]", value="")
+  h3 Delegaciones
+  p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur viverra nisl a nisl faucibus molestie. Aliquam ac elit odio. Nunc commodo mi vitae ipsum tempus egestas.
+  form(action="/delegation/process", method="post")
+  - each category_name, category_id in categories
+    .deletagation-item.clearfix
+      label= category_name
+      input.delegation-input(type="text", name="delegation[#{category_id}]", value="")
 
