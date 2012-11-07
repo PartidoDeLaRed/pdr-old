@@ -283,7 +283,7 @@ i.icon {
   display: block;
 }
 .block-ideas a.delegate i {
-  background: url("../../images/images.png") no-repeat -49px -88px;
+  background: url("../images/images.png") no-repeat -49px -88px;
   width: 16px;
   margin-left: 10px;
   height: 10px;
@@ -320,6 +320,26 @@ i.icon {
   text-transform: uppercase;
   background: #9ac44a;
   font-weight: bold;
+}
+.block-ideas .vote-option a.total-comments {
+  position: absolute;
+  opacity: 0.3;
+  font-size: 11px;
+  letter-spacing: 1px;
+  bottom: 14px;
+  right: 14px;
+  color: #000;
+  font-weight: bold;
+  line-height: 32px;
+  display: inline-block;
+}
+.block-ideas .vote-option a.total-comments i {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-bottom: -2px;
+  margin-right: 4px;
+  background: url("../images/icon-comments-small.png") center no-repeat;
 }
 .block-ideas .vote-option.create-idea {
   font-size: 24px;
@@ -937,10 +957,12 @@ textarea::-webkit-input-placeholder {
 .page-homepage .box-homepage h5 {
   color: #fff;
   background: #250933;
-  font-size: 12px;
+  font-size: 10px;
+  letter-spacing: 1px;
   line-height: 36px;
   display: block;
   margin-top: 0;
+  text-transform: uppercase;
 }
 .page-homepage .box-homepage .box-content,
 .page-homepage .box-homepage h5,

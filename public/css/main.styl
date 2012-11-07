@@ -146,7 +146,7 @@ i.icon
 	margin-bottom: 0;
 	a.delegate{text-decoration: none; float: right; color: #4596b8; font-size: 12px; float: right; border-bottom: 1px solid #ccc;  font-weight: bold; margin-top: 30px; display: block; }
 	a.delegate i
-		background: url('../../images/images.png') no-repeat  -49px -88px;
+		background: url('../images/images.png') no-repeat  -49px -88px;
 		width: 16px;
 		margin-left: 10px
 		height: 10px;
@@ -160,6 +160,15 @@ i.icon
 			font-style: italic;
 
 		.vote{border: 2px solid #7a9c3a; text-shadow: 0 1px 0 rgba(0,0,0,.2); padding: 4px 10px; position: absolute; bottom: 14px; display: inline-block; border-radius: 4px; color: white; text-transform: uppercase; background: #9ac44a; font-weight: bold;}
+		a.total-comments
+			position: absolute; opacity: .3; font-size: 11px; letter-spacing: 1px; bottom: 14px; right: 14px; color: #000; font-weight: bold; line-height: 32px; display: inline-block;
+			i
+				display: inline-block;
+				width: 12px;
+				height: 12px;
+				margin-bottom: -2px;
+				margin-right: 4px;
+				background: url('../images/icon-comments-small.png') center no-repeat;
 
 	.vote-option.create-idea
 		font-size: 24px;  text-align: center;
@@ -518,10 +527,12 @@ textarea::-webkit-input-placeholder{color: #333;}
 		h5
 			color: white;
 			background: #250933;
-			font-size: 12px;
+			font-size: 10px;
+			letter-spacing: 1px;
 			line-height: 36px;
 			display: block;
 			margin-top: 0;
+			text-transform: uppercase;
 
 		.box-content, h5, .users
 			padding-left: 14px;

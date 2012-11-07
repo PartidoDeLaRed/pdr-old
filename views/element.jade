@@ -48,6 +48,9 @@
 								p
 									a(data-toggle="modal", role="button", href="#choice-full-#{choice.id}").full-read Leer Completo
 								.buttons
+									a.total-comments(data-toggle="modal", role="button", href="#choice-full-#{choice.id}") 
+										i
+										| 23
 									- if(!voted) {
 										a.vote(href="#") Votar
 									- };								
