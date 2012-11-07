@@ -79,6 +79,7 @@ textarea {
 }
 .modal .modal-footer {
   text-align: left;
+  text-align: center;
 }
 body {
   background-color: #f1f1f1;
@@ -1059,9 +1060,15 @@ textarea::-webkit-input-placeholder {
   text-align: center;
 }
 .profile-delegation {
-  width: 240px;
+  width: 200px;
   border-radius: 1000px;
   margin-bottom: 30px;
+}
+input.input-delegate-another {
+  font-size: 20px;
+  padding: 20px;
+  width: 64%;
+  text-align: center;
 }
 .deletagation-item {
   border-bottom: 1px solid #f1f1f1;

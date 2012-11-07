@@ -1,16 +1,20 @@
 #delegation.modal(role="dialog", style="display:none;")
   .modal-header
     button.close(type="button", data-dismiss="modal", aria-hidden="true") x
-    h2 Formulario de delegación
+    h2 Delegacion de voto
   .modal-body
     form().form-delegation
 
-      h4  Ustes esta delegando su voto en Ricardo Rauch para el topico Ciencia y Tecnologia
-
+      h5  Usted esta delegando su voto en Ricardo Rauch (@gravityonmars)
       img.profile-delegation(src="https://twimg0-a.akamaihd.net/profile_images/2583335118/yts2np89ifncbi0j3vgm.jpeg")
 
       p 
-        a(href="") Prefiero delegar mi poder de voto en otra persona
+        a(href="") Prefiero delegar mi voto en otra persona
+      
+      //- on click muestra este input
+      p
+        input(type="text", class="input-delegate-another", placeholder="Usuario al que le quiere delegar su voto")
+
       //- p
       //-   input(type="text", name="delegation[citizen]", placeholder="Empieze a escribir el nombre") 
 
