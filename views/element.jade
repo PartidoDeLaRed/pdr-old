@@ -80,7 +80,7 @@
 					- vote.choices.forEach(function(choice) {
 						.modal(id="choice-full-#{choice.id}", role="dialog", style="display:none;")
 							.modal-header
-								button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
+								a.close(type="button", data-dismiss="modal", aria-hidden="true") ×
 								h2= choice.idea.title
 								//- h4 Propuesta ideada por #{choice.idea.authors[0].fullname}
 							.modal-body

@@ -73,6 +73,7 @@ textarea {
 }
 .modal .modal-header h2 {
   margin-top: 0;
+  margin-right: 40px;
 }
 .modal .modal-body {
   padding: 20px 0 0 0;
@@ -866,7 +867,7 @@ a.close-compose:hover,
   opacity: 1;
   height: auto;
   line-height: 30px;
-  height: 38px;
+  height: 18px;
   width: 38px;
   text-align: center;
   padding: 0;
