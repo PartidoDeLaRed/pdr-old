@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  - var social = profile.profiles.facebook ? 'facebook' : 'twitter';
+
+  .container
+    .row
+      .span9
+        .page-title.clearfix
+          img.big-avatar(src=profile.imageUrl)
+          h2= profile.fullName
+          p.location= profile.location || 'Ciudadano Mundial'
+          p
+            | Describe yourself.
+          a(href='http://twitter.com/' + profile.username, target='_blank') Twitter
+      .span2
+        .box.sidebar.clearfix
+          nav
+            a.actividad.selected(href='/profile/me')
+              i
+              | Actividad
+            a.perfil(href='/profile/me')
+              i
+              | Perfil
+            a.delegaciones(href='/profiles/#{profile.id}/delegations')
+              i
+              | Delegaciones
+            a.opciones(href='/profile/delegations')
+              i
+              | Opciones
+      .span7
+        .box
+          .box-content
+            block profile_content

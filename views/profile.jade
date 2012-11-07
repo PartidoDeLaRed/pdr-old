@@ -1,105 +1,75 @@
-extends layout
+extends layout_profile
 
-block content
-  - var social = profile.profiles.facebook ? 'facebook' : 'twitter';
-
-  .container
-    .row
-      .span9
-        .page-title.clearfix
-          img.big-avatar(src=profile.imageUrl)
-          h2= profile.fullName
-          p.location= profile.location || 'Ciudadano Mundial'
-          p
-            | Describe yourself.
-          a(href='http://twitter.com/' + profile.username, target='_blank') Twitter
-      .span2
-        .box.sidebar.clearfix
-          nav
-            a.actividad.selected(href='/profile/me')
-              i
-              | Actividad
-            a.perfil(href='/profile/me')
-              i
-              | Perfil
-            a.delegaciones(href='/profiles/#{profile.id}/delegations')
-              i
-              | Delegaciones
-            a.opciones(href='/profile/delegations')
-              i
-              | Opciones
-      .span7
-        .box
-          .box-content
-            h3 Actividad
-            .activity-list.clearfix
-              .activity-item.activity-vote.clearfix
-                .activity-icon
-                  i
-                .activity-description
-                  .triangle
-                  | Voto en
-                  a(href='') "Modificación de la carta organica del Banco Central"
-                  | .
-                  em Hace 10 minutos
-              .activity-item.activity-comment.clearfix
-                .activity-icon
-                  i
-                .activity-description
-                  .triangle
-                  | Opino en la votacion sobre
-                  a(href='') "Modificación de la carta organica del Banco Central"
-                  | .
-                  em Hace 14 minutos
-              .activity-item.activity-delegate.clearfix
-                .activity-icon
-                  i
-                .activity-description
-                  .triangle
-                  | Delego su voto en Educacion en
-                  a(href='') Carlos Perez
-                  | .
-                  em Hace 22 minutos
-              .activity-item.activity-edit.clearfix
-                .activity-icon
-                  i
-                .activity-description
-                  .triangle
-                  | Editó su perfil.
-                  em Hace 35 minutos
-              .activity-item.activity-vote.clearfix
-                .activity-icon
-                  i
-                .activity-description
-                  .triangle
-                  | Voto en
-                  a(href='') "Modificación de la carta organica del Banco Central"
-                  | .
-                  em Hace 38 minutos
-              .activity-item.activity-comment.clearfix
-                .activity-icon
-                  i
-                .activity-description
-                  .triangle
-                  | Opino en la votacion sobre
-                  a(href='') "Modificación de la carta organica del Banco Central"
-                  | .
-                  em Hace 1 hora
-              .activity-item.activity-delegate.clearfix
-                .activity-icon
-                  i
-                .activity-description
-                  .triangle
-                  | Delego su voto en Educacion en
-                  a(href='') Carlos Perez
-                  | .
-                  em Hace 2 horas
-              .activity-item.activity-edit.clearfix
-                .activity-icon
-                  i
-                .activity-description
-                  .triangle
-                  | Delego su voto en Educacion en
-                  a(href='') Carlos Perez
-                  | .
-                  em Hace 3 horas            
+block profile_content
+	h3 Actividad
+	.activity-list.clearfix
+		.activity-item.activity-vote.clearfix
+			.activity-icon
+				i
+			.activity-description
+				.triangle
+				| Voto en
+				a(href='') "Modificación de la carta organica del Banco Central"
+				| .
+				em Hace 10 minutos
+		.activity-item.activity-comment.clearfix
+			.activity-icon
+				i
+			.activity-description
+				.triangle
+				| Opino en la votacion sobre
+				a(href='') "Modificación de la carta organica del Banco Central"
+				| .
+				em Hace 14 minutos
+		.activity-item.activity-delegate.clearfix
+			.activity-icon
+				i
+			.activity-description
+				.triangle
+				| Delego su voto en Educacion en
+				a(href='') Carlos Perez
+				| .
+				em Hace 22 minutos
+		.activity-item.activity-edit.clearfix
+			.activity-icon
+				i
+			.activity-description
+				.triangle
+				| Editó su perfil.
+				em Hace 35 minutos
+		.activity-item.activity-vote.clearfix
+			.activity-icon
+				i
+			.activity-description
+				.triangle
+				| Voto en
+				a(href='') "Modificación de la carta organica del Banco Central"
+				| .
+				em Hace 38 minutos
+		.activity-item.activity-comment.clearfix
+			.activity-icon
+				i
+			.activity-description
+				.triangle
+				| Opino en la votacion sobre
+				a(href='') "Modificación de la carta organica del Banco Central"
+				| .
+				em Hace 1 hora
+		.activity-item.activity-delegate.clearfix
+			.activity-icon
+				i
+			.activity-description
+				.triangle
+				| Delego su voto en Educacion en
+				a(href='') Carlos Perez
+				| .
+				em Hace 2 horas
+		.activity-item.activity-edit.clearfix
+			.activity-icon
+				i
+			.activity-description
+				.triangle
+				| Delego su voto en Educacion en
+				a(href='') Carlos Perez
+				| .
+				em Hace 3 horas            
