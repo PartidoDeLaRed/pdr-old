@@ -975,6 +975,13 @@ textarea::-webkit-input-placeholder {
   margin-top: 0;
   margin-bottom: 10px;
 }
+.page-homepage .box-homepage .box-content h4 a {
+  color: #333;
+  line-height: 25px;
+}
+.page-homepage .box-homepage .box-content h4 a:hover {
+  text-decoration: underline;
+}
 .page-homepage .box-homepage .box-content p {
   color: #666;
 }
