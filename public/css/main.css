@@ -956,7 +956,8 @@ textarea::-webkit-input-placeholder {
 }
 .page-homepage .box-homepage h5 {
   color: #fff;
-  background: #250933;
+  color: rgba(255,255,255,0.8);
+  background: #091a33;
   font-size: 10px;
   letter-spacing: 1px;
   line-height: 36px;

@@ -11,7 +11,7 @@ module.exports = function(app, utils) {
       res.render('profile', { page: 'profile', profile: req.user });
     } else {
       Citizen.findById(req.params.id, function(err, citizen) {
-        if(!err && citizen) return res.render('profile', { page: 'profile', profile: citizen });
+        if(!err && citizen) return res.render('profile-newsfeed', { page: 'profile', profile: citizen });
         res.send(404, 'Sorry, we cannot find that!'); //should be res.render('404'{status: 404, err: err });
       });
     }
