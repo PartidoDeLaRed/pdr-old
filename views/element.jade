@@ -15,12 +15,10 @@
 					
 					#issue-full.modal(role="dialog", style="display:none;")
 						.modal-header
-							button.close(type="button", data-dismiss="modal", aria-hidden="true") x
+							a.close(type="button", data-dismiss="modal", aria-hidden="true") ×
 							h2= element.title
 						.modal-body
 							p.issue-content-description= element.essay
-						.modal-footer
-							button.btn(type="button", data-dismiss="modal", aria-hidden="true") Cerrar
 					p
 						a(data-toggle="modal", role="button", href="#issue-full").full-read Leer Completo
 		
@@ -82,13 +80,11 @@
 					- vote.choices.forEach(function(choice) {
 						.modal(id="choice-full-#{choice.id}", role="dialog", style="display:none;")
 							.modal-header
-								button.close(type="button", data-dismiss="modal", aria-hidden="true") x
+								button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
 								h2= choice.idea.title
 								//- h4 Propuesta ideada por #{choice.idea.authors[0].fullname}
 							.modal-body
 								p.issue-content-description= choice.idea.essay
-							.modal-footer
-								button.btn(type="button", data-dismiss="modal", aria-hidden="true") Cerrar
 					-	})
 			- }
 

@@ -50,8 +50,17 @@ input,textarea{font-family: 'proxima-nova'}
 
 .modal
 	border-color: #ccc;
-	box-shadow: 0 0 10px rgba(0,0,0,.2);
+	box-shadow: none;
+	background: white; border: 8px solid #ccc; padding: 30px ;
 
+	border-radius: 0;
+	.modal-header
+		padding: 0;
+		border: 0;
+		h2
+			margin-top: 0;
+	.modal-body
+		padding: 20px 0 0 0;
 	.modal-footer
 		text-align: left;
 
@@ -441,7 +450,7 @@ a.close-compose, .modal .close
 	opacity: 1;
 	font-size: 30px;
 	line-height: 36px;
-	font-family: "Helvetica", Arial;
+	font-family: "Helvetica Neue", Arial;
 	height: 40px;
 	width: 40px;
 	text-align: center;
@@ -454,6 +463,18 @@ a.close-compose, .modal .close
 		background: #eee;
 		color: black
 
+
+.modal .close
+	text-align: center;
+	opacity: 1;
+	height: auto;
+	line-height: 30px;
+	height: 38px;
+	width: 38px;
+	text-align: center;
+	padding: 0;
+	padding-bottom: 20px;
+	font-weight: 400;
 
 .compose-modal
 	background: rgba(255,255,255,.8); position: fixed; 
@@ -521,6 +542,7 @@ textarea::-webkit-input-placeholder{color: #333;}
 	.welcome
 		background: white;
 		padding: 14px;
+		text-align: center;
 
 	.box-homepage
 		background: white; width: 220px; float: left; margin-top: 20px; margin-left: 20px; 
