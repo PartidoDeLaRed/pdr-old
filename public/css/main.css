@@ -976,11 +976,8 @@ textarea::-webkit-input-placeholder {
   margin-bottom: 10px;
 }
 .page-homepage .box-homepage .box-content h4 a {
-  color: #333;
+  color: #444;
   line-height: 25px;
-}
-.page-homepage .box-homepage .box-content h4 a:hover {
-  text-decoration: underline;
 }
 .page-homepage .box-homepage .box-content p {
   color: #666;
@@ -1020,6 +1017,9 @@ textarea::-webkit-input-placeholder {
 }
 .page-homepage .box-homepage:hover {
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+.page-homepage .box-homepage:hover a {
+  color: #333;
 }
 .page-homepage .box-homepage:hover .arrow {
   opacity: 1;
