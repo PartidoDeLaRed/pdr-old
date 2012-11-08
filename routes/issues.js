@@ -1,7 +1,8 @@
 var mongoose = require('mongoose')
   , Issue = mongoose.model('Issue')
   , IssueVote = mongoose.model('IssueVote')
-  , Comment = mongoose.model('Comment');
+  , Comment = mongoose.model('Comment')
+  , Delegation = mongoose.model('Delegation');
 
 module.exports = function(app, utils) {
   app.post('/issues/process', utils.restrict, function(req, res) {
@@ -74,7 +75,7 @@ module.exports = function(app, utils) {
     });
   });
 
-  app.post('/api/issues/:id/vote', utils.restrict, loadIssueId, loadIssueVoteByIssueId, checkIssueHasChoice, loadAllowedVoters, vote, function(req, res) {
+  app.post('/api/issues/:id/vote', utils.restrict, loadIssueId, loadIssueById, loadIssueVoteByIssueId, checkIssueHasChoice, loadAllowedVoters, vote, function(req, res) {
     res.send(req.body.idea);
   });
 }
@@ -82,6 +83,16 @@ module.exports = function(app, utils) {
 var loadIssueId = function(req, res, next) {
   req.issueId = req.params.id || req.query.id || req.body.id;
   next();
+};
+
+var loadIssueById = function(req, res, next) {
+  Issue
+  .findById(req.issueId)
+  .exec(function(err, issue) {
+    if(err) console.log(err);
+    req.issue = issue;
+    next();
+  });
 };
 
 var loadIssueVoteByIssueId = function(req, res, next) {
@@ -104,9 +115,16 @@ var checkIssueHasChoice = function(req, res, next) {
 };
 
 var loadAllowedVoters = function(req, res, next) {
-  req.voters = [req.user.id]; //change this for appropiate logic
-                              //that loads allowed voters by delegations!
-  next();
+  if(!req.issueVote) return next();
+  req.voters = [req.user.id];
+
+  //loading trusters for this citizen
+  Delegation
+  .find({category: req.issue.category, trustees: req.user.id})
+  .distinct('truster', function(err, trusters) {
+    req.voters = req.voters.concat(trusters);
+    next();
+  });
 };
 
 var vote = function(req, res, next) {
@@ -114,7 +132,7 @@ var vote = function(req, res, next) {
   if(!req.issueVote || !req.choice || !req.voters) return next();
 
   // Let mongoose find out who can vote!
-  var voters = req.issueVote.voters.addToSet(req.voters);
+  var voters = req.issueVote.voters.addToSet.apply(req.issueVote.voters, req.voters);
   if(!voters.length) return next(); //already voted!
 
   req.choice.result += voters.length;
