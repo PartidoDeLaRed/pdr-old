@@ -1,5 +1,6 @@
 var mongoose = require('mongoose')
-  , Citizen = mongoose.model('Citizen');
+  , Citizen = mongoose.model('Citizen')
+  , Delegation = mongoose.model('Delegation');
 
 module.exports = function(app, utils) {
   app.get('/profiles/me', utils.restrict, function(req, res) {
@@ -17,23 +18,39 @@ module.exports = function(app, utils) {
     }
   });
 
-  app.get('/profiles/:id/delegations', utils.restrict, function(req, res) {
+  app.get('/delegations/:id', utils.restrict, function(req, res) {
     Citizen.findById(req.params.id, function(err, citizen) {
-      if(!err && citizen) return res.render('profile-delegations', {page: 'profile', profile: citizen});
-      res.send(404, 'Sorry, we cannot find that!'); //should be res.render('404'{status: 404, err: err });
+      Delegation
+      .find({truster: req.params.id, scope: "category"})
+      .populate('trustees', 'firstName lastName')
+      .exec(function(err, delegations) {
+        var userCategoryDelegations = {};
+        delegations.forEach(function(delegation) {
+          var result = [];
+          delegation.trustees.forEach(function(trustee) {
+            if(trustee.id === req.user.id) return; //ignore current user
+            result.push({id:trustee.id, name: trustee.fullName});
+          });
+
+          userCategoryDelegations[delegation.category] = result;
+        });
+        if(!err && citizen) return res.render('profile-delegations', {page: 'profile', profile: citizen, userCategoryDelegations: userCategoryDelegations});
+        res.send(404, 'Sorry, we cannot find that!'); //should be res.render('404'{status: 404, err: err });
+      });
     });
   });
 
   app.get('/api/profiles?', utils.restrict, function(req, res) {
     var query = new RegExp(".*" + req.param('q') + ".*","i");
     
-    Citizen.
-      find()
-      .or([{firstName: query}, {lastName: query}])
-      .select('firstName lastName')
-      .exec(function(err, citizens) {
+    Citizen
+    .find()
+    .or([{firstName: query}, {lastName: query}])
+    .select('firstName lastName')
+    .exec(function(err, citizens) {
       var result = [];
       citizens.forEach(function(citizen) {
+        if(citizen.id === req.user.id) return; //ignore current user
         result.push({id:citizen.id, name: citizen.fullName});
       });
       res.json(result);

@@ -8,5 +8,30 @@ block profile_content
   - each category_name, category_id in categories
     .deletagation-item.clearfix
       label= category_name
-      input.delegation-input(type="text", name="delegation[#{category_id}]", value="")
+      input.delegation-input(type="text", name="delegation-#{category_id}", data-category="#{category_id}", value="")
 
+block custom_js
+    - each category_name, category_id in categories
+      script
+        $('.delegation-input[data-category="#{category_id}"]').tokenInput('/api/profiles', {
+          preventDuplicates: true,
+          prePopulate: !{JSON.stringify(userCategoryDelegations[category_id] || [])},
+          onAdd: function(item) {
+            PDR.api.delegations.create({
+              tid: item.id,
+              category: $(this).data('category') || ''
+            }, function(err, result) {
+              if(err) console.log(err); //should remove recently added trustee
+              // result?
+            });
+          },
+          onDelete: function(item) {
+            PDR.api.delegations.del({
+              tid: item.id,
+              category: $(this).data('category') || ''
+            }, function(err, result) {
+              if(err) console.log(err); //should remove recently added trustee
+              // result?
+            });
+          }
+        });

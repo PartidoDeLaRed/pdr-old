@@ -52,6 +52,11 @@ module.exports = function(app) {
   require('./ideas')(app, utils);
 
   /*
+   *  Delegation routes
+   */
+  require('./delegations')(app, utils);
+
+  /*
    *  Voting routes
    */
   require('./voting')(app, utils);

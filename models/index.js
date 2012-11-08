@@ -54,10 +54,14 @@ module.exports = function(app) {
    */
   require('./commentReply');
 
-   /*
-    *  Hash Model
-    */
+  /*
+   *  Delegation Model
+   */
+  require('./delegation');
+
+  /*
+   *  Hash Model
+   */
   // remporary an object with categories!!
 
-  
 }
