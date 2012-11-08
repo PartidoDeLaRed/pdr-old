@@ -23,8 +23,8 @@
 						a(data-toggle="modal", role="button", href="#issue-full").full-read Leer Completo
 		
 		.block-ideas.box.clearfix
-			- if(typeof(vote) != 'undefined' && vote.choices.length) {
-				- if(typeof(citizen) != 'undefined' && vote.voters.indexOf(citizen.id) >=0 )  {
+			- if(element.vote && element.vote.choices.length) {
+				- if(typeof(citizen) != 'undefined' && element.vote.voters.indexOf(citizen.id) >=0 )  {
 					- var voted = true;
 				- };
 				- if(!voted) {
@@ -38,7 +38,7 @@
 							i.icon
 							| Propuestas a votar
 
-					- vote.choices.forEach(function(choice) {
+					- element.vote.choices.forEach(function(choice) {
 						.span3
 							.vote-option(data-issue="#{element.id}", data-choice="#{choice.id}", data-idea="#{choice.idea.id}")
 								h4= choice.idea.title
@@ -63,8 +63,8 @@
 							i.icon
 							span Resultados preliminares
 						.box-content.clearfix
-							- var totalVoters = vote.voters.length || 1;
-							- vote.choices.forEach(function(choice) {
+							- var totalVoters = element.vote.voters.length || 1;
+							- element.vote.choices.forEach(function(choice) {
 								.partial(style="width:100%;float:left;")
 									- var partial = choice.result / totalVoters * 100;
 									h5
@@ -77,7 +77,7 @@
 				- };
 
 				.modals
-					- vote.choices.forEach(function(choice) {
+					- element.vote.choices.forEach(function(choice) {
 						.modal(id="choice-full-#{choice.id}", role="dialog", style="display:none;")
 							.modal-header
 								a.close(type="button", data-dismiss="modal", aria-hidden="true") ×

@@ -11,7 +11,6 @@ var CitizenSchema = new Schema({
 	location: {type: String },
 	imageUrl: {type: String },
 	profiles: Object,
-	ideas: [{type: ObjectId, ref: 'Idea'}],
 	createdAt: {type: Date, default: Date.now},
 	updatedAt: Date
 });

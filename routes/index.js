@@ -29,11 +29,12 @@ module.exports = function(app) {
 
   var index = function(req, res) {
     Issue
-      .find(null, null, {sort: {createdAt: -1}})
-      .populate('author')
-      .exec(function(err, issues) {
-        res.render('homepage', {issues: issues});
-      });
+    .find(null, null, {sort: {createdAt: -1}})
+    .populate('author')
+    .populate('census')
+    .exec(function(err, issues) {
+      res.render('homepage', {issues: issues});
+    });
   };
   
   /*
@@ -55,11 +56,6 @@ module.exports = function(app) {
    *  Delegation routes
    */
   require('./delegations')(app, utils);
-
-  /*
-   *  Voting routes
-   */
-  require('./voting')(app, utils);
 
   /*
    *  Profiles routes

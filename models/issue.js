@@ -3,22 +3,33 @@ var mongoose = require('mongoose')
   , ObjectId = Schema.ObjectId
   , categories = Object.keys(require('../fixtures/categories'));
 
+var IssueVoteOptionSchema = require('./issueVoteOption').schema;
+
 /*
  * Issue Schema
  */
 var IssueSchema = new Schema({
   title: {type: String, required: true, min: 8, max: 256 },
-  category: {type: String, required: true, enum: categories},
   essay: { type: String, min: 512, max: 2048},
+  category: {type: String, required: true, enum: categories},
+
   author: { type: ObjectId, ref: 'Citizen' },
   authors: [{ type: ObjectId, required: true, ref: 'Citizen'}],
-  link: {type: String},
-  sources: {type: String},
-  census: [{type: ObjectId, ref: 'Citizen' }],
-  votes: [{type: ObjectId, ref: 'IssueVote'}],
+
+  census: [{type: ObjectId, ref: 'Citizen' }],    // Citizens who have been participating in discussion and Issue's activity
+
+  vote: {
+    choices: [IssueVoteOptionSchema],
+    voters: [{type: ObjectId, ref: "Citizen"}],
+    updatedAt: {type: Date, default: Date.now}
+  },
+
+  // comments?
+
   createdAt: { type: Date, default: Date.now },
   updatedAt: Date
 });
+
 
 IssueSchema.virtual('abstract').get(function() {
   var firstDot = 0;
@@ -27,17 +38,6 @@ IssueSchema.virtual('abstract').get(function() {
   if(firstDot < 150 && firstDot > 100) return this.essay.substr(0, firstDot).concat('[...]');
   return this.essay.substr(0, 150).concat('[...]');
 });
-
-IssueSchema.post('save', function() {
-  var IssueVote = mongoose.model('IssueVote');
-  var issueVote = new IssueVote({
-    issue: this._id
-  }).save();
-});
-
-IssueSchema.methods.loadVote = function(cb) {
-  return this.model('IssueVote').findOne({issue: this._id}).populate('choices.idea').populate('choices.idea.author').exec(cb);
-};
 
 IssueSchema.methods.loadComments = function(cb) {
   var q = this.model('Comment').find({context: 'issue', reference: this._id}, null, {sort: {createdAt: -1}});

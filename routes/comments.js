@@ -2,9 +2,8 @@ var mongoose = require('mongoose')
   , Comment = mongoose.model('Comment')
   , CommentReply = mongoose.model('CommentReply')
   , Idea = mongoose.model('Idea')
-  , IssueVoteOption = mongoose.model('IssueVoteOption')
-  , IssueVote = mongoose.model('IssueVote')
-  , jade = require('jade');
+  , Issue = mongoose.model('Issue')
+  , IssueVoteOption = mongoose.model('IssueVoteOption');
 
 module.exports = function(app, utils) {
   app.post('/comments/process', utils.restrict, processCommentReference, processInitiative, checkParentComment, function(req, res) {    
@@ -65,11 +64,20 @@ var processInitiative = function(req, res, next) {
   req.idea.authors.push(req.user);
   req.idea.save(function(err, i) {
     if(!err && i) {
-      req.issueVoteOption = new IssueVoteOption({idea: req.idea});
-      IssueVote.findOne({issue: req.reference.reference}, function(err, issueVote) {
-        issueVote.choices.push(req.issueVoteOption);
-        issueVote.save();
-        next();
+      req.issueVoteOption = new IssueVoteOption({
+          idea: req.idea
+        , author: req.idea.author
+        , sponsor: req.user.id
+      });
+
+      Issue
+      .findById(req.reference.reference)
+      .exec(function(err, issue) {
+        issue.vote.choices.push(req.issueVoteOption);
+        issue.save(function(err) {
+          if(err) console.log(err);
+          next();
+        });
       });
     }
   });

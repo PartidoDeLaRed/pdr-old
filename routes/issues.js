@@ -1,70 +1,43 @@
 var mongoose = require('mongoose')
   , Issue = mongoose.model('Issue')
-  , IssueVote = mongoose.model('IssueVote')
   , Comment = mongoose.model('Comment')
   , Delegation = mongoose.model('Delegation');
 
 module.exports = function(app, utils) {
   app.post('/issues/process', utils.restrict, function(req, res) {
-    if(!req.body.issue) res.redirect('/');
-      // Deberiamos chequear el formulario y devolver errores
-      // O dejarle a mongoose el tema validación y configurar un
-      // middleware para devolver una respuesta con los errores
+    if(!req.body.issue) return res.redirect('/');
     if(!req.body.issue._id) {
       var newIssue = new Issue({
         title: req.body.issue.title,
         category: req.body.issue.category,
         essay: req.body.issue.essay,
-        author: req.user._id,
-        authors: [req.user._id],
-        census: [req.user._id]
+        author: req.user,
+        authors: [req.user],
+        census: [req.user]
       }).save(function(err, issue) {
         if(err) {
           console.log(err)
           return res.redirect('back');
         };
-        res.redirect('/issues/' + issue._id);
+        res.redirect('/issues/' + issue.id);
       });
     } else {
       //Here to edit... ?
     }
   });
 
-  app.post('/issues/:id/vote', utils.restrict, function(req, res) {
-    // find issueVote where user did not vote already
-    IssueVote.findOne({issue: req.params.id, voters: {"$ne": req.user.id}}).exec(function(err, issueVote) {
-      if(err) console.log(err);
-      // if no issueVote found, choices are already voted
-      // or issue does not exist!
-      if(!issueVote) return res.redirect('back');
-      var voted = issueVote.choices.some(function(choice) {
-        if(choice.idea.equals(req.body.choice)) {
-          //count up this choice
-          choice.count++;
-          //update issueVote voters
-          return true;
-        };
-        return false;
-      });
-      if(voted) {
-        issueVote.voters.push(req.user);
-        issueVote.save(function(err) {
-          res.redirect('back');
-        });
-      } else {
-        res.redirect('back');
-      }
-    });
-  });
-
   app.get('/issues/:id', function(req, res) {
-    Issue.findById(req.params.id).populate('author').exec(function(err, issue) {
+    Issue
+    .findById(req.params.id)
+    .populate('author')
+    .populate('vote.choices.idea')
+    .populate('vote.choices.author')
+    .populate('vote.choices.sponsor')
+    .exec(function(err, issue) {
       if(err) console.log(err);
       if(!issue) return res.redirect('/');
       issue.loadComments(function(err, comments) {
-        issue.loadVote(function(err, issueVote) {
-          res.render('issues/single', {page: 'idea', issue: issue, author: issue.author, comments: comments, issueVote: issueVote});
-        });
+        res.render('issues/single', {page: 'idea', issue: issue, author: issue.author, comments: comments});
       });
     });
   });
@@ -75,13 +48,13 @@ module.exports = function(app, utils) {
     });
   });
 
-  app.post('/api/issues/:id/vote', utils.restrict, loadIssueId, loadIssueById, loadIssueVoteByIssueId, checkIssueHasChoice, loadAllowedVoters, vote, function(req, res) {
+  app.post('/api/issues/:id/vote', utils.restrict, loadIssueId, loadIssueById, checkIssueHasChoice, loadAllowedVoters, vote, function(req, res) {
     res.send(req.body.idea);
   });
 }
 
 var loadIssueId = function(req, res, next) {
-  req.issueId = req.params.id || req.query.id || req.body.id;
+  req.issueId = req.param('id');
   next();
 };
 
@@ -95,27 +68,16 @@ var loadIssueById = function(req, res, next) {
   });
 };
 
-var loadIssueVoteByIssueId = function(req, res, next) {
-  IssueVote.findOne({issue: req.issueId}, function(err, issueVote) {
-    if(err) console.log('error loading issue vote >>', err);
-    if(!issueVote) console.log("no issue vote for issue:", req.issueId);
-    if(err || !issueVote) return next();
-
-    req.issueVote = issueVote;
-    next();
-  });
-};
-
 var checkIssueHasChoice = function(req, res, next) {
-  if(!req.issueVote) return next();
-  var choice = req.issueVote.choices.id(req.body.choice);
-  if(!choice) console.log('issue', req.issueId, 'has no choice', req.body.choice);
+  if(!req.issue) return next();
+  var choice = req.issue.vote.choices.id(req.body.choice);
+  if(!choice) console.log('voting for issue', req.issueId, 'has no choice', req.body.choice);
   req.choice = choice;
   next();
 };
 
 var loadAllowedVoters = function(req, res, next) {
-  if(!req.issueVote) return next();
+  if(!req.issue) return next();
   req.voters = [req.user.id];
 
   //loading trusters for this citizen
@@ -129,15 +91,15 @@ var loadAllowedVoters = function(req, res, next) {
 
 var vote = function(req, res, next) {
   //errors before!
-  if(!req.issueVote || !req.choice || !req.voters) return next();
+  if(!req.issue || !req.choice || !req.voters) return next();
 
   // Let mongoose find out who can vote!
-  var voters = req.issueVote.voters.addToSet.apply(req.issueVote.voters, req.voters);
+  var voters = req.issue.vote.voters.addToSet.apply(req.issue.vote.voters, req.voters);
   if(!voters.length) return next(); //already voted!
 
   req.choice.result += voters.length;
 
-  req.issueVote.save(function(err) {
+  req.issue.save(function(err) {
     if(err) console.log(err);
     next();
   });
