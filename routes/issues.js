@@ -37,7 +37,13 @@ module.exports = function(app, utils) {
       if(err) console.log(err);
       if(!issue) return res.redirect('/');
       issue.loadComments(function(err, comments) {
-        res.render('issues/single', {page: 'idea', issue: issue, author: issue.author, comments: comments});
+        Delegation
+        .findOne({truster: req.user.id, category: issue.category})
+        // .select('trustees')
+        .populate('trustees')
+        .exec(function(err, delegation) {
+          res.render('issues/single', {page: 'idea', issue: issue, author: issue.author, comments: comments, delegation: delegation});
+        });
       });
     });
   });

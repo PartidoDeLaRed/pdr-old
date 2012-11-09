@@ -48,12 +48,7 @@ app.configure(function() {
     next();
   });
   app.use(app.router);
-  app.use(function(err, req, res, next) {
-    if(err) console.log(err);
-    res.redirect('/');
-  });
 });
-
 
 /*
  * Mongoose Models and DB connection

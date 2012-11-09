@@ -88,6 +88,10 @@
         });
       });
 
+      $('#delegation p a.delegate-button').live('click', function(ev) {
+        $(this).parent('p').hide().next('p').show();
+      });
+
     }
   };
 })(window);

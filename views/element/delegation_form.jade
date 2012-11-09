@@ -1,3 +1,4 @@
+- var delegation = delegation || {};
 #delegation.modal(role="dialog", style="display:none;")
   .modal-header
     a.close(type="button", data-dismiss="modal", aria-hidden="true") ×
@@ -7,20 +8,20 @@
     p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur viverra nisl a nisl faucibus. 
 
     form().form-delegation
-
-      h5  Usted esta delegando su voto en Ricardo Rauch (@gravityonmars)
-      img.profile-delegation(src="https://twimg0-a.akamaihd.net/profile_images/2583335118/yts2np89ifncbi0j3vgm.jpeg")
+      - if(delegation.trustees) {
+        - var firstTrustee = delegation.trustees[0];
+        h5  Usted esta delegando su voto en #{firstTrustee.fullName} (@#{firstTrustee.username})
+        img.profile-delegation(src="#{firstTrustee.imageUrl}")
+      - } else {
+        h5 Usted no ha configurado delegaciones en esta categoria
+      - }
 
       p 
-        a(href="") Prefiero delegar mi voto en otra persona
+        a.delegate-button(href="#") Prefiero delegar mi voto en otra persona
       
       //- on click muestra este input
-      p
+      p(style="display:none;")
         input(type="text", class="input-delegate-another", placeholder="Usuario al que le quiere delegar su voto")
-
-      //- p
-      //-   input(type="text", name="delegation[citizen]", placeholder="Empieze a escribir el nombre") 
-
 
   .modal-footer
     button.btn(type="button", data-dismiss="modal", aria-hidden="true") Confirmar delegacion
