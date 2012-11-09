@@ -1,17 +1,24 @@
 - var delegation = delegation || {};
-#delegation.modal(role="dialog", style="display:none;")
+- var category = element ? element.category : '';
+#delegation.modal(role="dialog", style="display:none;", data-category="#{category}")
   .modal-header
     a.close(type="button", data-dismiss="modal", aria-hidden="true") ×
     h2 Delegacion de voto
-  .modal-body
 
+  .modal-body
     p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur viverra nisl a nisl faucibus. 
 
     form().form-delegation
-      - if(delegation.trustees) {
-        - var firstTrustee = delegation.trustees[0];
-        h5  Usted esta delegando su voto en #{firstTrustee.fullName} (@#{firstTrustee.username})
-        img.profile-delegation(src="#{firstTrustee.imageUrl}")
+      - if(delegation.trustees && delegation.trustees.length) {
+        - var len = delegation.trustees.length - 1; 
+        - var trustee = delegation.trustees[len];
+        h5
+          | Usted esta delegando su voto en 
+          span.fullname #{trustee.fullName}
+          |  (@
+          span.username #{trustee.username}
+          | )
+        img.profile-delegation(src="#{trustee.imageUrl}")
       - } else {
         h5 Usted no ha configurado delegaciones en esta categoria
       - }
@@ -21,7 +28,8 @@
       
       //- on click muestra este input
       p(style="display:none;")
-        input(type="text", class="input-delegate-another", placeholder="Usuario al que le quiere delegar su voto")
+        input.input-delegate-another(type="text", placeholder="Usuario al que le quiere delegar su voto")
+
 
   .modal-footer
-    button.btn(type="button", data-dismiss="modal", aria-hidden="true") Confirmar delegacion
+    button.btn.confirm-delegation(type="button", aria-hidden="true") Confirmar delegacion

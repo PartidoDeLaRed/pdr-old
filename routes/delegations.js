@@ -5,7 +5,7 @@ var mongoose = require('mongoose')
 
 module.exports = function(app, utils) {
   app.post('/api/delegations/create', utils.restrict, loadDelegationScope, loadDelegation, createDelegation, function(req, res) {
-    res.send(req.delegation.id);
+    res.send(req.delegation ? req.delegation.id : '');
   });
 
   app.post('/api/delegations/delete', utils.restrict, loadDelegationScope, loadDelegation, deleteDelegation, function(req, res) {
@@ -36,6 +36,9 @@ var loadDelegation = function(req, res, next) {
 };
 
 var createDelegation = function(req, res, next) {
+  // Avoid itself
+  if(req.user.id == req.param('tid')) return next();
+
   if(!req.delegation) {
     req.delegation = new Delegation({
       truster: req.user.id,
@@ -55,8 +58,8 @@ var createDelegation = function(req, res, next) {
 };
 
 var deleteDelegation = function(req, res, next) {
-  console.log(req.delegation);
   if(!req.delegation) return next();
+
   // delete existent delegation
   req.delegation.trustees.remove(req.param('tid'));
   req.delegation.save(function(err) {

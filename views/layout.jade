@@ -21,7 +21,11 @@ html(lang='en')
 
     link(rel='stylesheet', href='/css/social-buttons.css')
     link(rel='stylesheet', href='/js/vendor/tokeninput/token-input.css')
+    //- link(rel='stylesheet', href='/js/vendor/tokeninput/token-input-mac.css')
+    link(rel='stylesheet', href='/js/vendor/tokeninput/token-input-facebook.css')
     link(rel='stylesheet', href='/css/main.css')
+    style
+      div.token-input-dropdown-facebook{ z-index: 10000}
   
     //
     //   Favicons
@@ -31,9 +35,10 @@ html(lang='en')
     link(rel='apple-touch-icon', sizes='72x72', href='/images/apple-touch-icon-72x72.png')
     link(rel='apple-touch-icon', sizes='114x114', href='/images/apple-touch-icon-114x114.png')
 
-    script(type='text/javascript', src='http://use.typekit.com/wva0yvr.js')
-    script(type='text/javascript')
-      try{Typekit.load();}catch(e){}
+    // This makes app REALLY slow!!!
+    // script(type='text/javascript', src='http://use.typekit.com/wva0yvr.js')
+    // script(type='text/javascript')
+    //   try{Typekit.load();}catch(e){}
 
   body(class=page + "-page")
     header

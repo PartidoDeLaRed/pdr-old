@@ -3,17 +3,6 @@ var mongoose = require('mongoose')
   , ObjectId = Schema.ObjectId
   , categories = Object.keys(require('../fixtures/categories'));
 
-// var DelegationHashSchema = new Schema({
-//   // hash: {type: ObjectId, ref: 'Hash'}, // For when hashes get created from citizens
-//     category: {type: String, enum: categories}
-//   , trustees: [{type: ObjectId, ref: 'Citizen'}]
-// });
-
-// var DelegationIssueSchema = new Schema({
-//     issue: {type: ObjectId, ref: 'Issue'}
-//   , trustees: [{type: ObjectId, ref: 'Citizen'}]
-// });
-
 var DelegationSchema = new Schema({
     truster: {type: ObjectId, ref:'Citizen', required: true}
   , scope: {type: String, enum: ['category', 'issue'], required: true}

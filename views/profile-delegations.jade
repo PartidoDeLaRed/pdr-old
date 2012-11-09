@@ -14,6 +14,7 @@ block custom_js
     - each category_name, category_id in categories
       script
         $('.delegation-input[data-category="#{category_id}"]').tokenInput('/api/profiles', {
+          theme: 'facebook',
           preventDuplicates: true,
           prePopulate: !{JSON.stringify(userCategoryDelegations[category_id] || [])},
           onAdd: function(item) {

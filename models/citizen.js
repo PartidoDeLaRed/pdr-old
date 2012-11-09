@@ -27,6 +27,7 @@ CitizenSchema.virtual('fullName').set(function(name) {
   }
 });
 
+// Ensures index on mongodb for query search
 CitizenSchema.index({firstName:1, lastName:1});
 
 module.exports = mongoose.model('Citizen', CitizenSchema);

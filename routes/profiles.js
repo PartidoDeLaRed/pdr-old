@@ -46,12 +46,12 @@ module.exports = function(app, utils) {
     Citizen
     .find()
     .or([{firstName: query}, {lastName: query}])
-    .select('firstName lastName')
+    .select('firstName lastName username imageUrl')
     .exec(function(err, citizens) {
       var result = [];
       citizens.forEach(function(citizen) {
         if(citizen.id === req.user.id) return; //ignore current user
-        result.push({id:citizen.id, name: citizen.fullName});
+        result.push({id:citizen.id, name: citizen.fullName, username: citizen.username, imageUrl: citizen.imageUrl});
       });
       res.json(result);
     });

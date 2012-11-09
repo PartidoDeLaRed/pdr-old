@@ -88,10 +88,36 @@
         });
       });
 
+      // Delegation form on issue view
       $('#delegation p a.delegate-button').live('click', function(ev) {
+        ev.preventDefault();
         $(this).parent('p').hide().next('p').show();
       });
 
+      $('#delegation .input-delegate-another').tokenInput('/api/profiles', {
+        theme: 'facebook',
+        preventDuplicates: true,
+        tokenLimit: 1
+      });
+
+      $('#delegation .confirm-delegation').live('click', function(ev) {
+        ev.preventDefault();
+        var trustee = $('#delegation .input-delegate-another').tokenInput('get');
+
+        if(!trustee.length) return;
+        trustee = trustee[0];
+        if(trustee.id) {
+          PDR.api.delegations.create({
+            tid: trustee.id,
+            category: $('#delegation').data('category') || ''
+          }, function(err, result) {
+            if(err) {
+              console.log(err); //should remove recently added trustee
+            }
+            window.location.reload();
+          });
+        }
+      });
     }
   };
 })(window);
