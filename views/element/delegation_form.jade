@@ -19,17 +19,24 @@
           span.username #{trustee.username}
           | )
         img.profile-delegation(src="#{trustee.imageUrl}")
+
+        p 
+          a.delegate-button(href="#") Prefiero delegar mi voto en otra persona
+        
+        //- on click muestra este input
+        p(style="display:none;")
+          input.input-delegate-another(type="text", placeholder="Usuario al que le quiere delegar su voto")
+
+        .modal-footer
+          button.btn.confirm-delegation(type="button", aria-hidden="true") Confirmar delegacion
+
       - } else {
-        h5 Usted no ha configurado delegaciones en esta categoria
+        h5
+          | Usted no ha configurado delegaciones en esta categoria. Haga click 
+          a(href="/delegations/#{citizen.id}") aqui
+          |  para configurarlo.
+
       - }
 
-      p 
-        a.delegate-button(href="#") Prefiero delegar mi voto en otra persona
-      
-      //- on click muestra este input
-      p(style="display:none;")
-        input.input-delegate-another(type="text", placeholder="Usuario al que le quiere delegar su voto")
 
 
-  .modal-footer
-    button.btn.confirm-delegation(type="button", aria-hidden="true") Confirmar delegacion
