@@ -32,9 +32,7 @@ module.exports = function(app, utils) {
 };
 
 var caringRoutes = { //rutas extraidas de app.router!! con console.log
-    'issue-vote': /\/voting\/issue\/(?:([^\/]+?))\/?$/g
-  , 'idea-vote': /\/voting\/idea\/(?:([^\/]+?))\/?$/g
-  , 'issue': /\/issues\/(?:([^\/]+?))\/?$/g
+    'issue': /\/issues\/(?:([^\/]+?))\/?$/g
   , 'idea': /\/ideas\/(?:([^\/]+?))\/?$/g
 };
 

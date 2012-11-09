@@ -4,7 +4,6 @@ var mongoose = require('mongoose')
 
 var CommentReplySchema = require('./commentReply').schema;
 
-
 /*
  * Comment Schema
  */
@@ -23,6 +22,24 @@ var CommentSchema = new Schema({
   , replies: [CommentReplySchema]
   , createdAt: {type: Date, default: Date.now}
   , updatedAt: {type: Date}
+});
+
+
+CommentSchema.post('save', function(comment) {
+  var Element = this.context.charAt(0).toUpperCase() + this.context.slice(1);
+
+  try {
+    Element = this.model(Element);
+  } catch (err) {
+    console.log(err);
+    return;
+  }
+  Element.findById(this.reference, function(err, element) {
+    element.census.addToSet(comment.author);
+    element.save(function(err) {
+      if(err) console.log(err);
+    });
+  })
 });
 
 module.exports = mongoose.model('Comment', CommentSchema);

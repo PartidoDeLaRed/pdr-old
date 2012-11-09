@@ -19,9 +19,10 @@ block content
 						p= issue.abstract
 
 					.users
-						a(href="/profiles/#{issue.author.id}", rel="tooltip", title="#{issue.author.fullName}", data-placement="bottom", class="tt")
-							img(src="#{issue.author.imageUrl}")
-							//- Faltan los usuarios en comentarios!!
+						- issue.census.forEach(function(cz) {
+								a(href="/profiles/#{cz.id}", rel="tooltip", title="#{cz.fullName}", data-placement="bottom", class="tt")
+									img(src="#{cz.imageUrl}")
+						-	});
 					a(href="/issues/#{issue.id}").arrow
 			-	});
 		.clear
