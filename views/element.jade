@@ -23,7 +23,6 @@
 						a(data-toggle="modal", role="button", href="#issue-full").full-read Leer Completo
 		
 		.block-ideas.box.clearfix
-			- if(element.vote && element.vote.choices.length) {
 				- if(typeof(citizen) != 'undefined' && element.vote.voters.indexOf(citizen.id) >=0 )  {
 					- var voted = true;
 				- };
@@ -51,12 +50,12 @@
 										| 23
 									- if(!voted) {
 										a.vote(href="#") Votar
-									- };								
+									- };
 					-	});
-						.span3
-							a(href="").create-idea.vote-option 
-								i +
-								span Crear Propuesta
+					.span3
+						a(href="").create-idea.vote-option 
+							i +
+							span Crear Propuesta
 				- } else {
 					.span9.box.block-results
 						h3.block-title 
@@ -86,6 +85,5 @@
 							.modal-body
 								p.issue-content-description= choice.idea.essay
 					-	})
-			- }
 
 			include element/comments
