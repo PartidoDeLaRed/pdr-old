@@ -16,16 +16,16 @@ block content
       .span2
         .box.sidebar.clearfix
           nav
-            a.actividad.selected(href='/profiles/me')
+            a.actividad(href='/profiles/me', style="display:none;")
               i
               | Actividad
-            a.perfil(href='#')
+            a.perfil(href='#', style="display:none;")
               i
               | Perfil
-            a.delegaciones(href='/delegations/#{profile.id}')
+            a.delegaciones.selected(href='/delegations/#{profile.id}')
               i
               | Delegaciones
-            a.opciones(href='#')
+            a.opciones(href='#', style="display:none;")
               i
               | Opciones
       .span7

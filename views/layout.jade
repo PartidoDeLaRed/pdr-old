@@ -36,9 +36,9 @@ html(lang='en')
     link(rel='apple-touch-icon', sizes='114x114', href='/images/apple-touch-icon-114x114.png')
 
     // This makes app REALLY slow!!!
-    // script(type='text/javascript', src='http://use.typekit.com/wva0yvr.js')
-    // script(type='text/javascript')
-    //   try{Typekit.load();}catch(e){}
+    script(type='text/javascript', src='http://use.typekit.com/wva0yvr.js')
+    script(type='text/javascript')
+      try{Typekit.load();}catch(e){}
 
   body(class=page + "-page")
     header
@@ -60,13 +60,13 @@ html(lang='en')
               .user-options
                 a.tt.compose.compose-link(data-toggle="modal", role="button", href='#compose', data-backdrop="false", data-keyboard="false", rel="tooltip", title="Redactar una problematica", data-placement="bottom")
                   i
-                a.notifications(href='', rel="tooltip", title="Redactar una propuesta", data-placement="bottom")
+                a.notifications(href='', rel="tooltip", title="Redactar una propuesta", data-placement="bottom", style="display:none;")
                   b 43
                   i
                 a.tt.options(href='', rel="tooltip")
                   i
                 div.options-dropdown
-                  a(href="/profiles/me") Editar Perfil
+                  a(href="/delegations/#{citizen.id}") Mis delegaciones
                   span.triangle
                   a(href="/logout") Cerrar session
 
