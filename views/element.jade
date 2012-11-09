@@ -81,6 +81,9 @@
 							.modal-header
 								a.close(type="button", data-dismiss="modal", aria-hidden="true") ×
 								h2= choice.idea.title
+								h5
+									| por 
+									a(href="/profiles/#{choice.sponsor.id}")= choice.sponsor.fullName
 								//- h4 Propuesta ideada por #{choice.idea.authors[0].fullname}
 							.modal-body
 								p.issue-content-description= choice.idea.essay
