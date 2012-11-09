@@ -52,7 +52,7 @@ html(lang='en')
                 i
                 | Problematicas
 
-              a.how-it-works(href='/help')
+              a.how-it-works(href='http://wiki.partidodelared.org')
                 i
                 | Ayuda
             - if('undefined' !== typeof citizen) {
@@ -60,12 +60,13 @@ html(lang='en')
               .user-options
                 a.tt.compose.compose-link(data-toggle="modal", role="button", href='#compose', data-backdrop="false", data-keyboard="false", rel="tooltip", title="Redactar una problematica", data-placement="bottom")
                   i
-                a.notifications(href='', rel="tooltip", title="Redactar una propuesta", data-placement="bottom", style="display:none;")
+                a.notifications(href='', rel="tooltip", title="Redactar una propuesta", data-placement="bottom")
                   b 43
                   i
                 a.tt.options(href='', rel="tooltip")
                   i
                 div.options-dropdown
+                  a(href="/profiles/me") Mi perfil
                   a(href="/delegations/#{citizen.id}") Delegaciones
                   span.triangle
                   a(href="/logout") Cerrar session
