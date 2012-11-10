@@ -1033,6 +1033,8 @@ textarea::-webkit-input-placeholder {
 }
 .page-homepage .box-homepage .users a img {
   border-radius: 100px;
+  width: 24px;
+  height: 24px;
 }
 .page-homepage .box-homepage .arrow {
   background: url("../../images/arrow-right.png") center no-repeat;
