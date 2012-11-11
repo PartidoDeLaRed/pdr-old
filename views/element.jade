@@ -83,9 +83,11 @@
                 a.close(type="button", data-dismiss="modal", aria-hidden="true") ×
                 h2= choice.idea.title
                 h5
-                  | por 
+                  | Propuesto por 
                   a(href="/profiles/#{choice.sponsor.id}")= choice.sponsor.fullName
-                //- h4 Propuesta ideada por #{choice.idea.authors[0].fullname}
+                  i.tt(href="#", rel="tooltip", data-placement="bottom", title="#{choice.updatedAt.toLocaleDateString() + ' ' + choice.updatedAt.toLocaleTimeString()}") 
+                    span.time(title=choice.updatedAt.toISOString())
+
               .modal-body
                 p.issue-content-description= choice.idea.essay
           - })
