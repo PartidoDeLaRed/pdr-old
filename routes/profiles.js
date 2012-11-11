@@ -18,10 +18,10 @@ module.exports = function(app, utils) {
     }
   });
 
-  app.get('/delegations/:id', utils.restrict, function(req, res) {
-    Citizen.findById(req.params.id, function(err, citizen) {
+  app.get('/profiles/me/delegations', utils.restrict, function(req, res) {
+    Citizen.findById(req.user.id, function(err, citizen) {
       Delegation
-      .find({truster: req.params.id, scope: "category"})
+      .find({truster: req.user.id, scope: "category"})
       .populate('trustees', 'firstName lastName')
       .exec(function(err, delegations) {
         var userCategoryDelegations = {};
