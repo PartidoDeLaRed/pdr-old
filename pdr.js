@@ -3,7 +3,7 @@ var express = require('express')
   , passport = require('passport')
   , mongoose = require('mongoose')
   , mongoStore = require('connect-mongodb')
-  , marked = require('marked');
+  , utils = require('./utils');
 
 /*
  * Create and config server
@@ -43,10 +43,7 @@ app.configure(function() {
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(function(req, res, next) {
-    res.locals.md = res.locals.md || function(source, options) {
-      source = source.replace(/\n/g, '  \n')
-      return marked(source, options);
-    }
+    res.locals.md = utils.md;
     next();
   });
   app.use(function(req, res, next) {

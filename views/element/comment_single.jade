@@ -5,7 +5,7 @@ section.comment.question.clearfix
     .postmeta
       span.time(title=comment.createdAt.toISOString())
     span.name= comment.author.fullName
-    p!= md(comment.text)
+    != md(comment.text)
     - var commentInitiative = comment.metadata ? comment.metadata.initiative : {};
     - if(commentInitiative.choice) {
       a.idea-attachment(data-toggle="modal", role="button", href="#choice-full-#{commentInitiative.choice}") 
