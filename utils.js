@@ -1,37 +1,37 @@
+// var ghm = require("ghm");
 var marked = require('marked');
-var ghm = require("ghm");
 
 exports.restrict = function(req, res, next){
   if(req.isAuthenticated()) next();
   else res.redirect('/');
 };
 
-exports.md = function(source, options) {
-  return ghm.parse(source);
-}
-
 // exports.md = function(source, options) {
-//   options = options || {};
-//   options.sanitize = options.sanitize || true;
+//   return ghm.parse(source);
+// }
 
-//   // github like mardown for tabs and newlines
-//   source = source
-//   // \r\n and \r -> \n
-//   .replace(/\r\n?/g, '\n')
+exports.md = function(source, options) {
+  options = options || {};
+  options.sanitize = options.sanitize || true;
 
-//   // 2 newline to paragraph
-//   .replace(/\n\n+/, "\n\n")
+  // github like mardown for tabs and newlines
+  source = source
+  // \r\n and \r -> \n
+  .replace(/\r\n?/g, '\n')
 
-//   // 1 newline to br
-//   .replace(/([^\n]\n)(?=[^\n])/g, function(m) {
-//     return /\n{2}/.test(m) ? m : m.replace(/\s+$/,"") + "  \n";
-//   })
+  // 2 newline to paragraph
+  .replace(/\n\n+/, "\n\n")
 
-//   // tabs to four spaces
-//   .replace(/\t/g, '    ');
+  // 1 newline to br
+  .replace(/([^\n]\n)(?=[^\n])/g, function(m) {
+    return /\n{2}/.test(m) ? m : m.replace(/\s+$/,"") + "  \n";
+  })
 
-//   return marked(source, options);
-// };
+  // tabs to four spaces
+  .replace(/\t/g, '    ');
+
+  return marked(source, options);
+};
 
 exports.actions = {
   vote: {
