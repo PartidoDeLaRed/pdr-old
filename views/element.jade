@@ -11,14 +11,14 @@
           h4.issue-title Problematica de 
             a(href="")= categories[element.category]
           h2= element.title
-          p.issue-content-description= element.abstract
+          p.issue-content-description!= md(element.abstract)
           
           #issue-full.modal(role="dialog", style="display:none;")
             .modal-header
               a.close(type="button", data-dismiss="modal", aria-hidden="true") ×
               h2= element.title
             .modal-body
-              p.issue-content-description= element.essay
+              p.issue-content-description!= md(element.essay)
           p
             a(data-toggle="modal", role="button", href="#issue-full").full-read Leer Completo
     
