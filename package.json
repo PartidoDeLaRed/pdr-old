@@ -17,6 +17,7 @@
         "express": "*"
       , "jade": "*"
       , "marked": "*"
+      , "ghm": "*"
       , "http-auth": "*"    
       , "passport": "*"
       , "passport-facebook": "*"
