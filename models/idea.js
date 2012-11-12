@@ -18,6 +18,14 @@ var IdeaSchema = new Schema({
   updatedAt: Date
 });
 
+IdeaSchema.virtual('abstract').get(function() {
+  var firstDot = 0;
+  if(this.essay.length < 150) return this.essay;
+  firstDot = this.essay.indexOf('.')
+  if(firstDot < 150 && firstDot > 100) return this.essay.substr(0, firstDot).concat('[...]');
+  return this.essay.substr(0, 150).concat('[...]');
+});
+
 IdeaSchema.methods.loadComments = function(cb) {
   return this.model('Comment').find({context: 'idea', reference: this._id}, null, {sort: {createdAt: -1}}).populate('author').exec(cb);
 };

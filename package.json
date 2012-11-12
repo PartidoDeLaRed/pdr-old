@@ -16,7 +16,7 @@
   , "dependencies": {
         "express": "*"
       , "jade": "*"
-      , "markdown": "*"
+      , "marked": "*"
       , "http-auth": "*"    
       , "passport": "*"
       , "passport-facebook": "*"

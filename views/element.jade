@@ -11,7 +11,7 @@
           h4.issue-title Problematica de 
             a(href="")= categories[element.category]
           h2= element.title
-          p.issue-content-description!= md(element.abstract)
+          p.issue-content-description= element.abstract
           
           #issue-full.modal(role="dialog", style="display:none;")
             .modal-header
@@ -42,7 +42,7 @@
             .span3
               .vote-option(data-issue="#{element.id}", data-choice="#{choice.id}", data-idea="#{choice.idea.id}")
                 h4= choice.idea.title
-                p= choice.idea.essay.substr(0,80).trim().concat('...')
+                p= choice.idea.abstract
                 p
                   a(data-toggle="modal", role="button", href="#choice-full-#{choice.id}").full-read Leer Completo
                 .buttons
@@ -89,7 +89,7 @@
                     span.time(title=choice.updatedAt.toISOString())
 
               .modal-body
-                p.issue-content-description= choice.idea.essay
+                p.issue-content-description!= md(choice.idea.essay)
           - })
 
       include element/comments
