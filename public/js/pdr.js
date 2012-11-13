@@ -27,6 +27,7 @@
         var _self = this;
         setTimeout(function() {
           var minHeight = parseInt($(_self).css('minHeight') , 10);
+          $(_self).css('minHeight', $(_self).css('minHeight'));
           if($(_self).height() < minHeight) $(_self).height(minHeight);
         }, 20);
       });
