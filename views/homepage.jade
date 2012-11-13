@@ -20,12 +20,12 @@ block content
 
 					.users
 						a(href="/profiles/#{issue.author.id}", rel="tooltip", title="#{issue.author.fullName}", data-placement="bottom", class="tt")
-							img(src="#{issue.author.imageUrl}")
+							img(src="#{issue.author.imageUrlMini}")
 						- issue.census.reverse();
 						- issue.census.every(function(cz, idx) {
 								- if(cz.id == issue.author.id) return true;
 								a(href="/profiles/#{cz.id}", rel="tooltip", title="#{cz.fullName}", data-placement="bottom", class="tt")
-									img(src="#{cz.imageUrl}")
+									img(src="#{cz.imageUrlMini}")
 								- return idx < 4; // five extra avatars
 						-	});
 					a(href="/issues/#{issue.id}").arrow

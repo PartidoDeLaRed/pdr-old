@@ -65,7 +65,7 @@ module.exports = function(app) {
       callbackURL: config.auth.twitter.callback
     },
     function(accessToken, refreshToken, profile, done) {
-      var imageUrl = profile._json.profile_image_url.replace('_normal.', ".");
+      var imageUrl = profile._json.profile_image_url;
 
       Citizen.findOne({ 'profiles.twitter.id': profile.id }, function(err, citizen) {
         if(!err && citizen) {
