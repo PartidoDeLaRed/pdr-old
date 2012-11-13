@@ -5,18 +5,18 @@ block profile_content
   h3 Delegaciones
   p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur viverra nisl a nisl faucibus molestie. Aliquam ac elit odio. Nunc commodo mi vitae ipsum tempus egestas.
   form(action="/delegation/process", method="post")
-  - each category_name, category_id in categories
+  - each category, cid in categories
     .deletagation-item.clearfix
-      label= category_name
-      input.delegation-input(type="text", name="delegation-#{category_id}", data-category="#{category_id}", value="")
+      label= category.name
+      input.delegation-input(type="text", name="delegation-#{cid}", data-category="#{cid}", value="")
 
 block custom_js
-    - each category_name, category_id in categories
+    - each category, cid in categories
       script
-        $('.delegation-input[data-category="#{category_id}"]').tokenInput('/api/profiles', {
+        $('.delegation-input[data-category="#{cid}"]').tokenInput('/api/profiles', {
           theme: 'facebook',
           preventDuplicates: true,
-          prePopulate: !{JSON.stringify(userCategoryDelegations[category_id] || [])},
+          prePopulate: !{JSON.stringify(userCategoryDelegations[cid] || [])},
           onAdd: function(item) {
             PDR.api.delegations.create({
               tid: item.id,

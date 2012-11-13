@@ -11,8 +11,8 @@
     p.insertion
       span.insertion-point
       select(name="issue[category]")
-        - each category_name, category_id in categories
-          option(value=category_id)= category_name
+        - each category, cid in categories
+          option(value=cid)= category.name
 
     p.insertion
       span.insertion-point

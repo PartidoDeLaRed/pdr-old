@@ -1,15 +1,66 @@
 {
-  "ciencia-y-tecnologia": "Ciencia y tecnología",
-  "cultura": "Cultura",
-  "deportes": "Deportes",
-  "economia-y-finanzas": "Economía y finanzas",
-  "educacion": "Educación",
-  "justicia": "Justicia",
-  "salud": "Salud",
-  "politicas-sociales": "Políticas sociales",
-  "seguridad": "Seguridad",
-  "servicios-publicos": "Servicios públicos",
-  "trabajo": "Trabajo",
-  "transporte": "Transporte",
-  "turismo": "Turismo"
+    "ciencia-y-tecnologia": {
+        "name": "Ciencia y tecnología"
+      , "color": "#091A33"
+    }
+
+  , "cultura": {
+        "name": "Cultura"
+      , "color": "#091A33"
+    }
+
+  , "deportes": {
+        "name": "Deportes"
+      , "color": "#091A33"
+    }
+
+  , "economia-y-finanzas": {
+        "name": "Economía y Finanzas"
+      , "color": "#091A33"
+    }
+
+  , "educacion": {
+        "name": "Educación"
+      , "color": "#091A33"
+    }
+
+  , "justicia": {
+        "name": "Justicia"
+      , "color": "#091A33"
+    }
+
+  , "salud": {
+        "name": "Salud"
+      , "color": "#091A33"
+    }
+
+  , "politicas-sociales": {
+        "name": "Políticas sociales"
+      , "color": "#091A33"
+    }
+
+  , "seguridad": {
+        "name": "Seguridad"
+      , "color": "#091A33"
+    }
+
+  , "servicios-publicos": {
+        "name": "Servicios públicos"
+      , "color": "#091A33"
+    }
+
+  , "trabajo": {
+        "name": "Trabajo"
+      , "color": "#091A33"
+    }
+
+  , "transporte": {
+        "name": "Transporte"
+      , "color": "#091A33"
+    }
+
+  , "turismo": {
+        "name": "Turismo"
+      , "color": "#091A33"
+    }
 }

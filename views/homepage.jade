@@ -12,7 +12,7 @@ block content
 		.row.box-homepage-list
 			- issues.forEach(function(issue) {
 				.box-homepage
-					h5= categories[issue.category]
+					h5(style="background-color:#{categories[issue.category].color}")= categories[issue.category].name
 					.box-content
 						h4 
 							a(href="/issues/#{issue.id}")= issue.title
