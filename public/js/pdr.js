@@ -23,6 +23,14 @@
     },
 
     domEvents: function() {
+      $('textarea').focus(function() {
+        var _self = this;
+        setTimeout(function() {
+          var minHeight = parseInt($(_self).css('minHeight') , 10);
+          if($(_self).height() < minHeight) $(_self).height(minHeight);
+        }, 20);
+      });
+
       $('.quick-reply form').live('submit', function(ev) {
         ev.preventDefault();
 
