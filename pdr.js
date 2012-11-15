@@ -13,7 +13,6 @@ var app = exports.app = express();
 app.set('categories', require('./fixtures/categories.json'));
 
 app.configure('development', function() {
-  app.use(express.errorHandler());
   app.set('config', require('./config.dev.json'));
   app.set('mongoUrl', 'mongodb://localhost/pdr');
 
@@ -21,6 +20,7 @@ app.configure('development', function() {
 });
 
 app.configure('production', function() {
+  app.use(express.compress())
   app.set('config', require('./config.json'));
   app.set('mongoUrl', process.env.MONGOHQ_URL);
 
@@ -53,6 +53,8 @@ app.configure(function() {
     next();
   });
   app.use(app.router);
+  // Here we should have our own error handler!
+  app.use(express.errorHandler());
 });
 
 /*
