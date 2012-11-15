@@ -11,7 +11,7 @@
           h4.issue-title Problematica de 
             a(href="")= categories[element.category].name
           h2= element.title
-          p.issue-content-description!= md(element.essay)
+          .issue-content-description!= md(element.essay)
           
           // 
             #issue-full.modal(role="dialog", style="display:none;")
