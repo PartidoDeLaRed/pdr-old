@@ -34,6 +34,5 @@ $(document).ready(function(){
 	$('.box-homepage-list').masonry({
 	    // options
 	    itemSelector : '.box-homepage'
-
-  	});
+	});
 });
