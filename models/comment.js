@@ -34,12 +34,19 @@ CommentSchema.post('save', function(comment) {
     console.log(err);
     return;
   }
+  
   Element.findById(this.reference, function(err, element) {
     element.census.addToSet(comment.author);
-    element.save(function(err) {
-      if(err) console.log(err);
+    comment.replies.forEach(function(reply) {
+      element.census.addToSet(reply.author);
     });
-  })
+
+    if(element.isModified()) {
+      element.save(function(err) {
+        if(err) console.log(err);
+      });
+    }
+  });
 });
 
 module.exports = mongoose.model('Comment', CommentSchema);
