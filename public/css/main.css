@@ -309,7 +309,7 @@ i.icon {
   background: #fff;
   box-shadow: 0 0 0 3px rgba(0,0,0,0.05), 0 0 0 1px rgba(0,0,0,0.2);
   display: block;
-  min-height: 200px;
+  min-height: 280px;
   padding: 14px;
   overflow: hidden;
   position: relative;
@@ -348,6 +348,7 @@ i.icon {
   font-weight: bold;
   line-height: 32px;
   display: inline-block;
+  display: none;
 }
 .block-ideas .vote-option a.total-comments i {
   display: inline-block;
@@ -364,7 +365,7 @@ i.icon {
 }
 .block-ideas .vote-option.create-idea i {
   display: inline-block;
-  margin-top: 60px;
+  margin-top: 90px;
   font-style: normal;
   background: #56acc5;
   color: #fff;
