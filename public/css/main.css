@@ -1251,5 +1251,6 @@ a.sb:active {
 }
 .token-input-list-facebook {
   width: 328px !important;
+  margin-bottom: 0 !important;
   display: inline-block !important;
 }
