@@ -21,18 +21,14 @@ $(document).ready(function(){
 		$(this).timeago();
 	});
 
-	// $('.issue-content-description').livequery(function() {
-	// 	$(this).expander({
-	// 		slicePoint:900,
-	// 		widow:2,
-	// 		expandEffect: 'show',
-	// 		expandText: 'Leer Más',
-	// 		userCollapseText: 'Menos'
-	// 	});
-	// });
-
 	$('.box-homepage-list').masonry({
 	    // options
 	    itemSelector : '.box-homepage'
 	});
+
+	$('.issue-content-description').jMore({
+		collapsedHeight: 210,
+		collapsedText: 'Leer más',
+		expandedText: 'Contraer'
+	})
 });
