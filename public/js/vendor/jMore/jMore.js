@@ -109,13 +109,13 @@
         overflowY: 'hidden'
       });
 
-      if(!this.settings.triggerOnHover) this._addButtons();
+      if(!this.settings.triggerOnHover && (this.$element.prop('scrollHeight') > this.settings.collapsedHeight) ) this._addButtons();
     },
 
     bindEvents: function () {
       var self = this;
       
-      if(!this.settings.triggerOnHover) {
+      if(!this.settings.triggerOnHover && (this.$element.prop('scrollHeight') > this.settings.collapsedHeight) ) {
 
         this.$element
         .find('.jmore-button-expand')
