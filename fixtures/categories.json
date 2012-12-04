@@ -1,7 +1,12 @@
 {
-    "ciencia-y-tecnologia": {
-        "name": "Ciencia y tecnología"
+    "ciencia": {
+        "name": "Ciencia"
       , "color": "#091A33"
+    }
+
+  , "tecnologia": {
+        "name": "Tecnología"
+      , "color": "#092833"
     }
 
   , "cultura": {
@@ -14,8 +19,13 @@
       , "color": "#100933"
     }
 
-  , "economia-y-finanzas": {
-        "name": "Economía y Finanzas"
+  , "economia": {
+        "name": "Economía"
+      , "color": "#260933"
+    }
+
+  , "finanzas": {
+        "name": "Finanzas"
       , "color": "#260933"
     }
 
@@ -61,6 +71,11 @@
 
   , "turismo": {
         "name": "Turismo"
+      , "color": "#09330a"
+    }
+
+  , "partido-de-la-red": {
+        "name": "Partido de la Red"
       , "color": "#09330a"
     }
 }
