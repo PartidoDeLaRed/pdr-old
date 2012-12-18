@@ -20,7 +20,8 @@ app.configure('development', function() {
 });
 
 app.configure('production', function() {
-  app.use(express.compress())
+  app.use(require('nowww')());
+  app.use(express.compress());
   app.set('config', require('./config.json'));
   app.set('mongoUrl', process.env.MONGOHQ_URL);
 

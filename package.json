@@ -16,6 +16,7 @@
   , "dependencies": {
         "express": "*"
       , "jade": "*"
+      , "nowww": "*"
       , "marked": "*"
       , "ghm": "*"
       , "http-auth": "*"    
