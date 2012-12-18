@@ -24,73 +24,73 @@
               a(data-toggle="modal", role="button", href="#issue-full").full-read Leer Completo
     
     .block-ideas.box.clearfix
-        - if(typeof(citizen) != 'undefined' && element.vote.voters.indexOf(citizen.id) >=0 )  {
-          - var voted = true;
-        - };
-        - if(!voted) {
-          .span9
-            - if(typeof(citizen) != 'undefined')  {
-              a.delegate(data-toggle="modal", role="button", href="#delegation")
-                | Prefiero delegar mi voto a otra persona
-                i
-              include element/delegation_form
-            - };
-            h3.block-title.title-propuestas
-              i.icon
-              | Propuestas a votar
+      - if(typeof(citizen) != 'undefined' && element.vote.voters.indexOf(citizen.id) >=0 )  {
+        - var voted = true;
+      - };
+      - if(!voted) {
+        .span9
+          - if(typeof(citizen) != 'undefined')  {
+            a.delegate(data-toggle="modal", role="button", href="#delegation")
+              | Prefiero delegar mi voto a otra persona
+              i
+            include element/delegation_form
+          - };
+          h3.block-title.title-propuestas
+            i.icon
+            | Propuestas a votar
 
-          - element.vote.choices.forEach(function(choice) {
-            .span3
-              .vote-option(data-issue="#{element.id}", data-choice="#{choice.id}", data-idea="#{choice.idea.id}")
-                h4= choice.idea.title
-                p= choice.idea.abstract
-                p
-                  a(data-toggle="modal", role="button", href="#choice-full-#{choice.id}").full-read Leer Completo
-                .buttons
-                  a.total-comments(data-toggle="modal", role="button", href="#choice-full-#{choice.id}") 
-                    i
-                    | 23
-                  - if(!voted) {
-                    a.vote(href="#") Votar
-                  - };
-          - });
+        - element.vote.choices.forEach(function(choice) {
           .span3
-            a.create-idea.vote-option(data-toggle="modal", role="button", href='#compose-initiative', data-backdrop="false", data-keyboard="false", rel="tooltip", title="Redactar una iniciativa", data-placement="bottom") 
-              i +
-              span Crear Propuesta
-        - } else {
-          .span9.box.block-results
-            h3.block-title 
-              i.icon
-              span Resultados preliminares
-            .box-content.clearfix
-              - var totalVoters = element.vote.voters.length || 1;
-              - element.vote.choices.forEach(function(choice) {
-                .partial(style="width:100%;float:left;")
-                  - var partial = choice.result / totalVoters * 100;
-                  h5
-                    a(data-toggle="modal", role="button", href="#choice-full-#{choice.id}")
-                      | #{choice.idea.title}
-                  .bar(style="width:#{partial}%;")
-                    span
-                      | #{partial} %
-              - });
-        - };
-
-        .modals
-          - element.vote.choices.forEach(function(choice) {
-            .modal(id="choice-full-#{choice.id}", role="dialog", style="display:none;")
-              .modal-header
-                a.close(type="button", data-dismiss="modal", aria-hidden="true") ×
-                h2= choice.idea.title
+            .vote-option(data-issue="#{element.id}", data-choice="#{choice.id}", data-idea="#{choice.idea.id}")
+              h4= choice.idea.title
+              p= choice.idea.abstract
+              p
+                a(data-toggle="modal", role="button", href="#choice-full-#{choice.id}").full-read Leer Completo
+              .buttons
+                a.total-comments(data-toggle="modal", role="button", href="#choice-full-#{choice.id}") 
+                  i
+                  | 23
+                - if(!voted) {
+                  a.vote(href="#") Votar
+                - };
+        - });
+        .span3
+          a.create-idea.vote-option(data-toggle="modal", role="button", href='#compose-initiative', data-backdrop="false", data-keyboard="false", rel="tooltip", title="Redactar una iniciativa", data-placement="bottom") 
+            i +
+            span Crear Propuesta
+      - } else {
+        .span9.box.block-results
+          h3.block-title 
+            i.icon
+            span Resultados preliminares
+          .box-content.clearfix
+            - var totalVoters = element.vote.voters.length || 1;
+            - element.vote.choices.forEach(function(choice) {
+              .partial(style="width:100%;float:left;")
+                - var partial = choice.result / totalVoters * 100;
                 h5
-                  | Propuesto por 
-                  a(href="/profiles/#{choice.sponsor.id}")= choice.sponsor.fullName
-                  i.tt(href="#", rel="tooltip", data-placement="bottom", title="#{choice.updatedAt.toLocaleDateString() + ' ' + choice.updatedAt.toLocaleTimeString()}") 
-                    span.time(title=choice.updatedAt.toISOString())
+                  a(data-toggle="modal", role="button", href="#choice-full-#{choice.id}")
+                    | #{choice.idea.title}
+                .bar(style="width:#{partial.toFixed(0)}%;")
+                  span
+                    | #{partial} %
+            - });
+      - };
 
-              .modal-body
-                p.issue-content-description!= md(choice.idea.essay)
-          - })
+      .modals
+        - element.vote.choices.forEach(function(choice) {
+          .modal(id="choice-full-#{choice.id}", role="dialog", style="display:none;")
+            .modal-header
+              a.close(type="button", data-dismiss="modal", aria-hidden="true") ×
+              h2= choice.idea.title
+              h5
+                | Propuesto por 
+                a(href="/profiles/#{choice.sponsor.id}")= choice.sponsor.fullName
+                i.tt(href="#", rel="tooltip", data-placement="bottom", title="#{choice.updatedAt.toLocaleDateString() + ' ' + choice.updatedAt.toLocaleTimeString()}") 
+                  span.time(title=choice.updatedAt.toISOString())
+
+            .modal-body
+              p.issue-content-description!= md(choice.idea.essay)
+        - })
 
       include element/comments
