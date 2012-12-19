@@ -43,10 +43,10 @@ module.exports = function(app, utils) {
           // .select('trustees')
           .populate('trustees')
           .exec(function(err, delegation) {
-            res.render('issues/single', {page: 'idea', issue: issue, author: issue.author, comments: comments, delegation: delegation});
+            res.render('issue', {page: 'idea', issue: issue, author: issue.author, comments: comments, delegation: delegation});
           });
         } else {
-          res.render('issues/single', {page: 'idea', issue: issue, author: issue.author, comments: comments, delegation: {}});
+          res.render('issue', {page: 'idea', issue: issue, author: issue.author, comments: comments, delegation: {}});
         }
       });
     });
@@ -54,7 +54,7 @@ module.exports = function(app, utils) {
 
   app.get('/issues', function(req, res) {
     Issue.find(null, function(err, results) {
-      res.render('issues/list', {page:'profile', issues: results || [] });
+      res.render('issues', {page:'profile', issues: results || [] });
     });
   });
 
