@@ -78,4 +78,8 @@
         "name": "Partido de la Red"
       , "color": "#09330a"
     }
+  , "software": {
+        "name": "Software"
+      , "color": "#09330a"
+    }
 }
