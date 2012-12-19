@@ -69,8 +69,9 @@
               .partial(style="width:100%;float:left;")
                 - var partial = choice.result / totalVoters * 100;
                 h5
+                  strong #{choice.idea.title} 
                   a(data-toggle="modal", role="button", href="#choice-full-#{choice.id}")
-                    | #{choice.idea.title}
+                    | Leer...
                 .bar(style="width:#{partial.toFixed(0)}%;")
                   span
                     | #{partial.toFixed(0)} %
