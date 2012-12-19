@@ -63,11 +63,15 @@
           h3.block-title 
             i.icon
             span Resultados preliminares
+          - var totalVoters = element.vote.voters.length;
+          - var voters = totalVoters == 1 ? "Votó $n ciudadano" : "Votaron $n ciudadanos"
+          h4
+            | #{voters.replace('$n',totalVoters)}
+
           .box-content.clearfix
-            - var totalVoters = element.vote.voters.length || 1;
             - element.vote.choices.forEach(function(choice) {
               .partial(style="width:100%;float:left;")
-                - var partial = choice.result / totalVoters * 100;
+                - var partial = choice.result / (totalVoters || 1) * 100;
                 h5
                   strong #{choice.idea.title} 
                   a(data-toggle="modal", role="button", href="#choice-full-#{choice.id}")
