@@ -33,8 +33,8 @@
               + ".jmore-container { }"
               + ".jmore-container.collapsed:hover > .jmore-button-expand { display:block; }"
               + ".jmore-container.expanded:hover > .jmore-button-collapse { display:block; }"
-              + ".jmore-container.expanded:hover > .jmore-bottom-overlay { display:none; }"
-              + ".jmore-bottom-overlay { position:absolute; height:30px; bottom:0; left:0; right:0; background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%); /* FF3.6+ */ background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */ background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */ background: -o-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* Opera 11.10+ */ background: -ms-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* IE10+ */ background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* W3C */ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */}"
+              + ".jmore-container.collapsed > .jmore-bottom-overlay { display:block; }"
+              + ".jmore-bottom-overlay { position:absolute; display:none; height:30px; bottom:0; left:0; right:0; background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%); /* FF3.6+ */ background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */ background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */ background: -o-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* Opera 11.10+ */ background: -ms-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* IE10+ */ background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* W3C */ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */}"
               + ".jmore-button {display:none;position:absolute;bottom:0;right:0;font-family:Arial;color:#f3f3f3;font-size:12px;padding:5px;text-decoration:none;-webkit-border-radius:5px;-moz-border-radius:5px;-webkit-box-shadow:0 1px 3px #5e5e5e;-moz-box-shadow:0 1px 3px #5e5e5e;text-shadow:1px 1px 3px #3e3e3e;border:solid #444 1px;background:#333}"
               + ".jmore-button:hover{background:-webkit-gradient(linear,0 0,0 100%,from(#666),to(#333));background:-moz-linear-gradient(top,#666,#333) filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=undefined,endColorstr=undefined)}"
               // + ".jmore-bottom-overlay { background:red;}" //test only
@@ -77,6 +77,7 @@
     constructor: More,
 
     init: function () {
+      if(this.$element.prop('scrollHeight') <= this.settings.collapsedHeight) return;
       // render required html and styles
       this.render();
 
@@ -109,13 +110,13 @@
         overflowY: 'hidden'
       });
 
-      if(!this.settings.triggerOnHover && (this.$element.prop('scrollHeight') > this.settings.collapsedHeight) ) this._addButtons();
+      if(!this.settings.triggerOnHover) this._addButtons();
     },
 
     bindEvents: function () {
       var self = this;
       
-      if(!this.settings.triggerOnHover && (this.$element.prop('scrollHeight') > this.settings.collapsedHeight) ) {
+      if(!this.settings.triggerOnHover) {
 
         this.$element
         .find('.jmore-button-expand')
