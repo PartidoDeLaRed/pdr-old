@@ -18,13 +18,7 @@ module.exports = function(app) {
    */
 
   app.get('/', function(req, res, next) {
-    if ('development' == app.get('env')) {
-      index(req, res);
-    } else {
-      basic.apply(req, res, function(username) {
-        index(req, res);
-      });
-    }
+    index(req, res);
   });
 
   var index = function(req, res) {
