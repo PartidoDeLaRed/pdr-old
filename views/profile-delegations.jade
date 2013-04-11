@@ -3,7 +3,10 @@ extends layout_profile
 block profile_content
 
   h3 Delegaciones
-  p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur viverra nisl a nisl faucibus molestie. Aliquam ac elit odio. Nunc commodo mi vitae ipsum tempus egestas.
+  p 
+    | La delegación es una herramienta que permite a los ciudadanos ceder su poder de voto a personas en las que sólo él confía y tomar decisiones por éste en materias en las que no se especializa.
+    | Toda delegación puede ser inmediatamente destituíad cuando el ciudadano así lo desee. Pero toda acción debidamente ejecutada es irreversible.
+
   form(action="/delegation/process", method="post")
   - each category, cid in categories
     .deletagation-item.clearfix
