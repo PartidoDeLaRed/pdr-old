@@ -2,7 +2,7 @@ var express = require('express')
   , http = require('http')
   , passport = require('passport')
   , mongoose = require('mongoose')
-  , mongoStore = require('connect-mongodb')
+  , mongoStore = require('connect-mongo')(express)
   , utils = require('./utils');
 
 /*
