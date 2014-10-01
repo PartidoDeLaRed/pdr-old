@@ -1,0 +1,14 @@
+{
+  "auth": {
+    "facebook": {
+      "clientid" : "your-fb-client-id",
+      "clientsecret": "your-fb-client-secret",
+      "callback": "your-fb-auth-callback"
+    },
+    "twitter": {
+      "consumerkey" : "your-tw-consumer-key",
+      "consumersecret": "your-tw-consumer-secret",
+      "callback": "your-tw-auth-callback"
+    }
+  }
+}

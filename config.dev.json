@@ -1,0 +1,14 @@
+{
+  "auth": {
+    "facebook": {
+      "clientid" : "your-fb-client-id",
+      "clientsecret": "your-fb-client-secret",
+      "callback": "http://localhost:3005/auth/facebook/callback"
+    },
+    "twitter": {
+      "consumerkey" : "your-tw-consumer-key",
+      "consumersecret": "your-tw-consumer-secret",
+      "callback": "http://127.0.0.1:3005/auth/twitter/callback"
+    }
+  }
+}
